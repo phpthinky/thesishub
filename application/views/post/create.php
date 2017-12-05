@@ -3,17 +3,17 @@
 	<?php print(isset($content) ? $content : "Nothing to display here."); ?>
 
 
-<form class="form" id="frmpost" name="frmpost" action="" method="post">
+<form class="form" id="frmpost" name="frmpost" action="<?=site_url('post/save');?>" method="post">
 	<div class="form-group">
 		<div class="response"></div>
 	</div>
 	<div class="form-group">
-		<label for="Title">Title</label><input type="text" class="form-control" name="posttitle" id="posttitle" placeholder="Enter title here" required>
+		<label for="Title">Title</label><input type="text" class="form-control" name="title" id="title" placeholder="Enter title here" required>
 	</div>
 
 	<div id='textareafield' class="">
 	<div class="form-group">
-		<label for="Title">Abstract</label><textarea name="postcontent"  id="postcontent" style="width:100%;height:100px;"  placeholder="Enter abstract here"></textarea>
+		<label for="Title">Abstract</label><textarea name="contents"  id="contents" style="width:100%;height:100px;"  placeholder="Enter abstract here"></textarea>
 	</div>
 	</div>
 
@@ -24,18 +24,16 @@
 	</div>
 
 	<div class="form-group">
-		<label for="Title">Tags</label><input type="text" class="form-control" name="posttag" id="posttag" placeholder='Enter tag separate by comma'>
+		<label for="Title">Tags</label><input type="text" class="form-control" name="tags" id="tags" placeholder='Enter tag separate by comma'>
 	</div>
 
 	<div class="form-group">
-		<label for="Title">Program</label><select class="form-control" name="selectgroup" id="selectgroup">
+		<label for="Title">Course</label><select class="form-control" name="group" id="group">
 			<?php 
 				foreach ($listgroup as $key) {
 					# code...
-					if($key->id > 3){
 					echo "<option value='$key->id'>$key->name</option>";
 
-					}
 				}
 			?>
 		</select> 
@@ -258,14 +256,14 @@
   $(function () {
      // editor = new nicEditor({fullPanel : false}).panelInstance('postcontent');
     //editor =  new nicEditor({buttonList : ['left','center','right','justify','fontSize','bold','italic','underline','strikeThrough','subscript','superscript','html','image']}).panelInstance('postcontent');
-  editor =  new nicEditor({buttonList : ['fontSize','bold','italic','underline','strikeThrough','subscript','superscript','html','image']}).panelInstance('postcontent');
+  editor =  new nicEditor({buttonList : ['fontSize','bold','italic','underline','strikeThrough','subscript','superscript','html','image']}).panelInstance('contents');
   })
 
   $(window).resize(function() {
-     editor.removeInstance('postcontent'); 
+     editor.removeInstance('contents'); 
     // editor = new nicEditor({fullPanel : false}).panelInstance('postcontent');
      //new nicEditor({buttonList : ['left','fontSize','bold','italic','underline','strikeThrough','subscript','superscript','html','image']}).panelInstance('postcontent');
-  editor =  new nicEditor({buttonList : ['fontSize','bold','italic','underline','strikeThrough','subscript','superscript','html','image']}).panelInstance('postcontent');
+  editor =  new nicEditor({buttonList : ['fontSize','bold','italic','underline','strikeThrough','subscript','superscript','html','image']}).panelInstance('contents');
   
   });
 
@@ -316,17 +314,26 @@
   $(function(){
 
   	$('#frmpost').on('submit',function(){
-  		var nicE = new nicEditors.findEditor('postcontent');
+
+  		//return true;
+  /*		
+  		var nicE = new nicEditors.findEditor('contents');
 		var contents = nicE.getContent();
-		var	 title = $('#posttitle').val();
-		var tags = $('#posttag').val();
-		var group = $('#selectgroup').val();
+		var	 title = $('#title').val();
+		var tags = $('#tags').val();
+		var group = $('#group').val();
+		var year = $('#year').val();
+		var month = $('#month').val();
     	var data = "title="+title+"&tags="+tags+"&group="+group+"&contents="+contents;
+*/
 
 
 
   		//alert(contents+title+tags+group);
 
+  		var nicE = new nicEditors.findEditor('contents');
+		var	 title = $('#title').val();
+        var data = $('#frmpost').serialize();
 
   					$.ajax({
 						type: 'post',
@@ -345,10 +352,12 @@
 								$('#savetitle').val(response.slug);
 								$('.subtitle h4').html('THESIS CLIENT');
 
-
+								return false;
 							}else{
             					$('.loader').hide();//return false;
 								$('.response').html('<p class="alert alert-danger">Warning! '+response.error+'</p>');
+
+								return false;
 							}
 
 

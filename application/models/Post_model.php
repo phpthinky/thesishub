@@ -25,22 +25,7 @@ class Post_model extends CI_Model
         }
         return $string;
     }
-	public function save($value=array('id'=>0))
-	{
-		# code...
-		# code...
-		//var_dump($value['title']);return;
-		if(isset($value['id']) <> 0 ){
-			echo "update";
-		}else{
 
-			 if($this->add($value)){
-				return true;
-			 }else{
-				return false;
-			 }
-		}
-	}
 	public function isExist($value='')
 	{
 		# code...
@@ -52,11 +37,11 @@ class Post_model extends CI_Model
 			return false;
 		}
 	}
-	public function add($value='')
+	public function save_abstract($value='')
 	{
 
 
-		if($this->db->insert('pages',array('title'=>$value['title'],'slug'=>$value['slug']))){
+		if($this->db->insert('pages',array('title'=>$value['title'],'slug'=>$value['slug'],'year_presented'=>$value['year'],'date_presented'=>$value['month']))){
 			//var_dump($pages);
 
 		$id = $this->db->insert_id();
@@ -64,7 +49,7 @@ class Post_model extends CI_Model
 		$content  = array('name' => 'content','value'=>$value['content'],'group_id'=>$id,'date_updated'=>date("Y-d-m") );
 		$result = $this->db->insert('page_contents',$content);
 		
-		return true;
+		return $id;
 		}
 		//var_dump($id);
 		return false;
@@ -190,12 +175,26 @@ class Post_model extends CI_Model
     	# code...
     	if($data !== null){
 
-		//$content  = array('name' => 'content','value'=>$value['content'],'group_id'=>$id,'date_updated'=>date("Y-d-m") );
+
 		$result = $this->db->insert('page_tag',$data);
     		return$result;
     	}else{
     		return false;
     	}
+    }
+    public function page_permission($page=false,$group=false,$perm=0)
+    {
+        # code...
+        if ($group && $page) {
+            # code...
+            $sql = "INSERT INTO `page_perm_group` (`page_id`, `group_id`, `perm_id`) VALUES (?, ?, ?)";
+            $result = $this->db->query($sql,array($page,$group,$perm));
+            return $result;
+
+        }
+        return false;
+
+
     }
 
     public function search($tags='',$limit,$start)

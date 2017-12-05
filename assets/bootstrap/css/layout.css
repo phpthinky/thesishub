@@ -1,0 +1,445 @@
+/*.container{width: 100%;padding-left:5%;padding-right: 5%;margin-left: auto; margin-right:auto;}
+.admin{border: solid 1px #d5d5d5;padding: 5px;height: auto;margin-bottom: 20px;}
+.admin h2{margin: 0;}
+.pagecontent{padding: 20px;}
+.thumb-image{max-width: 200px;max-height: 200px;overflow: hidden;margin: 20px;}
+/* BE SURE TO INCLUDE THE CSS RESET FOUND IN THE DEMO PAGE'S CSS */
+/*
+#imageBrowser{display:none;height:auto;width:500px;margin-right:10px;z-index:1;position:absolute;top:20;right:0;background:url('http://royweb.dev/images/white.jpg')}
+
+.gallery {
+  margin: 0 auto;
+  padding: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.3);
+}
+
+.gallery > div {
+  position: relative;
+  float: left;
+  padding: 5px;
+}
+
+.gallery > div > img {
+  display: block;
+  width: 50px;
+  transition: .1s transform;
+  transform: translateZ(0); /* hack */
+}
+
+.gallery > div:hover {
+  z-index: 1;
+}
+
+.gallery > div:hover > img {
+  transform: scale(3.7,3.7);
+  transition: .3s transform;
+}
+
+.cf:before, .cf:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+.cf:after {
+  clear: both;
+}
+
+/* ========================================================== */
+/*  6. PORTFOLIO/PROJECTS                                     */
+/* ========================================================== */
+
+.isotope-item {
+    z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Isotope CSS3 transitions */
+.isotope,
+.isotope .isotope-item {
+    -webkit-transition-duration: 0.8s;
+    -moz-transition-duration: 0.8s;
+    -ms-transition-duration: 0.8s;
+    -o-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+}
+
+.isotope {
+    -webkit-transition-property: height, width;
+    -moz-transition-property: height, width;
+    -ms-transition-property: height, width;
+    -o-transition-property: height, width;
+    transition-property: height, width;
+}
+
+.isotope .isotope-item {
+    -webkit-transition-property: -webkit-transform, opacity;
+    -moz-transition-property: -moz-transform, opacity;
+    -ms-transition-property: -ms-transform, opacity;
+    -o-transition-property: top, left, opacity;
+    transition-property: transform, opacity;
+}
+
+/* Disabling Isotope CSS3 transitions */
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+    -webkit-transition-duration: 0s;
+    -moz-transition-duration: 0s;
+    -ms-transition-duration: 0s;
+    -o-transition-duration: 0s;
+    transition-duration: 0s;
+}
+
+/* Disable CSS transitions for containers with infinite scrolling */
+.isotope.infinite-scrolling {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+#portfolio{
+    width:100%;
+    padding-bottom:120px;
+    position:relative;
+    z-index:9;
+}
+#filter {
+    margin: 0 auto 25px 15px;
+    overflow: hidden;
+    padding: 5px 0 0;
+    position: relative;
+    text-align: left;
+    width: auto;
+    z-index: 10;
+}
+#filter li {
+    float: left;
+    list-style: none outside none;
+    margin: 0 1px 10px;
+
+}
+#filter li a{
+    color:#505354;
+    padding:10px 20px;
+    font-size:14px;
+    position: relative;
+    line-height: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    -moz-transition: all .50s ease-in-out;
+    -webkit-transition: all .50s ease-in-out;
+    transition: all .50s ease-in-out;
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    -ms-border-radius:3px;
+    -o-border-radius:3px;
+    border-radius:3px;
+    outline:none;
+    text-decoration: none;
+}
+
+#filter li.selected a, #filter li a:hover{
+    color:#727CB6;
+}
+#filter li.selected a:after, #filter li a:hover:after {
+    background: #727CB6;
+    width: 100%;
+}
+#filter  li a:after,
+#filter  li a:before {
+    transition: all .5s;
+}
+#filter li a:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width:0%;
+    content: '.';
+    color: transparent;
+    height: 2px;
+}
+#filter li a:hover:after {
+    width: 100%;
+}
+
+#list{ margin-bottom:30px;padding: 0; }
+
+.list_item{
+    margin-bottom:3%;
+    overflow: hidden;
+}
+
+.list_item h4{
+    font-size: 18px;
+}
+
+/* Hover Effect on Portfolio Image
+====================================*/
+.recent-item{
+    transition: all 0.4s cubic-bezier(0.76, 0.1, 0.21, 0.9) 0s;
+    width: 100%;
+}
+.recent-item .touching.medium .plus_overlay {
+    border-bottom:50px solid #727CB6;
+    border-left: 50px solid transparent;
+    bottom: 0;
+    height: 0;
+    opacity: 0.95;
+    position: absolute;
+    right: 0;
+    text-indent: -9999px;
+    transition: all 0.2s cubic-bezier(0.63, 0.08, 0.35, 0.92) 0s;
+    width: 0;
+    z-index: 999;
+}
+.recent-item:hover .touching.medium .plus_overlay {
+    border-bottom:500px solid rgba(114, 124, 181, 0.62);
+    border-left:none;
+    height: 100%;
+    width: 100%;
+}
+.recent-item:hover .touching.medium .plus_overlay_icon{display: none;}
+
+.recent-item .touching.medium .plus_overlay_icon {
+    bottom: 10px;
+    color: #fff;
+    height: 15px;
+    position: absolute;
+    right: 8px;
+    transition: all 0.2s cubic-bezier(0.63, 0.08, 0.35, 0.92) 0s;
+    width: 13px;
+    z-index: 999;
+}
+.recent-item:hover .item-description{
+    display: block;
+    left: 0;
+    position: absolute;
+    top: 35%;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+
+}
+.touching.medium{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+.touching.medium img {
+    width: 100%;
+    position: relative;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.recent-item .item-description {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    text-align: center;
+}
+.item-description h5 {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 40px;
+    margin: 0;
+    text-transform: uppercase;
+}
+.recent-item:hover .item-description{
+    transform:scale(1);
+    -webkit-transform:scale(1);
+    -moz-transform:scale(1);
+    -ms-transform:scale(1);
+    -o-transform:scale(1);
+    opacity:1;
+    -webkit-transition: all 0.6s ease-in-out;
+    -moz-transition: all 0.6s ease-in-out;
+    -o-transition: all 0.6s ease-in-out;
+    -ms-transition: all 0.6s ease-in-out;
+    transition: all 0.6s ease-in-out;
+}
+.recent-item .item-description span {
+    color: #fff;
+    font-size: 20px;
+    display: block;
+    font-weight:600;
+    line-height:14px;
+}
+
+.recent-item .option {
+    position: absolute;
+    text-align: center;
+    top: 25%;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+.recent-item .option a{
+    color: #727CB6;
+    background: #FFF;
+    width:45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 21px;
+    line-height: 43px;
+    text-align: center;
+    display: inline-block;
+    zoom: 1;
+    -moz-opacity: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    z-index:100;
+    transform: scale(0, 0) rotateX(360deg);
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition:all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    -ms-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+
+.recent-item .option a:hover{
+    background: #727CB6;
+    color:#fff;
+}
+.recent-item:hover .option a
+{
+    zoom: 1;
+    -moz-opacity: 1;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    transform: scale(1, 1) rotateX(0deg);
+}
+.recent-item .option a.hover-zoom {
+    margin-right: 1%;
+}
+
+.recent-item .option a.hover-link {
+    margin-left: 1%;
+}
+
+/*-------Portfolio_3_Medium_Images----------*/
+
+.medium-images .recent-item .option {
+    top: 23%;
+}
+
+.medium-images .recent-item .option a{
+    font-size: 15px;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+}
+
+.medium-images .recent-item:hover .item-description {
+    top: 35%;
+}
+.medium-images .item-description h5 {
+    font-size: 19px;
+    line-height: 33px;
+}
+.medium-images .item-description span{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 13px;
+}
+
+.medium-images .list_item h4{
+    font-size: 16px;
+}
+
+/*-------Portfolio_4_small-images----------*/
+
+.small-images .recent-item .option{
+    top: 18%;
+}
+
+.small-images .recent-item .option a,
+.jcarousel  .recent-item a{
+    width:35px;
+    height: 35px;
+    font-size: 15px;
+    line-height: 35px;
+}
+
+.small-images .recent-item:hover .item-description {
+    top: 28%;
+}
+
+.small-images .item-description h5,
+.jcarousel-list .item-description > h5{
+    font-size: 17px;
+    margin: 0;
+}
+
+.jcarousel-list .item-description > span{
+    font-size: 17px;
+    line-height: 1;
+}
+.small-images .item-description span{
+    line-height: 0.5;
+    font-size: 16px;
+}
+
+.small-images .list_item h4{
+    font-size: 14px;
+}
+
+.jcarousel-list .recent-item:hover .item-description{top: 50%;}
+
+/*----------//Portfolio_4_small-images-------------*/
+
+
+body{
+    background-color: #ffffff;
+
+}
+.wrapper,.container,
+.wrapper .container{background: none;
+}
+
+#alpha_wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+    background: url('http://royweb.dev/images/pattern-1.png');
+    background-size: cover;
+  color: #000;
+}
+
+  .alpha_2 {
+    background: url('http://royweb.dev/images/pattern-1.png');
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    -moz-opacity: 0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+  }
+
+  .text_holder_2 {
+    position: relative;
+    background: url('http://royweb.dev/images/modern.png');
+    background-size: cover;
+    top: 20px;
+    margin:  0 auto;
+    width: 95%;
+    -moz-opacity: 0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+  }

@@ -135,6 +135,11 @@ class Home extends CI_Controller
 				$user = $this->input->post('username');
 				$password = $this->input->post('password');
 
+				    if(!filter_var($user, FILTER_VALIDATE_EMAIL)) {
+
+				    	$user = $this->user_model->get_email_by_username($user);
+				    }
+
 
 	        if ($this->aauth->login($user, $password)){
 	        	//redirect('search');
@@ -144,7 +149,7 @@ class Home extends CI_Controller
 			$error = str_replace(' ', '-', $error);
 			$error = str_replace('.', '', $error);
 			$error = str_replace(',', '', $error);
-			//redirect('ie/login/'.$error);
+			
 
 			print($error);
 
@@ -232,6 +237,7 @@ class Home extends CI_Controller
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 			$cpassword = $this->input->post('cpassword');
+			$group = $this->input->post('group');
 
 			if($this->user_model->email($email) > 0){
 				exit('Email is not available.');
@@ -241,7 +247,8 @@ class Home extends CI_Controller
 				exit('Password do not much.');
 			}else{			
 				$a = $this->aauth->create_user($email,$password,$username);
-				//print($a);
+				$permit = $this->aauth->allow_user($a,2); // 2 researcher and 1 for employee
+				$group = $this->aauth->add_member($a,$group);
 			}
 
 
@@ -251,6 +258,14 @@ class Home extends CI_Controller
 		}else{
 
 		# code...
+			$this->load->model('group_model');
+			$type = $this->group_model->group_type(3);
+			//var_dump($type);
+
+
+		//$groups = $this->aauth->list_groups();
+		$data['listgroup'] = $type ;
+		
 		$data['title'] = 'Register';
 		$data['visits'] = $this->pagecounter->visit_total($this->pagecounter->get_pageUrl());
 		$this->load->view('thesiscommon/header',$data);
@@ -284,8 +299,6 @@ class Home extends CI_Controller
 	{
 		# code...
 	}
-
-
 
 
 

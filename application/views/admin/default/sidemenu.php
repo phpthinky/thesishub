@@ -105,8 +105,7 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
-            <div class="row" id="main" >
-                <div class="col-sm-12 col-md-12 well" id="content">
-                <br>
+            <div class="row" id="main">
+                <div class="col-sm-12 col-md-12 well" id="content" style="margin:0;padding:5px 15px;">
                     <div class="subtitle"><h4><?php print(isset($subtitle) ? $subtitle : "Subtitle"); ?></h4></div>
                     <div class="col-sm-12 col-md-12 content-area">

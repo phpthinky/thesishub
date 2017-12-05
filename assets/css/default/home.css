@@ -1,0 +1,197 @@
+body{
+    
+}
+.container{width: 100%;
+background-size: cover;
+background-repeat: no-repeat;
+}
+
+.welcome{
+
+    padding: 5px;
+}
+.welcome > .welcome-content{
+    background-color: rgba(48,147,249,0.70);
+    height: 99vh;
+    overflow: auto;
+}
+
+
+.welcome > .welcome-content > .header img{
+  width: 75%;
+  max-width: 350px;
+  max-height: 75px;
+}
+.robot{
+    background-color: rgba(48,147,249,0.40);
+}
+.robot > img{
+    height: 99vh;
+}
+/* header */
+.header{
+    padding: 5px;
+}
+.header > a{
+    text-decoration: none;
+    font-family: Times New Roman;
+}
+/* navbar */
+.navbar-default {
+    background-color: #b63aea;
+    border-color: #E7E7E7;
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #777;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+          color: #333;
+    }
+
+    .welcome > .welcome-content{
+        height: 100%;
+    }
+    .welcome > .welcome-content > .header img{max-width: 300px;}
+    .welcome > .welcome-content > .header > input{width: 100%;}
+    .welcome > .robot img{
+        
+        display: none;
+    }
+    .welcome #bs-carousel{
+        display: none;
+    }
+}
+
+
+.fade-carousel {
+    position: relative;
+    height: 100vh;
+}
+.fade-carousel .carousel-inner .item {
+    height: 100vh;
+}
+.fade-carousel .carousel-indicators > li {
+    margin: 0 2px;
+    background-color: #f39c12;
+    border-color: #f39c12;
+    opacity: .7;
+}
+.fade-carousel .carousel-indicators > li.active {
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+}
+
+/********************************/
+/*          Hero Headers        */
+/********************************/
+.hero {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    z-index: 3;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 rgba(0,0,0,.75);
+      -webkit-transform: translate3d(-50%,-50%,0);
+         -moz-transform: translate3d(-50%,-50%,0);
+          -ms-transform: translate3d(-50%,-50%,0);
+           -o-transform: translate3d(-50%,-50%,0);
+              transform: translate3d(-50%,-50%,0);
+}
+.hero h1 {
+    font-size: 6em;    
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    color: #000;
+}
+.hero h2 {
+    color: #2b426c;
+    text-shadow: 1px 1px 0 rgba(255,255,255,.75);
+}
+.hero h4 {
+    color: #2b426c;    
+    text-shadow: 1px 1px 0 rgba(255,255,255,.75);
+}
+.fade-carousel .carousel-inner .item .hero {
+    opacity: 0;
+    -webkit-transition: 2s all ease-in-out .1s;
+       -moz-transition: 2s all ease-in-out .1s; 
+        -ms-transition: 2s all ease-in-out .1s; 
+         -o-transition: 2s all ease-in-out .1s; 
+            transition: 2s all ease-in-out .1s; 
+}
+.fade-carousel .carousel-inner .item.active .hero {
+    opacity: 1;
+    -webkit-transition: 2s all ease-in-out .1s;
+       -moz-transition: 2s all ease-in-out .1s; 
+        -ms-transition: 2s all ease-in-out .1s; 
+         -o-transition: 2s all ease-in-out .1s; 
+            transition: 2s all ease-in-out .1s;    
+}
+
+/********************************/
+/*            Overlay           */
+/********************************/
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #080d15;
+    opacity: .3;
+}
+
+/********************************/
+/*          Custom Buttons      */
+/********************************/
+.btn.btn-lg {padding: 10px 40px;}
+.btn.btn-hero,
+.btn.btn-hero:hover,
+.btn.btn-hero:focus {
+    color: #f5f5f5;
+    background-color: #1abc9c;
+    border-color: #1abc9c;
+    outline: none;
+    margin: 20px auto;
+    z-index: -2;
+}
+
+/********************************/
+/*       Slides backgrounds     */
+/********************************/
+.fade-carousel .slides .slide-1, 
+.fade-carousel .slides .slide-2,
+.fade-carousel .slides .slide-3 {
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.fade-carousel .slides .slide-1 {
+  background-image: url(http://www.thesis.hub:8000/public/images/books0001.jpg); 
+}
+.fade-carousel .slides .slide-2 {
+  background-image: url(http://www.thesis.hub:8000/public/images/books0002.jpg); 
+}
+.fade-carousel .slides .slide-3 {
+  background-image: url(http://www.thesis.hub:8000/public/images/books0003.jpg); 
+}
+
+
+/********************************/
+/*          Media Queries       */
+/********************************/
+@media screen and (min-width: 980px){
+    .hero { width: 980px; }    
+}
+@media (max-width: 1067px) {
+    .welcome > .welcome-content > .header img{width: 75%;max-width: 350px;}
+
+}
+

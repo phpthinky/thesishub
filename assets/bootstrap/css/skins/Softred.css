@@ -1,0 +1,218 @@
+/* Fraction Slider Style
+====================================*/
+.fraction-slider .next:hover,.fraction-slider .prev:hover,
+.fraction-slider .next:hover:before,.fraction-slider .prev:hover:before{color:#ED687C!important; border-color:#ED687C!important;}
+
+.slider .slide1 .slide-heading span,
+.slider .slide2 .sub-line,
+.slider .slide3 .sub-line{color:#ED687C;}
+.slider .slide3 .slide-heading{background:#ED687C;}
+
+/* Service Box Style
+====================================*/
+.serviceBox_1 .service-icon i{color: #ED687C;}
+.serviceBox_2 .service-icon{ border: 2px solid #ED687C;}
+.serviceBox_2 .service-icon i{color:#ED687C;}
+.serviceBox_3 {border:1px solid #ED687C;}
+.serviceBox_3  .service-icon{border:1px solid #ED687C; color:#ED687C;}
+.serviceBox_3 h3:before,.serviceBox_3  h3:after{ background:#ED687C;}
+.serviceBox_3:hover .service-icon,.serviceBox_4> span{ background:#ED687C; }
+
+.serviceBox_2 .read a,
+.serviceBox_4 .read a{
+    background: rgba(0, 0, 0, 0) linear-gradient(to right, #DE5A70 0%, #DE5A70 50%, #ED687C 50%) repeat scroll 100% 0 / 200% 100%;
+}
+
+.serviceBox_3 .read{color:#ED687C; }
+.serviceBox_3 .read:hover{color:#BE485B; }
+
+/* Common Background Color Style
+====================================*/
+.flickr-feed li .hover,
+.progress_skill .bar,
+.swipe-navi .swipe-left,
+.swipe-navi .swipe-right,
+.highlight.default,
+#filter li.selected a:before,
+.carousel-pagination li.active,
+.theme-color-pt .pricingTable:before,
+.pricingBlock.theme-color-pt .pricingTable-header .price-value,
+#logo-bar
+{
+	background: #ED687C !important;
+}
+
+/* Common Text Color Style
+====================================*/
+a.read:hover,
+.testimonial-review small,
+#breadcrumbs ul li a,
+.recent_posts_list li a:hover,
+.dropcap.default,
+.active_acc .panel-title a,
+.panel-heading:hover a,
+.recent_tab_list li a:hover,
+.parallax-testimonial-review small,
+.sidebar .widget ul.arrows_list li a:hover,
+.sidebar .widget ul.archives_list li a:hover,
+.footer li a:hover,.author_bio > h5 a,.author_name > a:hover,.project_details .details li a:hover{
+    color: #ED687C;
+}
+
+/* Tabs Style
+====================================*/
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus,
+.nav-tabs li.active, .nav-tabs li.active a, .nav-tabs li.active a:hover
+{border-top-color:#ED687C; color:#ED687C;}
+
+/* List & Bullets Style
+====================================*/
+.list_style li a:hover,
+.list_style.dubble-right-arrow li:before,
+.list_style.star li:before,
+.list_style.right-arrow li:before,
+.list_style.hand li:before,
+.list_style.play li:before,
+.multi-icon-list li i.fa{
+    color: #ED687C;
+}
+.list_style.circle li:before,
+.list_style.square li:before{
+    background: #ED687C;
+}
+
+/* Buttons & Headings Style
+====================================*/
+.btn-default,
+.dropcap_block.default,
+.icon_lists .fa-hover a:hover,
+.dividerHeading h4::after,
+.dividerHeading h4::before,
+.widget_title h4::after,
+.widget_title h4::before
+{
+	background-color:#ED687C;
+}
+.theme-color-pt .btn-default{background:#ED687C;}
+.btn-default:hover,.theme-color-pt .btn-default:hover{background-color:#DE5A70;}
+
+.page_title h2{ border-color:#ED687C;}
+
+/* Blog Page Style
+====================================*/
+#site-searchform #s:focus { border-color:#ED687C;}
+
+.blog_medium .day{background:#ED687C;}
+
+#site-searchform #searchsubmit,
+.tags li a:hover,
+.shares li a:hover,
+.blogPic .blog-hover .icon,
+.blog_large .day, .blog_single .day,
+.author_desc{
+    background-color:#ED687C;
+}
+
+.masonry_wrapper_blog .metaInfo a:hover,
+.meta a:hover,
+.blog-item > span a:hover,
+.blog-title a:hover,
+.blogMeta a:hover, .blogTitle span:hover,
+.blog_medium .post_meta .metaInfo > span > a:hover,
+.blog_medium .post_meta h2:hover a,
+.blog_large .post_meta h2:hover a, .blog_single .post_meta h2:hover a,
+.blogTitle > a:hover h2,
+.blog_large .post_meta .metaInfo > span > a:hover, .blog_single .post_meta .metaInfo > span > a:hover,
+.comments_list a,
+#comment-list li .comment-container:hover a,
+#comment-list li .comment-container:hover .comment-date{
+    color:#ED687C;
+}
+
+.comment-container:hover {border-color:#ED687C;}
+
+.form-control:focus,#site-searchform #s:focus {border-color:#ED687C;box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(204, 137, 124, 0.6);}
+
+blockquote.default,.theme-color-pt .pricingTable{border-color:#ED687C;}
+
+/* Home Page Style
+====================================*/
+.social_media_team{background:rgba(237, 104, 124, 0.55);}
+
+.testimonial-item blockquote {border-top: 3px solid #ED687C;}
+.testimonial-review > img {border: 2px solid #ED687C;}
+
+.post-detail a:hover{ color: #ED687C;}
+.post-detail .read-more { color: #ED687C; }
+.post-detail .read-more:hover{ color:#BE485B; }
+
+.progress_skill:hover .bar {background: #BE485B !important;}
+
+/* Portfolio & Recent Item Style
+====================================*/
+#filter li.selected a, #filter li a:hover{color: #ED687C;}
+#filter li.selected a:after, #filter li a:hover:after {
+    background: #ED687C;
+    width: 100%;
+}
+
+.recent-item:hover .touching.medium .plus_overlay {border-bottom:500px solid rgba(237, 104, 124, 0.55);}
+.recent-item .touching.medium .plus_overlay { border-bottom:50px solid #BE485B;}
+
+.option a.hover-zoom,
+.option a.hover-link{color:#BE485B;}
+.option a.hover-zoom:hover,
+.option a.hover-link:hover{
+    background: #BE485B;
+    color:#fff;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background:#ED687C;
+    border-color: #ED687C;
+}
+
+/* Navigation Menu Bar Style
+====================================*/
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus{
+    background: #DE5A70;
+}
+.navbar-nav > li.active {
+    background: #DE5A70;
+}
+.navbar-nav > li:hover{
+    background: #DE5A70;
+    transition:all 0.2s ease-in-out 0s;
+}
+.navbar-nav > li > ul:before{ border-bottom-color:#ED687C; }
+.navbar-nav .dropdown-menu > li > a:hover,
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus{ background: #ED687C; }
+
+@media only screen and (max-width: 767px) {
+    .navbar-nav > li > a:hover,.navbar-nav > li > a:focus,.navbar-nav > li.active > a,
+    .navbar-default .navbar-nav > .active > a,
+    .navbar-default .navbar-nav > .active > a:hover,
+    .navbar-default .navbar-nav > .active > a:focus,
+    .navbar-default .navbar-nav > .open > a,
+    .navbar-default .navbar-nav > .open > a:hover,
+    .navbar-default .navbar-nav > .open > a:focus,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus,
+    .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
+    .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus
+    {
+        background:#ED687C !important;
+        color:#fff!important;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus
+    {
+        background:#ED687C;
+        color:#fff;
+    }
+}

@@ -32,7 +32,7 @@
         <script src="<?=base_url('assets/js/jquery-migrate.min.js');?>" type="text/javascript"></script>
         <script src="<?=base_url('assets/js/admin.js');?>" type="text/javascript"></script>
             <!-- niceDIT! text area html editor -->
-            <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+            <script type="text/javascript" src="<?=base_url('assets/nicEdit.js');?>"></script>
     </head>
 
 </head>

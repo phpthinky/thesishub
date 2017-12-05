@@ -1,0 +1,133 @@
+/* SLIDER STYLES */
+
+.slider-wrapper{
+    background: #323A45  url("../images/fraction-slider/base.jpg") no-repeat;
+    background-size:100%;
+    border-bottom: 2px solid #C6C6C6;
+    width:100%;
+    max-height: 450px;
+    position:relative;
+    overflow:hidden;
+    clear:both;
+}
+@media only screen and (max-width: 767px) {
+    .slider-wrapper{
+        border-bottom: 2px solid #C6C6C6;
+    }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1280px){
+    .slider-wrapper
+    {
+        max-height:267px;
+        border-bottom: 2px solid #C6C6C6;
+    }
+}
+@media only screen and (min-width: 900px) and (max-width: 1024px){
+
+    .slider-wrapper
+    {
+        max-height:230px;
+        border-bottom: 2px solid #C6C6C6;
+    }
+}
+@media only screen and (min-width: 751px) and (max-width: 900px){
+
+    .slider-wrapper
+    {
+        max-height:190px;
+        border-bottom: 2px solid #C6C6C6;
+    }
+}
+@media only screen and (min-width: 641px) and (max-width: 750px){
+
+    .slider-wrapper
+    {
+        max-height:180px;
+        border-bottom: 2px solid #C6C6C6;
+    }
+}
+@media only screen and (min-width: 480px) and (max-width: 640px){
+
+    .slider-wrapper
+    {
+        max-height:172px;
+        border-bottom: 2px solid #C6C6C6;
+    }
+}
+@media only screen and (max-width: 479px){
+
+    .slider-wrapper
+    {
+        max-height:108px;
+        border-bottom: 2px solid #C6C6C6;
+    }
+}
+
+/* ELEMENT STYLES */
+
+.slider p{
+    white-space: nowrap;
+    text-transform:uppercase;
+}
+
+/*-----------Slide-1------------*/
+.slider .slide1 .slide-heading
+{
+    background: #373B3F;
+    color: #fff;
+    font-size: 200%;
+    font-weight: 600;
+    font-family: 'Open sans', sans-serif;
+    text-transform:capitalize;
+    padding:0.7% 0.9%;
+    border-radius: 2px;
+    box-sizing: content-box;
+}
+.slider .slide1 .slide-heading span
+{
+    color:#727CB6;
+}
+
+/*-----------Slide-2------------*/
+.slider .slide2 .slide-heading,
+.slider .slide3 .slide-heading{
+    background:#373B3F;
+    color: #fff;
+    font: 600 36px "open sans", sans-serif;
+    padding: 0.8% 1.2%;
+    border-radius: 2px;
+    box-sizing:content-box;
+}
+
+.slider .slide2 .sub-line,
+.slider .slide3 .sub-line{
+    background:#fff;
+    color: #727CB6;
+    font-size:22px;
+    font-weight: normal;
+    text-align:center;
+    font-weight: 500;
+    padding:0.8% 1%;
+    border-radius: 2px;
+    box-sizing:content-box;
+}
+
+/*------------Slide-3-------------*/
+.slider .slide3 .slide-heading
+{
+    background: #727CB6;
+}
+.slider .slide3 .slide-text
+{
+    color: #5B5B5B;
+    background: rgba(255,255,255,0.6);
+    font-size: 130%;
+    line-height: 150% !important;
+    font-family: "open sans", sans-serif;
+    font-weight: 700;
+    text-transform:none;
+    letter-spacing: -1px;
+    margin-top: 1.5%;
+    padding: .2% 1%;
+}
+

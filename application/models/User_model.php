@@ -56,6 +56,17 @@ class User_model extends CI_Model
 		}
 
 	}
+		function get_email_by_username($username = null){
+
+		if($username <> null){
+
+		$result = $this->db->select('email')->from('aauth_users')->where('username',$username)->get()->result();
+		return $result[0]->email;
+		}else{
+			return false;
+		}
+
+	}
 	public function password($user=null)
 	{
 		# code...

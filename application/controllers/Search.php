@@ -22,11 +22,6 @@ class Search extends CI_Controller
         }
 
 	}
-	public function hello($value='')
-	{
-		# code...
-		echo "string";
-	}
 
 	public function index($tags='',$p=0)
 	{

@@ -15,6 +15,7 @@ class Post extends CI_Controller {
 		$this->load->library('slug');
 		$this->load->library('pagination');
 		$this->load->model('post_model');
+		$this->load->model('group_model');
 		//$this->load->library('Aauth');
 		if(!$this->aauth->is_loggedin()){
 
@@ -137,8 +138,7 @@ class Post extends CI_Controller {
 		# code...
 
 
-		$groups = $this->aauth->list_groups();
-		$data['listgroup'] = $groups ;
+		$data['listgroup'] = $this->group_model->group_type(3);
 
 		$content = '';
 		$data['content'] = $content;
@@ -334,20 +334,24 @@ class Post extends CI_Controller {
 			$tags = $this->input->post('tags');
 			$group = $this->input->post('group');
 			$content = $this->input->post('contents');
+			$year = $this->input->post('selectyear');
+			$month = $this->input->post('selectmonth');
 			//var_dump($content);
 			if(!$this->post_model->isExist($title)){
-				$result = $this->post_model->save(array('title'=>$title,'slug'=>$clean_url,'content'=>$content));
-				
-				$id = $this->post_model->get_pageId($clean_url);
+				$result = $this->post_model->save_abstract(array('title'=>$title,'slug'=>$clean_url,'year'=>$year,'month'=>$month,'content'=>$content));
+				$id = $result;
+
 				$insert = $this->post_model->insertTags(array('keyword'=>$tags,'group_id'=>$id));
 
-				if($result === true){
+				$page_permission = $this->post_model->page_permission($id,$group,2);
+
+				if($result){
 					echo json_encode(array('stats'=>true,'slug'=>$clean_url));
 				}else{
 					echo json_encode(array('stats'=>false,'error'=>'Unknown Error occured.'));
 				}
 			}else{
-				echo json_encode(array('stats'=>false,'error'=>'Title already exist!'));
+					echo json_encode(array('stats'=>false,'error'=>'Title already exist!'));
 			}
 
 		}else{

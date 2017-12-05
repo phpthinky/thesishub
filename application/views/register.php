@@ -1,4 +1,11 @@
-
+<style type="text/css">
+	.form-group{
+		margin-bottom: 5px;
+	}
+	.form-group .form-control{
+		margin-bottom: 0px;
+	}
+</style>
 <div class="col-md-12">
 	
 <div class="panel login">
@@ -22,6 +29,23 @@
 
 			<div class='form-group'>
 				<label form='email'>Re-type Password: <input type='password' class='form-control' name='cpassword' id='cpassword'></label>
+			</div>
+
+			<div class='form-group'>
+				<label form='course'>Select Course:</label>
+				<select class="form-control" name="group" id="group">
+					<option value="0">Select here</option>
+				<?php 
+					
+				foreach ($listgroup as $key) {
+					# code...
+					if($key->id > 3){
+					echo "<option value='$key->id'>$key->name</option>";
+
+					}
+				}
+				?>
+				</select>
 			</div>
 
 			<div class='form-group'>

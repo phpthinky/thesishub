@@ -1,0 +1,13 @@
+html{background-color:rgba(0,0,0,.80)}body{background-color:#fff;background-image:url(http://www.thesis.hub:8000/public/images/books.jpg);min-height:100vh}.container{background-color:#fff}.container.u-profile
+.row{margin-bottom:2px}.container .divider-10{min-height:10px}.container .divider-20{min-height:20px}.container .divider-50{min-height:50px}.container .form-control{border-color:#568793}.container .form
+.btn{border-color:#568793}.container .form-control:focus{border-color:magenta}.container .form .btn:hover{}.search-sidebar{min-height:75vh}#search-top-menu{margin:0;padding:0}#search-top-menu>.bisu-logo{background-color:rgba(0,0,0,.9);margin:0}#search-top-menu > .bisu-logo a
+img{max-height:55px}#search-top-menu>.bisu-logo>div.menus{padding:15px}#search-top-menu >.bisu-logo > div.menus
+a{color:#fff;top:50px;padding:10px;height:50px;font-size:1em;text-decoration:none}#search-logo{padding:10px;background-color:rgba(255,255,255,.5);top:25%;text-align:center}#search-logo>a>img{height:80px;width:400px}#search-content,.search-content{padding:10px;background-color:rgba(255,255,255,.5)}#search-content > .panel > .panel-body
+input{min-width:80%}#search-content > .panel > .panel-body
+select{min-width:10%}#search-content
+.output{background-color:#fff;padding-top:5px;padding-bottom:5px}#search-content .output
+p{max-height:50px;overflow:hidden}#search-content>.output>table{position:relative}.permit-group{padding:2px;min-height:100px}.permit-group>.item{padding:20px;background-color:dodgerblue;color:#fff;min-height:125px}.navbar-form{display:inline-block}@media only screen and (max-width: 768px){#search-logo>a>img{margin-top:0px;max-height:50px;width:150px}html,body{min-width:325px;background-image:url(http://www.thesis.hub:8000/public/images/books.jpg);background-position:center;background-repeat:no-repeat;background-size:cover}#search-top-menu >.bisu-logo > div.menus
+a{padding:5px}.search-sidebar{display:none}.navbar-form{margin:3%}.inbox-right{display:none}}@media only screen and (max-width: 568px){#search-top-menu >.bisu-logo > div.menus a
+span{display:none}#search-top-menu >.bisu-logo > div.menus
+a{padding:10px}@media only screen and (max-width: 468px){#search-top-menu >.bisu-logo > div.menus
+a{padding:5px}}}
