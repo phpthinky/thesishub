@@ -11,6 +11,8 @@ class Search extends CI_Controller
 	{
 		# code...
 		parent::__construct();
+
+		redirect('thesis');
 		$this->load->library('minify');
 		$this->load->model('post_model');
 		$this->uid = $this->session->userdata('id');
