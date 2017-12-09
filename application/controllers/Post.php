@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Post extends CI_Controller {
 
+	public $uid = 0;
 
 	public function __construct()
 	{
@@ -16,6 +17,7 @@ class Post extends CI_Controller {
 		$this->load->library('pagination');
 		$this->load->model('post_model');
 		$this->load->model('group_model');
+		$this->load->model('search_model');
 		//$this->load->library('Aauth');
 		if(!$this->aauth->is_loggedin()){
 
@@ -25,34 +27,89 @@ class Post extends CI_Controller {
 
 			redirect('search');
 		}
+
+
+        $this->uid = $this->session->userdata('id');
 	}
 	public function index($value='')
 	{
 		# code...
-		redirect('post/view');
+		redirect('post/listall');
 	}
-	/*public function read($slug=''){
-		//exit('Great');
+	public function listall($start=0)
+	{
+		# code...
 
-        $slug = ($this->uri->segment(3)) ? $this->uri->segment(3) : '';
-		if($slug !== ''){
-			$page_id = $this->post_model->get_pageId($slug);
-			if ($page_id > 0) {
-				# code...
-				$abstract = $this->post_model->get_content($page_id);//'This is the info';
-				print('<label for="abstract">Abstract</label> <br>'.$abstract);
 
-				$clients = $this->post_model->get_clients($page_id);//'This is the info';
-				print('<br><br><label for="abstract">Clients</label> <br>'.$clients);
+		$start = $this->uri->segment(3) ? $this->uri->segment(3) : 0;
+		$limit = 5;
 
-				$proponets = $this->post_model->get_proponents($page_id);//'This is the info';
-				print('<br><br><label for="abstract">Proponent</label> <br>'.$proponets);
+		$groups = $this->aauth->get_user_groups($this->uid);			
+			if($groups){
+				foreach ($groups as $key) {
+					# code...
+					$ids[]= $key->group_id;
+				}
 			}
-		}else{
-			print('No information to display');
-		}
+	    $total = $this->search_model->page_total();
 
-	}*/
+
+
+
+			            $total_row = $this->search_model->page_total($ids);
+						$config['base_url'] = site_url() . "/post/listall";
+			            $config['total_rows']=$total_row;
+			            $config['per_page'] = $limit;
+				        $config["uri_segment"] = 3;
+				        $choice = $config["total_rows"]/$config["per_page"];
+				        $config["num_links"] = floor($choice);
+             
+             
+			            $this->pagination->initialize($config);
+			                 
+			            $links = $this->pagination->create_links();
+			            //var_dump($links);
+
+			$pages = $this->search_model->find($this->uid,false,$ids,$limit,$start);
+			$content = '<table class="table table-bordered">
+
+						<thead><tr><th>Title</th><th>Course</th><th>Year</th><th>Action</th></tr></thead>';
+
+			if(is_array($pages)){
+
+				foreach ($pages as $key) {
+
+						$content .= "<tr>
+						<td>$key->title</td>
+						<td>$key->name</td>
+						<td>$key->year</td>
+						<td width='150px;'><a href='' class='btn btn-success'><i class='fa fa-book'></i></a>&nbsp;<a href='' class='btn btn-default'><i class='fa fa-edit'></i></a>&nbsp;<a href='' class='btn btn-danger'><i class='fa fa-remove'></i></a></td></tr>";
+				}
+			}
+			$content .="</table>";
+
+
+		
+		
+
+		$data['content']= $content;
+		$data['links']= $links;
+
+
+
+		$data['listgroup'] = $this->group_model->group_type(3);
+
+		$data['title'] = 'List all';
+		$data['subtitle'] = 'List all';
+
+		$this->load->view('admin/default/header',$data);
+		$this->load->view('admin/default/sidemenu',$data);
+		$this->load->view('post/list',$data);
+		$this->load->view('admin/default/footer',$data);
+
+	}
+
+
 		public function more($slug=''){
 		//exit('Great');
 
