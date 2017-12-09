@@ -111,10 +111,10 @@ $config_aauth["default"] = array(
 
  'ddos_protection'                => true,
 
- 'recaptcha_active'               => false,
+ 'recaptcha_active'               => true,
  'recaptcha_login_attempts'       => 4,
- 'recaptcha_siteKey'              => '',
- 'recaptcha_secret'               => '',
+ 'recaptcha_siteKey'              => '6Le-0jsUAAAAAMs_xWH4JLykUCGk3-H5vrcKBjfw',
+ 'recaptcha_secret'               => '6Le-0jsUAAAAAIl5Eb6jLucSp8oH2V9Ur2Vv4IUG',
 
  'totp_active'                    => false,
  'totp_only_on_ip_change'         => false,

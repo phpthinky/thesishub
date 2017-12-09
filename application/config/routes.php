@@ -75,8 +75,14 @@ $route['(:any)/(:any)'] = 'home/$1/$2';
 */
 
 
+$route['reports/(:any)/(:any)/(:any)'] = 'reports/$1/$2/$3';
+$route['reports/(:any)/(:any)'] = 'reports/$1/$2';
+$route['reports/(:any)'] = 'reports/$1';
+$route['reports'] = 'reports';
 
 
+$route['t/(:any)/(:any)/(:any)'] = 'thesis/$1/$2/$3';
+$route['t/(:any)/(:any)'] = 'thesis/$1/$2';
 $route['t/(:any)'] = 'thesis/$1';
 $route['thesis'] = 'thesis';
 
