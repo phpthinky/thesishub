@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Example extends CI_Controller {
+class Pdf extends CI_Controller {
 
 	public function index()
     {
@@ -68,6 +68,32 @@ class Example extends CI_Controller {
 	    }
 	    
     } 
+
+    public function watermark($file=false)
+    {
+    	# code...
+    $this->load->library('Pdf_Rotate');
+    $file = base_url()."/hello_world.pdf";// path: file name
+    $pdf = new PDF();
+
+    if (file_exists($file)){
+        $pagecount = $pdf->setSourceFile($file);
+    } else {
+        return FALSE;
+    }
+
+   $pdf->setWaterText("w a t e r M a r k d e m o ", "s e c o n d L i n e o f t e x t");
+
+  /* loop for multipage pdf */
+   for($i=1; $i <= $pagecount; $i++) { 
+     $tpl = $pdf->importPage($i);               
+     $pdf->addPage(); 
+     $pdf->useTemplate($tpl, 1, 1, 0, 0, TRUE);  
+   }
+    $pdf->Output(); //specify path filename to save or keep as it is to view in browser
+
+ /* rotation.php */
+    }
 }
 
 /* End of file example.php */

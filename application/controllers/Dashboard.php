@@ -14,11 +14,14 @@ class Dashboard extends CI_Controller
 		parent::__construct();
 		$this->load->library('minify');
 		$this->load->model('post_model');
+		$this->load->model('user_model');
+		$this->load->model('file_m');
 		//$this->load->library('Aauth');
         if (!$this->aauth->is_loggedin()){
         	redirect();
-        }elseif(!$this->aauth->is_allowed('staff',$this->uid)){
-        	redirect('permission');
+        }
+        if($this->session->userdata['permit'] == 'students'){
+        	redirect();
         }
 	}
 	public function update_user() {
@@ -30,11 +33,6 @@ class Dashboard extends CI_Controller
 	{
 		# code...
 		
-        if (!$this->aauth->is_loggedin()){
-        	redirect(site_url());
-        }
-
-       //print_r($this->session->username);
 
 
        $user = $this->aauth->get_user();
@@ -42,59 +40,111 @@ class Dashboard extends CI_Controller
 
         $b = $this->aauth->get_perm_id($user->id);
 
+        $attempts = $this->aauth->get_login_attempts(10);
+
+        $att = '<table class="table table-bordered"><tbody>';
+        if (is_array($attempts)) {
+        	# code...
+        	foreach ($attempts as $key) {
+        		# code...
+
+        	$att .= "<tr  id='tr-$key->id'><td>$key->ip_address</td><td>$key->login_attempts</td><td><a class='btn' style='margin:0;padding:1px;' onclick='unblocked($key->id)'>Unblocked</a></td></tr>";
+        	}
+        }
+        $att .= '</tbody></table>';
+
+
+
+        $download = $this->file_m->random_downloaded(10);
+
+
+        $dl = '<table class="table table-bordered"><tbody>';
+        if (is_array($download)) {
+        	# code...
+        	foreach ($download as $key) {
+        		# code...
+
+        	$dl .= "<tr  id='tr-$key->post_id'><td>$key->title</td><td>$key->visita</td><td class='hidden'><a class='btn' style='margin:0;padding:1px;'><i class='fa fa-eye'></i></a></td></tr>";
+        	}
+        }
+        $dl .= '</tbody></table>';
+
+
+
+        //$upload = $this->file_m->random_downloaded(20);
+
+		$upload = $this->file_m->latest_file(false,10);
+
+        $up = '<table class="table table-bordered"><tbody>';
+        
+        if (is_array($upload)) {
+        	# code...
+        	foreach ($upload as $key) {
+        		# code...
+
+        	$up .= "<tr  id='tr-$key->page_id'><td>$key->title</td><td class='hidden'><a class='btn' style='margin:0;padding:1px;'><i class='fa fa-eye'></i></a></a></td></tr>";
+        	}
+        }
+
+        
+        $up .= '</tbody></table>';
+
+
+
+
+        
+
+
+
+
 
 
 		$content = "
 		<div class='col-sm-12 col-md-12 col-lg-12'>
-		<div class='col-sm-3 col-md-3 col-lg-3'>
-			<div class='alert alert-warning'>Thesis : ".$this->post_model->get_total()."</div>
+		<div class='col-md-4'><p class='alert alert-info'><a href='#' class='btn'>Recently View</a></p><p>$dl</p></div>
+		<div class='col-md-4'><p class='alert alert-info'><a href='#' class='btn'>Recent post</a></p><p>$up</p></div>
+		<div class='col-md-4'><p class='alert alert-info'><a href='#' class='btn'>Login attempt</a></p><p>$att</p></div>
+		<div class='divider divider-line'></div>
 		</div>
-		<div class='col-sm-3 col-md-3 col-lg-3'>
-			<div class='alert alert-warning'>Visitors: ".$this->pagecounter->visit_total()."</div>
-		</div>
-		<div class='col-sm-3 col-md-3 col-lg-3'>
-			<div class='alert alert-warning'>Messages: 0</div>
-		</div>
-		<div class='col-sm-3 col-md-3 col-lg-3'>
-			<div class='alert alert-warning'>Comments: 0</div>
-		</div>
+
+
+		<div class='col-sm-12 col-md-12 col-lg-12 hidden'>
+		<div class='col-md-4'><p class='alert alert-warning'><a href='#' class='btn'>Recent added user</a></p><p>-</p></div>
+		<div class='col-md-4'><p class='alert alert-warning'><a href='#' class='btn'>Recents logon user</a></p><p>-</p></div>
+		<div class='col-md-4'><p class='alert alert-warning'><a href='#' class='btn'>Recent activity</a></p><p>-</p></div>
 		<div class='divider divider-line'></div>
 		</div>
 
 		";
+		$this->load->model('setting_m');
 
-		$ifsearch = '';
-		if($this->uri->segment(3)){
-		$ifsearch = $this->searche();
-		}elseif ($this->uri->segment(2) === 'index') {
-			# code...
-		$ifsearch = $this->searche();
-		}else{
-			$this->session->tags = '';
-		}
+		$data['welcome'] = $this->setting_m->get_all_setting(1);
 
-		$tags = isset($this->session->tags) ? $this->session->tags : '';
-
-		$searchbox = '<div class="col-md-12"><div class="alert alert-success"><form class="form" action="" method="post" id="frmsearch"><div class="form-inline"><input type="text" id="txtsearch" name="txtsearch" class="form-control" placeholder="Search here..." style="width:95%;" value="'.$tags.'"><button href="#" class="btn btn-default"><i class="fa fa-search"></i></button></div></form></div>';
-	
-
-
-		
-		$searchresult = '<div id="searchoutput">'.$ifsearch.'</div></div>';
-
-		//var_dump($this->session->tags);
-
-
-		$data['content'] = $content.$searchbox.$searchresult;
+		$data['content'] = $content;//.$searchresult;
 		$data['subtitle']= "Welcome ".$this->session->username;
-		$data['title']= "THESIS HUB";
+		$data['title']= "";
 		$data['username']= $this->session->username;
 
 
 		$this->load->view('admin/default/header',$data);
-		$this->load->view('admin/default/sidemenu',$data);
+		$this->load->view('admin/default/menu',$data);
 		$this->load->view('admin/contents',$data);
 		$this->load->view('admin/default/footer',$data);
+	}
+	public function unblocked($id='')
+	{
+		# code...
+		if ($this->input->post()) {
+			# code...
+			$id = $this->input->post('id');
+			/*	echo json_encode(array('stats'=>false,'msg'=>$ip));
+exit();*/
+			//if(
+				$reset = $this->aauth->reset_login_attempts($id);//){
+				echo json_encode(array('stats'=>true));
+			//}
+				//echo json_encode(array('stats'=>false));
+		}
 	}
 	public function myaccount($value='')
 	{
@@ -172,7 +222,7 @@ class Dashboard extends CI_Controller
 						foreach ($result2 as $key) {
 
 							$info = $this->post_model->get_content($key->page_id);
-							$info2 .= "<tr><td> <a  target='_blank' href='".site_url('post/more/').$key->slug."'><h3>$key->title</h3></a>$info</td></tr>";
+							$info2 .= "<tr><td><h3>$key->title</h3></td></tr>";
 
 							
 						}

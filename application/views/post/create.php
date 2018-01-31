@@ -24,8 +24,13 @@
 	</div>
 
 	<div class="form-group">
-		<label for="Title">Tags</label><input type="text" class="form-control" name="tags" id="tags" placeholder='Enter tag separate by comma'>
+		<label for="Title">Tags</label><input type="text" class="form-control tm-input tm-input-info" name="tags" id="tags" placeholder='Enter tag separate by comma' >
 	</div>
+	
+	<div class="form-group">
+		<label for="Title">Thesis code number: </label><input type="text" class="form-control" name="code" id="code" placeholder='Enter code here... (optional)'>
+	</div>
+
 
 	<div class="form-group">
 		<label for="Title">Course</label><select class="form-control" name="group" id="group">
@@ -251,7 +256,9 @@
 </form>
 
 </div>
-
+<script type="text/javascript">
+	jQuery(".tm-input").tagsManager();
+</script>
 <script>
   $(function () {
      // editor = new nicEditor({fullPanel : false}).panelInstance('postcontent');
@@ -332,6 +339,7 @@
   		//alert(contents+title+tags+group);
 
   		var nicE = new nicEditors.findEditor('contents');
+		var	conten = nicE.getContent();
 		var	 title = $('#title').val();
         var data = $('#frmpost').serialize();
 

@@ -1,0 +1,20 @@
+@media print {
+
+    title,
+    .print-content,
+    .print-header
+    {display:block;}
+  .no-print,
+  .header-top,
+  .header,
+  .slider-show,
+  .post-sidebar,
+  .post-sidebar > .item,
+  .footer,
+  footer,
+  #about,
+  #contact,
+  #mostviews,
+  div > a > img
+  {display: none;}
+}

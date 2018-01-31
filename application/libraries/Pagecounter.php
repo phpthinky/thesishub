@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Pagecounter
 {
 	
-	private $domain  = 'myapp.ci';
+	private $domain;
 	private $cookieExist = false;
 
 	public function __construct()
@@ -31,12 +31,12 @@ class Pagecounter
 		$machine =  $this->getOS($agent);
 		$browser =  $this->getBrowser($agent);
 		$page_id = $this->get_page_id($url);
-		$date = date('Y-m-d');
+		$date = date('Y-m-d h:m:s');
 		$time = time();
 
-		$this->insertIP($userip);
-		/*if($this->check_bots($agent))
-			{exit();}*/
+		$this->insertIP($userip,$date,$url,$browser,$agent);
+
+		$this->activities();
 
 	$newcookie = $this->setcookiedata('page','hello');
 
@@ -56,7 +56,7 @@ class Pagecounter
   	}
 
 
-  		$this->cron_counter(); //update table page_visits every 6 hours;
+  		$this->cron_counter(); //update table post_visit every 6 hours;
 
 
   }
@@ -109,16 +109,6 @@ class Pagecounter
         	}
 
 
-        	//echo "<br>";
-        	//echo var_dump($array);
-
-        	//echo "<br> new array: ";var_dump($cookies);
-        	//echo "<br>";
-        	/*foreach ($cookies as $key=>$value) {
-        		# code...
-        		echo "$key. $value<br>";
-        	}*/
-
 		}
 
 	}
@@ -146,9 +136,8 @@ class Pagecounter
 
   public function get_pageUrl()
   {
-  	# code...
-  	//$protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
-  	$session_page_url = base_url().$_SERVER['PHP_SELF'];
+
+  	$session_page_url = str_replace('/', '-', $_SERVER['PHP_SELF']);
   	return $session_page_url;
 
   }
@@ -170,11 +159,12 @@ class Pagecounter
 		return true;
 	}else {return false;}
 	}
-public function insertIP($ip='')
+public function insertIP($ip='',$date=false,$url=false,$browser=false,$agent)
 {
-
-$myfile = fopen("spammipdb.txt", "w") or die("Unable to open file!");
-$txt = "\n $ip";
+$date = date('Y-m-d');
+$new_file = $date.'.log';
+$myfile = fopen("visitor/".$new_file, "a") or die("Unable to open file!");
+$txt = "\n $ip $date $browser $url $agent";
 fwrite($myfile, $txt);
 fclose($myfile);
 
@@ -302,32 +292,29 @@ function getBrowser($user_agent="") {
 	public function cron_counter()
 	{ 
 		
+    $time = date("h");
+      $mod = $time%2;
+      if($mod > 0){
+			$this->run_cron_job();
 
-		$time = date("h");
-		//echo '|'.$time.'|';
-		if($time > 10 && $time < 12){
-			$this->run_cron_job();
-		}elseif ($time > 5 && $time < 7) {
-			# code...
-			$this->run_cron_job();
-		}
+      }
 
 	}
 	public function run_cron_job()
 		{
 			# code...
 		$this->ci->db->select('*');
-		$result = $this->ci->db->get('pageview')->result();
+		$result = $this->ci->db->get('post_view')->result();
 		foreach ($result as $key) {
 			$this->ci->db->select('sum(counter) as counter');
 			$this->ci->db->where('page',$key->page);
 			$this->ci->db->where('complete_date',$key->complete_date);
-			$row = $this->ci->db->get('pageview')->result();
-			$counter = $row[0]->counter;
+			$row = $this->ci->db->get('post_view')->result();
+			$counter =(int)$row[0]->counter;
 			
 			$this->update_pagevisit($key->page,$key->page_id,$counter, $key->complete_date,'');
 
-			$this->del_on_pageview($key->page,$key->complete_date);
+			$this->del_on_post_view($key->page,$key->complete_date);
 		}
 		$this->ci->db->reset_query();
 
@@ -337,17 +324,18 @@ function getBrowser($user_agent="") {
 	{
 		# code...
 		if($page != ''){
-			$this->ci->db->select('*');
-			$this->ci->db->where('page',$page);
-			$this->ci->db->where('date_visited',$date);
-			$result = count($this->ci->db->get('page_visits')->result());
-			//var_dump($result);
-			if($result > 0){
-				$this->ci->db->set('count','count+'.$counter,false);
-				$this->ci->db->where('page',$page);
-				$this->ci->db->where('date_visited',$date);
-				$this->ci->db->update('page_visits');
+			if (!is_integer($counter)) {
+				# code...
+				$counter = (int)$counter;
+			}
 
+			//$page = $this->ci->db->escape_str($page);
+			$sql = sprintf("SELECT * FROM post_visit WHERE page = '%s' AND date_visited = '%s'",$page,$date);
+			$query = $this->ci->db->query($sql);
+			$result = count($query->result());
+			if($result > 0){
+				$sql2 = sprintf("UPDATE post_visit SET count = count + ".$counter." WHERE page = '%s' AND date_visited = '%s'",$page,$date);
+				$query = $this->ci->db->query($sql2,$page,$date);
 			}else{
 				$array = array(
 					'page' =>$page,
@@ -356,20 +344,20 @@ function getBrowser($user_agent="") {
 					'date_visited' =>$date,
 					'country'=>$country );
 				$this->ci->db->set($array);
-				$this->ci->db->insert('page_visits');
+				$this->ci->db->insert('post_visit');
 			}
-			//09098867783/09274526969/09474785770
+
 		}
 		return;
 
 	}
-	public function del_on_pageview($page='',$date='')
+	public function del_on_post_view($page='',$date='')
 	{
 		# code...
 		if($page != ''){
 			$this->ci->db->where('page',$page);
 			$this->ci->db->where('complete_date',$date);
-			$this->ci->db->delete('pageview');
+			$this->ci->db->delete('post_view');
 		}
 		return;
 
@@ -394,10 +382,10 @@ function getBrowser($user_agent="") {
   {
   	# code...
   		$userip = $this->get_ip();
-  		$array = sprintf("page = '%s' AND userip = '%s' ",urlencode($url),$userip);
+  		$array = sprintf("page = '%s' AND userip = '%s' ",$url,$userip);
 		//var_dump($array);
  		$this->ci->db->select('*');
- 		$result = $this->ci->db->get_where('pageview',$array)->result();
+ 		$result = $this->ci->db->get_where('post_view',$array)->result();
  		//var_dump(count($result));
  		if(count($result) > 0){
 
@@ -420,7 +408,7 @@ function getBrowser($user_agent="") {
 
   			  $data = array(
 		        'userip' => $userip,
-		        'page' => urlencode($url),
+		        'page' => $url,
 		        'page_id' => $page_id,
 		        'counter' => 1,
 		        'complete_date' => $now,
@@ -434,7 +422,7 @@ function getBrowser($user_agent="") {
 			);
 
 		  	//return $data;
-		  	return $this->ci->db->insert('pageview',$data);
+		  	return $this->ci->db->insert('post_view',$data);
   }
 
 
@@ -442,22 +430,22 @@ function getBrowser($user_agent="") {
 	{
 		# code...
 
-		$array = sprintf("page = '%s' AND userip = '%s' ",urlencode($url),$userip);
+		$array = sprintf("page = '%s' AND userip = '%s' ",$url,$userip);
 		$this->ci->db->set('counter', 'counter+1', FALSE);
 		$this->ci->db->set('last_used_browser', 'browser', FALSE);
 		$this->ci->db->set('browser', $browser, true);
 		$this->ci->db->set('timeUpdate', $time, true);
 		$this->ci->db->where($array);
-		return $this->ci->db->update('pageview');
+		return $this->ci->db->update('post_view');
 
 	}
 	public function last_update($userip='',$url, $time=0)
 	{
 		# code...
-  		$array = sprintf("page = '%s' AND userip = '%s' ",urlencode($url),$userip);
+  		$array = sprintf("page = '%s' AND userip = '%s' ",$url,$userip);
 		//var_dump($array);
  		$this->ci->db->select('timeUpdate');
- 		$result = $this->ci->db->get_where('pageview',$array)->result();
+ 		$result = $this->ci->db->get_where('post_view',$array)->result();
  		//var_dump(count($result));
 
  			$lastupdatetime = $result[0]->timeUpdate + 43200;
@@ -481,10 +469,10 @@ function getBrowser($user_agent="") {
    	public function get_page_id($value='')
  	{
  		# code...
- 		if ($this->ci->db->table_exists('pages') ){
+ 		if ($this->ci->db->table_exists('post') ){
 
  		$this->ci->db->select('page_id');
- 		if($result = $this->ci->db->from('pages')->where('page_url',$value)->get()->result()){
+ 		if($result = $this->ci->db->from('post')->where('page_url',$value)->get()->result()){
  			return $result[0]->page_id;
  		}
  		return 0;
@@ -494,22 +482,52 @@ function getBrowser($user_agent="") {
 
 
 
-	public function pagesoncounter($value='')
+	public function postoncounter($value='')
 	{
 		# code...
 		if($value !== ''){
-			return $this->ci->db->select('*')->get('page_visits')->where('page_id',$value)->result();
+			return $this->ci->db->select('*')->get('post_visit')->where('page_id',$value)->result();
 		}
-		$sql = "SELECT page_id, page, sum(count) as count from page_visits group by page";
+		$sql = "SELECT page_id, page, sum(count) as count from post_visit group by page";
 		$result = $this->ci->db->query($sql)->result();
 		return $result;
-		//return $this->ci->db->select('*')->get('page_visits')->result();
-		//return "List of all pages";
+		//return $this->ci->db->select('*')->get('post_visit')->result();
+		//return "List of all post";
 	}
 
 
 
+	public function activities()
+	{
+		# code...
 
+		$page = urlencode($_SERVER['PHP_SELF']);
+
+		$ip = $this->get_ip();
+		
+		if ($this->ci->session->userdata('loggedin')) {
+			# code...
+		$user_id = $this->ci->session->userdata['id'];
+
+		}else{
+			$user_id = 0;
+		}
+
+		$sql = sprintf("SELECT * FROM post_user_logs WHERE user_id = %d AND page = '%s' AND ip = '%s'",$user_id,$page,$ip);
+		$query = $this->ci->db->query($sql);
+		if($result = $query->result()){
+			foreach ($result as $key) {
+				# code...
+				$id = $key->id;
+			}
+			$updata = sprintf("UPDATE `post_user_logs` SET `visit` = visit + 1 WHERE `post_user_logs`.`id` = %d ",$id);
+			$u_query = $this->ci->db->query($updata);
+		}else{
+
+			$insert = sprintf("INSERT INTO `post_user_logs` (`id`, `user_id`, `page`, `visit`, `ip`) VALUES (NULL, %d, '%s', 1, '%s')",$user_id,$page,$ip);
+			$i_query = $this->ci->db->query($insert);
+		}
+	}
 
 
 
@@ -529,11 +547,11 @@ function getBrowser($user_agent="") {
 	{
 		# code...
 
-		$page = urlencode($value);
+		$page = $value;
 		$year = date('y');
 		$month = date('m');
 		$today = date('Y-m-d');
-		$sql = sprintf("SELECT sum(count) as total from page_visits where page='%s' AND date_visited = '%s'  AND year(date_visited) = year(now())",$page,$today);
+		$sql = sprintf("SELECT sum(count) as total from post_visit where page='%s' AND date_visited = '%s'  AND year(date_visited) = year(now())",$page,$today);
 		// var_dump($sql);exit();
 		$result = $this->ci->db->query($sql)->result();
 
@@ -544,11 +562,11 @@ function getBrowser($user_agent="") {
 	{
 		# code...
 
-		$page = urlencode($value);
+		$page = $value;
 		$year = date('y');
 		$month = date('m');
 		$today = date('Y-m-d');
-		$sql = sprintf("SELECT sum(count) as total from page_visits where page='%s' AND week(date_sub(date_visited, interval + 7 day)) <= week(now()) AND week(date_visited) >= week(now()) AND year(date_visited) = year(now()) ",$page,$today,$today);
+		$sql = sprintf("SELECT sum(count) as total from post_visit where page='%s' AND week(date_sub(date_visited, interval + 7 day)) <= week(now()) AND week(date_visited) >= week(now()) AND year(date_visited) = year(now()) ",$page,$today,$today);
 		// var_dump($sql);exit();
 		$result = $this->ci->db->query($sql)->result();
 		return isset($result[0]->total) ? $result[0]->total : 0;
@@ -556,10 +574,10 @@ function getBrowser($user_agent="") {
 	public function visit_thismonth($value='')
 	{
 		# code...
-		$page = urlencode($value);
+		$page = $value;
 		$year = date('y');
 		$month = date('m');
-		$sql = sprintf("SELECT sum(count) as total from page_visits where page='%s' AND month(date_visited) = month(now()) AND year(date_visited) = year(now()) ",$page);
+		$sql = sprintf("SELECT sum(count) as total from post_visit where page='%s' AND month(date_visited) = month(now()) AND year(date_visited) = year(now()) ",$page);
 		// var_dump($sql);exit();
 		$result = $this->ci->db->query($sql)->result();
 		return isset($result[0]->total) ? $result[0]->total : 0;
@@ -567,11 +585,11 @@ function getBrowser($user_agent="") {
 	public function visit_thisyear($value='')
 	{
 		# code...
-		$page = urlencode($value);
-		var_dump($page);
+		$page = $value;
+
 		$year = date('y');
 		$month = date('m');
-		$sql = sprintf("SELECT sum(count) as total from page_visits where page='%s' AND year(date_visited) = year(now()) ",$page);
+		$sql = sprintf("SELECT sum(count) as total from post_visit where page='%s' AND year(date_visited) = year(now()) ",$page);
 		// var_dump($sql);exit();
 		$result = $this->ci->db->query($sql)->result();
 		return isset($result[0]->total) ? $result[0]->total : 0;
@@ -580,12 +598,13 @@ function getBrowser($user_agent="") {
 	public function visit_total($page='')
 	{
 		# code...
+		//echo $page;
 		if($page !== ''){
-		$page = urlencode($page);
+		$page = $page;
 
 		$year = date('y');
 		$month = date('m');
-		$sql = sprintf("SELECT sum(count) as total from page_visits where page='%s' group by page ",$page);
+		$sql = sprintf("SELECT sum(count) as total from post_visit where page='%s' group by page ",$page);
 		// var_dump($sql);exit();
 		$result = $this->ci->db->query($sql)->result();
 		return isset($result[0]->total) ? $result[0]->total : 0;
@@ -594,7 +613,7 @@ function getBrowser($user_agent="") {
 			//return 0;
 
 
-		$sql = sprintf("SELECT sum(count) as total from page_visits ");
+		$sql = sprintf("SELECT sum(count) as total from post_visit ");
 		// var_dump($sql);exit();
 		$result = $this->ci->db->query($sql)->result();
 		return isset($result[0]->total) ? $result[0]->total : 0;

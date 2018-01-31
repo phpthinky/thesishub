@@ -49,31 +49,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-/*
-$route['test'] = 'test';
 
-$route['counter'] = 'counter';
-$route['counter/(:any)'] = 'counter/$1';
+$route['backup/(:any)'] = 'backup/$1';
+$route['backup'] = 'backup';
 
-$route['post'] = 'post';
-$route['p/(:any)'] = 'post/$1';
 
-$route['files'] = 'files';
-$route['files/(:any)'] = 'files/$1';
+$route['setting/(:any)/(:any)'] = 'setting/$1/$2';
+$route['setting/(:any)'] = 'setting/$1';
+$route['setting'] = 'setting';
 
-$route['admin'] = 'administration';
-$route['u/(:any)'] = 'administration/$1';
+$route['pdf/(:any)/(:any)'] = 'Fpdf_test/$1/$2';
+$route['pdf/(:any)'] = 'Fpdf_test/$1';
+$route['pdf'] = 'Fpdf_test';
 
-$route['message'] = 'message';
-$route['m/(:any)'] = 'message/$1';
-$route['dashboard'] = 'dashboard';
-$route['d/(:any)'] = 'dashboard/$1';
-
-$route['default_controller'] = 'home';
-$route['(:any)'] = 'home/$1';
-$route['(:any)/(:any)'] = 'home/$1/$2';
-*/
-
+$route['file/(:any)/(:any)'] = 'file/$1/$2';
+$route['file/(:any)'] = 'file/$1';
+$route['file'] = 'file';
 
 $route['reports/(:any)/(:any)/(:any)'] = 'reports/$1/$2/$3';
 $route['reports/(:any)/(:any)'] = 'reports/$1/$2';
@@ -92,8 +83,17 @@ $route['messages'] = 'messages';
 $route['u/(:any)'] = 'users/$1';
 $route['users'] = 'users';
 
-$route['search/(:any)'] = 'search/$1';
-$route['search'] = 'search';
+
+$route['accounts/(:any)/(:any)/(:any)'] = 'accounts/$1/$2/$3';
+$route['accounts/(:any)/(:any)'] = 'accounts/$1/$2';
+$route['accounts/(:any)'] = 'accounts/$1';
+$route['accounts'] = 'accounts';
+
+$route['user/(:any)/(:any)/(:any)'] = 'user/$1/$2/$3';
+$route['user/(:any)/(:any)'] = 'user/$1/$2';
+$route['user/(:any)'] = 'user/$1';
+$route['user'] = 'user';
+
 
 $route['a/(:any)'] = 'access/$1';
 $route['access'] = 'access';
@@ -104,10 +104,15 @@ $route['settings'] = 'settings';
 $route['faq/(:any)'] = 'help/$1';
 $route['faq'] = 'help';
 
-$route['post/(:any)/(:any)'] = 'post/$1';
+$route['post/(:any)/(:any)/(:any)/(:any)'] = 'post/$1/$2/$3/$4';
+$route['post/(:any)/(:any)/(:any)'] = 'post/$1/$2/$3';
+$route['post/(:any)/(:any)'] = 'post/$1/$2';
 $route['post/(:any)'] = 'post/$1';
 $route['post'] = 'post';
 
+$route['posts/(:any)/(:any)'] = 'posts/$1/$2';
+$route['posts/(:any)'] = 'posts/$1';
+$route['posts'] = 'posts';
 
 $route['g/(:any)'] = 'group/$1';
 $route['group'] = 'group';
@@ -120,8 +125,13 @@ $route['counter'] = 'counter';
 
 $route['d/(:any)'] = 'dashboard/$1';
 $route['dashboard'] = 'dashboard';
+$route['slideshow'] = 'slideshow';
 
 $route['ie/(:any)/(:any)'] = 'home/ie/$1/$3';
+$route['(:any)/(:any)/(:any)/(:any)/(:any)'] = 'home/$1/$2/$3/$4/$5';
+$route['(:any)/(:any)/(:any)/(:any)'] = 'home/$1/$2/$3/$4';
+$route['(:any)/(:any)/(:any)'] = 'home/$1/$2/$3';
+$route['(:any)/(:any)'] = 'home/$1/$2';
 $route['(:any)'] = 'home/$1';
 $route['default_controller'] = 'home';
 $route['404_override'] = '';

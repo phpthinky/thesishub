@@ -1,0 +1,131 @@
+html{
+	background-color: rgba(0,0,0,.80);
+}
+body{
+	background-color: #fff;
+}
+.home-title{
+	background: green;
+}
+.home-title a{
+	text-decoration: none;
+}
+.home-title .header-title a > h4{
+}
+.navbar-inverse{
+
+    background: #027709; 
+    border: none;
+}
+#nav-portal {
+	width: 100%;
+    background: #027709; 
+	position: absolute;
+    z-index: 2;
+}
+
+
+.read{
+
+}
+.read .desc{
+	margin-left: 150px;
+}
+
+
+.box{
+	height: 90px ;
+	background-color: #fff;
+	padding: 2px;
+}
+
+
+.box .box-content{
+	height: 90px ;
+	width: 100%;
+	padding-top: 10%;
+	background-color: #e4e4e4;
+	text-align: center;
+}
+
+.box .box-type{
+
+	height: 90px ;
+	width: 100%;
+	background-color: green;
+	padding: 5%;
+	font-size: 3vh;
+	color: #fff;
+	text-align: center;
+	display: none;
+	text-transform: uppercase;
+
+}
+.box:hover .box-content {
+	display: none;
+}
+
+.box:hover .box-type {
+	display: inline-block;
+}
+
+.box .box-content:hover{
+
+	background-color: green;
+	color: #fff;
+}
+.box .box-content:hover a{color: #fff;}
+
+.search-form .search-input{
+		width: 90% !important;
+		max-width: 90%;
+	}
+
+.search-form .btn{display: inline-block;}
+
+
+#slideshow .nav a small
+{
+    display: block;
+}
+#slideshow .nav
+{
+    background: #eee;
+}
+.nav-justified > li > a
+{
+    border-radius: 0px;
+}
+.nav-pills>li[data-slide-to="0"].active a { background-color: #16a085; }
+.nav-pills>li[data-slide-to="1"].active a { background-color: #e67e22; }
+.nav-pills>li[data-slide-to="2"].active a { background-color: #2980b9; }
+.nav-pills>li[data-slide-to="3"].active a { background-color: #8e44ad; }
+.loader {
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+     border-top: 10px solid lime;
+ 	border-bottom: 10px solid lime;
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+footer {
+    position: fixed;
+    height: 30px;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px;
+}
+@media only screen and (max-width: 768px) {
+
+#slideshow {display: none;}
+
+}

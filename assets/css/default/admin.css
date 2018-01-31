@@ -1,6 +1,8 @@
 /*@import url('http://www.thesis.hub:8000/assets/bootstrap/css/font-awesome.min.css');
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'); */
-
+html,body{
+    min-width: 400px;
+}
 .navbar-default{
     background-color: dodgerblue;
 }
@@ -32,6 +34,27 @@
     background-color: #f9fac8;
 
 }
+.list-search{
+    background-color: #e4e4e4;
+    padding: 10px;
+}
+.table thead{
+    background-color: #e4e4e4;
+}
+.result-table{
+    min-height: 315px;
+}
+
+
+ .divider{
+    border: solid 1px e5e5e5;margin:0 40px;
+ }  
+
+ .btn-more{
+    padding: 2px 5px;
+    font-size: 12px;
+ } 
+
 @media(min-width:768px) {
     #wrapper {
         padding-left: 225px;
@@ -86,7 +109,7 @@
 .top-nav>.open>.dropdown-menu>li>a {
     white-space: normal;
 }
-.divider{}
+
 /* Side Navigation */
 
 @media(min-width:768px) {
@@ -112,6 +135,7 @@
     .side-nav>li>a {
         width: 225px;
         border-bottom: 1px rgba(0,0,0,.3) solid;
+        color: #000;
     }
 
     .side-nav li a:hover,
@@ -132,7 +156,7 @@
     padding: 10px 15px 10px 38px;
     text-decoration: none;
     /*color: #999;*/
-    color: #666;    
+    color: #000;    
 }
 
 .side-nav>li>ul>li>a:hover {

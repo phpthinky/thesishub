@@ -8,12 +8,16 @@
 							<input type="text" class="form-control" id="q" name="q" placeholder="Search here..." value="<?php echo isset($tags) ? $tags : '';?>">
 							<select class="form-control" id="selectby" name="selectby">
 								<option value="0">All</option>
-								<option value="1">By Year</option>
-								<option value="2">By Abstract</option>
-								<option value="3">By Proponent</option>
-								<option value="4">By Client</option>
-								<option value="5">By Colleges</option>								
-								<option value="6">By Department</option>
+								<?php 
+								if (is_array($start_year)) {
+									# code...
+									foreach ($start_year as $key) {
+										# code...
+										echo "<option value='$key->years'>$key->years</option>";
+									}
+								}
+
+								?>
 							</select>
 							<button type="submit" class="btn btn-info" name="btnsearch" id="btnsearch"><i class="fa fa-search"></i></button>
 						</div>
@@ -28,8 +32,22 @@
 					<div class="panel-body">
 						
 						<div class="search-result" id="searchresult">
-							<?php echo isset($content) ? $content : ""; ?>
-							<?php echo isset($links) ? $links : ""; ?>
+							<div class="col-md-12"><?php echo isset($content) ? $content : "";  ?></div>
+							<div class="col-md-10"><?php echo isset($links) ? $links : ""; ?></div>
+							<div class="col-md-2"><ul class="pagination"><li><a href="" class="">Records: <?php 
+								# code...
+							if ($content) {
+								# code...
+								//echo isset($start) ? ($start+1) : 1; 
+								if($total > $limit){
+									echo ($limit+$start);
+								}else{
+									echo $total;
+								}
+							}else{ echo 0; }
+
+							 ?> of <?php echo isset($total) ? ($total) : 0; ?></a></li></ul></div>
+							
 						</div>
 					</div>
 						

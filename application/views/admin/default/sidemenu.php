@@ -21,7 +21,7 @@
                 </a>
             </li>            
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php print(isset($username) ? $username : "User"); ?> <b class="fa fa-angle-down"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $this->session->userdata('username') ? $this->session->userdata('username') : "User"; ?> <b class="fa fa-angle-down"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="<?=site_url('u/editprofile');?>"><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
                     <li><a href="<?=site_url('u/changepass');?>"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
@@ -38,7 +38,7 @@
                     <ul id="submenu-1" class="collapse">
                         <li><a href="<?=site_url('dashboard');?>"><i class="fa fa-angle-double-right"></i> Dashboard</a></li>
                         <li><a href="<?=site_url();?>"><i class="fa fa-angle-double-right"></i> Welcome page</a></li>
-                        <li><a href="<?=site_url('search');?>"><i class="fa fa-angle-double-right"></i> Research panel</a></li>
+                        <li><a href="<?=site_url('user');?>"><i class="fa fa-angle-double-right"></i> User panel</a></li>
                         <?php if ($this->aauth->is_admin()) {
                             # code...
                             ?>
@@ -52,15 +52,21 @@
                             # code...
                             ?>
                 <li>
-                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-star"></i>  Post <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-star"></i>  Thesis <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                     <ul id="submenu-2" class="collapse">
                        <!-- -// <li><a href="<?=site_url('post');?>"><i class="fa fa-angle-double-right"></i> View</a></li> */ ?-->
                         <li><a href="<?=site_url('post/create');?>"><i class="fa fa-angle-double-right"></i> New</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Add category</a></li>
+                        <li><a href="<?=site_url('post/listall');?>"><i class="fa fa-angle-double-right"></i> List all</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="<?=site_url('users');?>"><i class="fa fa-fw fa-user-plus"></i>  Users</a>
+                    <a href="#" data-toggle="collapse" data-target="#user"><i class="fa fa-fw fa-group"></i>  Users <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                    <ul id="user" class="collapse">
+                        <li><a href="<?=site_url('users/teacher');?>"><i class="fa fa-angle-double-right"></i> Teacher</a></li>
+                        <li><a href="<?=site_url('users/student');?>"><i class="fa fa-angle-double-right"></i> Students</a></li>
+                        <li><a href="<?=site_url('users/staff');?>"><i class="fa fa-angle-double-right"></i> Staffs</a></li>
+                        <li><a href="<?=site_url('users');?>"><i class="fa fa-angle-double-right"></i> List all</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="#" data-toggle="collapse" data-target="#group"><i class="fa fa-fw fa-group"></i>  Group <i class="fa fa-fw fa-angle-down pull-right"></i></a>
@@ -91,6 +97,10 @@
                             ?>
                 <li>
                     <a href="counter"><i class="fa fa-fw fa fa-question-circle"></i> Statistics</a>
+                </li>
+
+                <li>
+                    <a href="import"><i class="fa fa-fw fa fa-question-circle"></i> Import</a>
                 </li>
                 <li>
                     <a href="faq"><i class="fa fa-fw fa fa-question-circle"></i> Help</a>

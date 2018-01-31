@@ -24,8 +24,8 @@ date_default_timezone_set('Asia/Manila');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://www.thesis.hub:8000';
-//$config['base_url'] = 'http://192.168.254.102/cfarmapps';
+$config['base_url'] = '//thesis.hub';
+//$config['base_url'] = 'http://192.168.254.200';
 /*
 |--------------------------------------------------------------------------
 | Index File

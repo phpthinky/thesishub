@@ -1,197 +1,258 @@
-body{
-    
-}
-.container{width: 100%;
-background-size: cover;
-background-repeat: no-repeat;
+#prevent_error{
+
 }
 
-.welcome{
-
-    padding: 5px;
-}
-.welcome > .welcome-content{
-    background-color: rgba(48,147,249,0.70);
-    height: 99vh;
-    overflow: auto;
+header{
+  background-color: green;
 }
 
+header > .brand_logo{
 
-.welcome > .welcome-content > .header img{
-  width: 75%;
-  max-width: 350px;
-  max-height: 75px;
 }
-.robot{
-    background-color: rgba(48,147,249,0.40);
-}
-.robot > img{
-    height: 99vh;
-}
-/* header */
-.header{
-    padding: 5px;
-}
-.header > a{
-    text-decoration: none;
-    font-family: Times New Roman;
-}
-/* navbar */
-.navbar-default {
-    background-color: #b63aea;
-    border-color: #E7E7E7;
+header > .brand_menu > .navbar-inverse{
+  background-color: #027709;
+  border-radius: 1px;
+  border: 1px #027709 solid;
 }
 
-@media (max-width: 767px) {
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-        color: #777;
-    }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-          color: #333;
-    }
+/* ----------------------------------------------------------------------------------- */
 
-    .welcome > .welcome-content{
-        height: 100%;
-    }
-    .welcome > .welcome-content > .header img{max-width: 300px;}
-    .welcome > .welcome-content > .header > input{width: 100%;}
-    .welcome > .robot img{
-        
-        display: none;
-    }
-    .welcome #bs-carousel{
-        display: none;
-    }
+.read{
+
+}
+.read .desc{
+  margin-left: 150px;
 }
 
 
-.fade-carousel {
-    position: relative;
-    height: 100vh;
-}
-.fade-carousel .carousel-inner .item {
-    height: 100vh;
-}
-.fade-carousel .carousel-indicators > li {
-    margin: 0 2px;
-    background-color: #f39c12;
-    border-color: #f39c12;
-    opacity: .7;
-}
-.fade-carousel .carousel-indicators > li.active {
-  width: 10px;
-  height: 10px;
-  opacity: 1;
+.box{
+  height: 90px ;
+  background-color: #fff;
+  padding: 2px;
 }
 
-/********************************/
-/*          Hero Headers        */
-/********************************/
-.hero {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    z-index: 3;
-    color: #fff;
-    text-align: center;
-    text-transform: uppercase;
-    text-shadow: 1px 1px 0 rgba(0,0,0,.75);
-      -webkit-transform: translate3d(-50%,-50%,0);
-         -moz-transform: translate3d(-50%,-50%,0);
-          -ms-transform: translate3d(-50%,-50%,0);
-           -o-transform: translate3d(-50%,-50%,0);
-              transform: translate3d(-50%,-50%,0);
-}
-.hero h1 {
-    font-size: 6em;    
-    font-weight: bold;
-    margin: 0;
-    padding: 0;
-    color: #000;
-}
-.hero h2 {
-    color: #2b426c;
-    text-shadow: 1px 1px 0 rgba(255,255,255,.75);
-}
-.hero h4 {
-    color: #2b426c;    
-    text-shadow: 1px 1px 0 rgba(255,255,255,.75);
-}
-.fade-carousel .carousel-inner .item .hero {
-    opacity: 0;
-    -webkit-transition: 2s all ease-in-out .1s;
-       -moz-transition: 2s all ease-in-out .1s; 
-        -ms-transition: 2s all ease-in-out .1s; 
-         -o-transition: 2s all ease-in-out .1s; 
-            transition: 2s all ease-in-out .1s; 
-}
-.fade-carousel .carousel-inner .item.active .hero {
-    opacity: 1;
-    -webkit-transition: 2s all ease-in-out .1s;
-       -moz-transition: 2s all ease-in-out .1s; 
-        -ms-transition: 2s all ease-in-out .1s; 
-         -o-transition: 2s all ease-in-out .1s; 
-            transition: 2s all ease-in-out .1s;    
+
+.box .box-content{
+  height: 90px ;
+  width: 100%;
+  padding-top: 10%;
+  background-color: #e4e4e4;
+  text-align: center;
 }
 
-/********************************/
-/*            Overlay           */
-/********************************/
-.overlay {
-    position: absolute;
+.box .box-type{
+
+  height: 90px ;
+  width: 100%;
+  background-color: green;
+  padding: 5%;
+  font-size: 3vh;
+  color: #fff;
+  text-align: center;
+  display: none;
+  text-transform: uppercase;
+
+}
+.box:hover .box-content {
+  display: none;
+}
+
+.box:hover .box-type {
+  display: inline-block;
+}
+
+.box .box-content:hover{
+
+  background-color: green;
+  color: #fff;
+}
+.box .box-content:hover a{color: #fff;}
+
+.search-form .search-input{
+    width: 90% !important;
+    max-width: 90%;
+  }
+
+.search-form .btn{display: inline-block;}
+.push-left{
+}
+
+/* ----------------------------------------------------------------------------------- */
+
+
+
+.slider{
+  padding: 10px;
+}
+#slideshow{
+  width: 97.5%;
+}
+.slider .carousel-inner img{
+ 
+  width: 100%;
+}
+
+
+
+/* Carousel Styles */
+.carousel-indicators .active {
+    background-color: #2980b9;
+}
+
+.carousel-inner img {
     width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-color: #080d15;
-    opacity: .3;
+    max-height: 460px
 }
 
-/********************************/
-/*          Custom Buttons      */
-/********************************/
-.btn.btn-lg {padding: 10px 40px;}
-.btn.btn-hero,
-.btn.btn-hero:hover,
-.btn.btn-hero:focus {
-    color: #f5f5f5;
-    background-color: #1abc9c;
-    border-color: #1abc9c;
-    outline: none;
-    margin: 20px auto;
-    z-index: -2;
+.carousel-control {
+    width: 0;
 }
 
-/********************************/
-/*       Slides backgrounds     */
-/********************************/
-.fade-carousel .slides .slide-1, 
-.fade-carousel .slides .slide-2,
-.fade-carousel .slides .slide-3 {
-  height: 100vh;
-  background-size: cover;
-  background-position: center center;
+.carousel-control.left,
+.carousel-control.right {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  background-image: none;
   background-repeat: no-repeat;
+  text-shadow: none;
 }
-.fade-carousel .slides .slide-1 {
-  background-image: url(http://www.thesis.hub:8000/public/images/books0001.jpg); 
+
+.carousel-control.left span {
+  padding: 8px;
+  padding-left: 2px;
 }
-.fade-carousel .slides .slide-2 {
-  background-image: url(http://www.thesis.hub:8000/public/images/books0002.jpg); 
+
+.carousel-control.right span {
+  padding: 8px;
+  padding-left: 0;
 }
-.fade-carousel .slides .slide-3 {
-  background-image: url(http://www.thesis.hub:8000/public/images/books0003.jpg); 
+
+.carousel-control .glyphicon-chevron-left, 
+.carousel-control .glyphicon-chevron-right, 
+.carousel-control .icon-prev, 
+.carousel-control .icon-next {
+  position: absolute;
+  top: 45%;
+  z-index: 5;
+  display: inline-block;
+}
+
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .icon-prev {
+  left: 15px;
+  height: 50px
+}
+
+.carousel-control .glyphicon-chevron-right,
+.carousel-control .icon-next {
+  right: 15px;
+  height: 50px
+}
+
+.carousel-control.left span,
+.carousel-control.right span {
+  background-color: #000;
+}
+
+.carousel-control.left span:hover,
+.carousel-control.right span:hover {
+  opacity: .7;
+  filter: alpha(opacity=70);
+}
+
+/* Carousel Header Styles */
+.header-text {
+    position: absolute;
+    top: 20%;
+    left: 1.8%;
+    right: auto;
+    width: 96.66666666666666%;
+    color: #fff;
+}
+
+.header-text h2 {
+    font-size: 40px;
+}
+
+.header-text h2 span {
+    background-color: #2980b9;
+  padding: 10px;
+}
+
+.header-text h3 span {
+  background-color: #000;
+  padding: 15px;
+}
+
+.btn-min-block {
+    min-width: 170px;
+    line-height: 26px;
+}
+
+.btn-theme {
+    color: #fff;
+    background-color: transparent;
+    border: 2px solid #fff;
+    margin-right: 15px;
+}
+
+.btn-theme:hover {
+    color: #000;
+    background-color: #fff;
+    border-color: #fff;
+}
+
+.signin_signup{
+  margin-top: 25%;
+  display: none;
 }
 
 
-/********************************/
-/*          Media Queries       */
-/********************************/
-@media screen and (min-width: 980px){
-    .hero { width: 980px; }    
+/* ----------------------------------------------------------------------------------- */
+
+
+
+/* ----------------------------------------------------------------------------------- */
+
+
+
+
+.footer-breaker{
+  min-height: 75px;
 }
-@media (max-width: 1067px) {
-    .welcome > .welcome-content > .header img{width: 75%;max-width: 350px;}
+
+footer {
+
+    position: fixed;
+    height: 30px;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px;
+    padding-bottom: 30px;
+}
+
+@media only screen and (max-width: 1368px) {
+
+#slideshow{
+  width: 97.5%;
+}
+
+@media only screen and (max-width: 968px) {
+
+#slideshow{
+  width: 95.5%;
+}
+
+@media only screen and (max-width: 868px) {
+
+#slideshow{
+  width: 100%;
+}
+@media only screen and (max-width: 768px) {
+
+#slideshow{
+  width: 100%;
+}
 
 }
-

@@ -133,6 +133,17 @@ switch (ENVIRONMENT)
 
 
 /*
+ *---------------------------------------------------------------
+ * UPLOAD DIRECTORY NAME
+ *---------------------------------------------------------------
+ *
+ * This variable must contain the name of your "system" directory.
+ * Set the path if it is not in the same directory as this file.
+ */
+	$upload_folder = 'uploaded';
+
+
+/*
  * --------------------------------------------------------------------
  * DEFAULT CONTROLLER
  * --------------------------------------------------------------------
@@ -268,6 +279,42 @@ switch (ENVIRONMENT)
 
 	define('APPPATH', $application_folder.DIRECTORY_SEPARATOR);
 
+
+
+
+	// the path to the upload file
+
+	if (is_dir($upload_folder))
+	{
+		if (($_temp = realpath($upload_folder)) !== FALSE)
+		{
+			$upload_folder = $_temp;
+		}
+		else
+		{
+			$upload_folder = strtr(
+				rtrim($upload_folder, '/\\'),
+				'/\\',
+				DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+			);
+		}
+	}
+	elseif (is_dir(BASEPATH.$upload_folder.DIRECTORY_SEPARATOR))
+	{
+		$upload_folder = BASEPATH.strtr(
+			trim($upload_folder, '/\\'),
+			'/\\',
+			DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+		);
+	}
+	else
+	{
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+		echo 'Your upload folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF;
+		exit(3); // EXIT_CONFIG
+	}
+
+	define('UPLOADPATH', $upload_folder.DIRECTORY_SEPARATOR);
 	// The path to the "views" directory
 	if ( ! isset($view_folder[0]) && is_dir(APPPATH.'views'.DIRECTORY_SEPARATOR))
 	{

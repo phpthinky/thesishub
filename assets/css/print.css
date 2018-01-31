@@ -1,0 +1,26 @@
+@media print {
+
+    title,
+    .print-content,
+    .print-header
+    {display:block;}
+    .side-body{
+    	margin: 0;
+    }
+    .side-menu{margin: 0;padding: 0}
+  .no-print,
+  .header-top,
+  .header,
+  .slider-show,
+  .post-sidebar,
+  .post-sidebar > .item,
+  .footer,
+  footer,
+  #about,
+  #contact,
+  #mostviews,
+  div > a > img
+  {margin: 0;
+  	padding: 0;
+  	display: none;}
+}

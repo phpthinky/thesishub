@@ -32,6 +32,12 @@
     background-color: #f9fac8;
 
 }
+ul.find-userlist{
+    text-decoration: none;
+}
+ul.find-userlist > li{
+    background-color: lime;
+}
 @media(min-width:768px) {
     #wrapper {
         padding-left: 225px;

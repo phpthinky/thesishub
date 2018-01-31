@@ -11,10 +11,11 @@
         <link href="<?=base_url('assets/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
         <link href="<?=base_url('assets/bootstrap');?>/css/font-awesome.css" rel="stylesheet">
         <link href="<?=base_url('assets/css/animate.css');?>" rel="stylesheet">
+        <link rel="shortcut icon" href="<?=base_url();?>public/images/logo-only-icon.png"/>
 
         <?php // add css files
         $this->minify->css(array('search.css'));
-        echo $this->minify->deploy_css(FALSE, 'userstyle.min.css');/*
+        echo $this->minify->deploy_css(FALSE, 'user-style.min.css');/*
         $this->minify->js(array('helpers.js', 'jqModal.js'));
         echo $this->minify->deploy_js(FALSE, 'custom_js_name.min.js');*/
         ?>
@@ -37,7 +38,6 @@
     <![endif]-->
     <style type="text/css">
     </style>
-        <link rel="shortcut icon" href="<?=base_url('public/images/favicon.png');?>"/>
         <!-- CORE PLUGINS -->
         <script src="<?=base_url('assets/js/jquery-1.11.0.min.js');?>" type="text/javascript"></script>
         <script src="<?=base_url('assets/bootstrap/js/bootstrap.min.js');?>" type="text/javascript"></script>

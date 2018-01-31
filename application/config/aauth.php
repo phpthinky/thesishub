@@ -104,17 +104,17 @@ $config_aauth["default"] = array(
 
  'remember'                       => ' +3 days',
 
- 'max'                            => 13,
+ 'max'                            => 25,
  'min'                            => 5,
 
  'additional_valid_chars'         => array(),
 
  'ddos_protection'                => true,
 
- 'recaptcha_active'               => true,
+ 'recaptcha_active'               => false,
  'recaptcha_login_attempts'       => 4,
- 'recaptcha_siteKey'              => '6Le-0jsUAAAAAMs_xWH4JLykUCGk3-H5vrcKBjfw',
- 'recaptcha_secret'               => '6Le-0jsUAAAAAIl5Eb6jLucSp8oH2V9Ur2Vv4IUG',
+ 'recaptcha_siteKey'              => '',
+ 'recaptcha_secret'               => '',
 
  'totp_active'                    => false,
  'totp_only_on_ip_change'         => false,
@@ -128,8 +128,8 @@ $config_aauth["default"] = array(
 
  'login_with_name'                => false,
 
- 'email'                          => 'admin@admin.com',
- 'name'                           => 'Emre Akay',
+ 'email'                          => 'rhoy012@gmail.com',
+ 'name'                           => 'harold rita',
  'email_config'                   => false,
 
  'verification'                   => false,
@@ -143,6 +143,7 @@ $config_aauth["default"] = array(
 
  'pm_encryption'                  => false,
  'pm_cleanup_max_age'             => "3 months",
+ 'carousel'						=> true,
 );
 
 $config['aauth'] = $config_aauth['default'];

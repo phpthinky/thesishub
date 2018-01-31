@@ -444,8 +444,16 @@ class Aauth {
 	 * Removes a Login Attempt 
 	 * @return bool Reset fails/succeeds
 	 */
-	public function reset_login_attempts() {
+	public function reset_login_attempts($id = false) {
+		if ($id) {
+			# code...
+		
+		$this->CI->db->where('id',$id);
+		return $this->CI->db->delete($this->config_vars['login_attempts']);
+
+		}
 		$ip_address = $this->CI->input->ip_address();
+
 		$this->aauth_db->where(
 			array(
 				'ip_address'=>$ip_address,
@@ -607,8 +615,19 @@ class Aauth {
 	 * Get login attempt
 	 * @return int
 	 */
-	public function get_login_attempts() {
-		$ip_address = $this->CI->input->ip_address();
+	public function get_login_attempts($limit = false) {
+		if($limit){
+			$sql = "SELECT * FROM ".$this->config_vars['login_attempts']." ORDER BY timestamp DESC LIMIT ".$limit;
+			$query = $this->CI->db->query($sql);
+
+			if($query->num_rows() != 0){
+				$row = $query->result();
+				return $row;
+				//return $row->login_attempts;
+			}
+			return false;
+		}else{
+					$ip_address = $this->CI->input->ip_address();
 		$query = $this->aauth_db->where(
 			array(
 				'ip_address'=>$ip_address,
@@ -623,6 +642,7 @@ class Aauth {
 		}
 
 		return 0;
+		}
 	}
 
 	/**
@@ -2195,7 +2215,6 @@ class Aauth {
 			}
 			$i++;
 		}
-		//echo $msg;
 		return $msg;
 	}
 	

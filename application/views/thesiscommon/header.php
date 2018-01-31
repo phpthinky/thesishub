@@ -12,6 +12,7 @@
         <link href="<?=base_url('assets/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
         <link href="<?=base_url('assets/bootstrap');?>/css/font-awesome.css" rel="stylesheet">
         <link href="<?=base_url('assets/css/animate.css');?>" rel="stylesheet">
+        <link rel="shortcut icon" href="<?=base_url();?>public/images/logo-only-icon.png"/>
 
         <?php // add css files
         $this->minify->css(array('default.css','default/home.css','default/nav.css','default/login.css'));
@@ -24,7 +25,6 @@
             min-width: 300px;
         }
         </style>
-        <link rel="shortcut icon" href="<?=base_url('public/images/favicon.png');?>"/>
 
         <!--[if IE 8]>
         <style>
