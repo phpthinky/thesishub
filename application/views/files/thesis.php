@@ -51,7 +51,7 @@
 							<select class="form-control" name="committee-position[]" id="committee-position">
 										<option value="0">Select here</option>
 										<?php foreach ($position as $key): ?>
-											<option value="<?=$key->id;?>"><?=$key->role_name;?></option>
+											<option value="<?=$key->role_name;?>"><?=$key->role_name;?></option>
 										<?php endforeach ?>
 									</select>
 					
@@ -80,7 +80,7 @@
 							<select class="form-control" name="panel-position[]" id="panel-position">
 										<option value="0">Select here</option>
 										<?php foreach ($position as $key): ?>
-											<option value="<?=$key->id;?>"><?=$key->role_name;?></option>
+											<option value="<?=$key->role_name;?>"><?=$key->role_name;?></option>
 										<?php endforeach ?>
 									</select>
 					

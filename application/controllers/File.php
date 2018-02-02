@@ -200,13 +200,15 @@ public function update_abstract($value='')
 
 			$info = array(
 					'title'=>$input->title,
+					'contents'=>$input->contents,
 					'date_presented'=>date('Y-m-d h:m:s'),
 					'slug'=>$this->slug->create($input->title),
 					'date_created'=>$date,
 					'group_course'=>$input->group_course,
 					'status'=>$input->group_privacy,
 					'posted_by'=>$this->uid,
-					'page_id'=>$input->edit_id
+					'page_id'=>$input->edit_id,
+					'implemented'=>$input->implemented
 					);
 
 			if($update = $this->file_m->update_resource_info($info,$input->contents)){

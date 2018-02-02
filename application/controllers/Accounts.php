@@ -204,11 +204,11 @@ class Accounts extends CI_Controller
 			}
 
 
-			if ($isuser = $this->user_model->username($username)) {
+			/* if ($isuser = $this->user_model->username($username)) {
 				# code...
 		       		echo json_encode(array('stats'=>false,'msg'=>'Opps! It seems like some already used this username.'));
 		       		exit();
-			}
+			} */
 			
 
 			
@@ -267,11 +267,11 @@ class Accounts extends CI_Controller
 		       		exit();
 				}
 
-			if ($idexist = $this->user_model->get_stud_id($idno)) {
+		/*	if ($idexist = $this->user_model->get_stud_id($idno)) {
 				# code...
 		       		echo json_encode(array('stats'=>false,'msg'=>'Opps! It seems like some already used this id number.'));
 		       		exit();
-			}
+			}*/
 
 
 			if ($isuser = $this->user_model->username($username)) {
@@ -338,11 +338,11 @@ class Accounts extends CI_Controller
 		       		exit();
 				}
 
-			if ($idexist = $this->user_model->get_stud_id($idno)) {
+			/* if ($idexist = $this->user_model->get_stud_id($idno)) {
 				# code...
 		       		echo json_encode(array('stats'=>false,'msg'=>'Opps! It seems like some already used this id number.'));
 		       		exit();
-			}
+			} */
 
 
 			if ($isuser = $this->user_model->username($username)) {

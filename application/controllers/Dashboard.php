@@ -16,6 +16,7 @@ class Dashboard extends CI_Controller
 		$this->load->model('post_model');
 		$this->load->model('user_model');
 		$this->load->model('file_m');
+		$this->load->library('excel');
 		//$this->load->library('Aauth');
         if (!$this->aauth->is_loggedin()){
         	redirect();

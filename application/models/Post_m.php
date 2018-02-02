@@ -61,7 +61,7 @@ class Post_m extends CI_Model
 	{
 		if ($type) {
 
-			$this->db->select('r.role_name as position,n.fullname,')
+			$this->db->select('n.id,r.role_name as position,n.fullname,i.id as info_id,i.post_id,i.role_id')
 					->from('post_other_information as i')
 					->join('col_names as n','n.id = i.name_id','left')
 					->join('col_roles as r','r.id = i.role_id','left')
@@ -72,6 +72,79 @@ class Post_m extends CI_Model
 
 		}
 		return false;
+	}
+
+	public function get_adviser($post_id=false)
+	{
+		if ($post_id) {
+			
+			$q = $this->db->select('*')
+					->from('post_other_information')
+					->where(array('group_type'=>'adviser','post_id'=>$post_id))
+					->get();
+
+
+			return count($q->result());
+		}
+	}
+
+
+	public function change_expert($id=false,$name_id = false)
+	{
+		if ($name_id && $id) {
+
+			$this->db->set('name_id',$name_id);
+			$this->db->where('id',$id);
+			return $this->db->update('post_other_information');
+
+
+		}
+		return false;
+	}
+
+	public function change_expert_role($id=false,$role_id = false)
+	{
+		if ($role_id && $id) {
+
+			$this->db->set('role_id',$role_id);
+			$this->db->where('id',$id);
+			return $this->db->update('post_other_information');
+
+
+		}
+		return false;
+	}
+
+
+	public function change_rating($rating = false,$post_id=false)
+	{
+		if ($post_id && $rating) {
+
+			//var_dump($rating);
+			//exit();
+			$this->db->set('rating',$rating);
+			$this->db->where('page_id',$post_id);
+			return $this->db->update('post');
+
+
+		}
+		return false;
+	}
+
+	public function remove_expert($id=false)
+	{
+		if ($id) {
+			$this->db->where(array('id'=>$id));
+			return $this->db->delete('post_other_information');
+
+
+		}
+		return false;
+	}
+	public function last_id($value='')
+	{
+		# code...
+		return $this->db->select('id')->order_by('id','desc')->limit(1)->get('col_names')->row('id');
 	}
 	public function list_researchers($id=0)
 	{
@@ -323,6 +396,15 @@ class Post_m extends CI_Model
 			}
 
 		}
+	}
+
+	public function name_id_used($post_id=false,$name_id=false,$expert = false)
+	{
+		if ($post_id && $name_id) {
+		$query = $this->db->get_where('post_other_information',array('post_id'=>$post_id,'name_id'=>$name_id,'group_type'=>$expert));
+		return count($query->result());
+		}
+		return false;
 	}
 
 }

@@ -87,7 +87,7 @@ class Post extends CI_Controller {
 		$data['title']= "Resource Portal - file directory";
 		$this->load->view('admin/default/header',$data);
 		$this->load->view('admin/default/menu',$data);
-		$this->load->view('files/index_new',$data);
+		$this->load->view('files/list_post',$data);
 		$this->load->view('admin/default/footer',$data);
 	}
 
@@ -168,7 +168,14 @@ class Post extends CI_Controller {
 		        }
 
 
-        		$data['files'] = $this->file_m->get_files($post_id);
+	        $data['files'] = $this->file_m->get_files($post_id);
+
+	        $data['researcher'] = $this->post_m->get_experts('researcher',$post_id) ;
+	        $data['panel'] = $this->post_m->get_experts('panel',$post_id) ;
+	        $data['committee'] = $this->post_m->get_experts('committee',$post_id) ;
+	        $data['adviser'] = $this->post_m->get_experts('adviser',$post_id) ;
+		$data['position'] = $this->group_m->expert_role_type();
+
 
 
 			}
@@ -183,11 +190,353 @@ class Post extends CI_Controller {
 
 		$this->load->view('admin/default/header',$data);
 		$this->load->view('admin/default/menu',$data);
-		$this->load->view('files/update/update',$data);
+		$this->load->view('files/edit/edit_all',$data);
 		$this->load->view('admin/default/footer',$data);
 
 	}
+	public function edit_author($value='')
+	{
+		# code...
+		if($this->input->post()){
+			$input = (object)$this->input->post();
+
+			$col =  $input->column;
+			$name =  $input->editval;
+			$id =  $input->id;
+			$info_id =  $input->info_id;
+			$role =  $input->role_id;
+
+
+			if ($col == 'fullname') {
+
+				$last_id = $this->post_m->last_id();
+
+				$name_id = $this->post_m->get_name_id($name);
+
+
+				if($name_id != $id){
+
+					if($update = $this->post_m->change_expert($info_id,$name_id)){
+						echo json_encode(array('stats'=>true,'msg'=>'Update successfully','name_id'=>$name_id,'col'=>$col));
+					}else{
+
+						echo json_encode(array('stats'=>false,'msg'=>'Update unsuccessful','name_id'=>$name_id,'col'=>$col));
+					}
+
+				}else{
+
+						echo json_encode(array('stats'=>false,'msg'=>'No changes','name_id'=>$name_id,'col'=>$col));
+				}
+				
+
+			}elseif($col == 'role_name'){
+
+
+				$role_id = $this->post_m->get_role_id($name);
+
+
+				if($role_id != $role){
+					//echo "string";
+					if($update = $this->post_m->change_expert_role($info_id,$role_id)){
+						echo json_encode(array('stats'=>true,'msg'=>'Update successfully','role_id'=>$role_id,'col'=>$col));
+					}else{
+
+						echo json_encode(array('stats'=>false,'msg'=>'Update unsuccessful','role_id'=>$role_id,'col'=>$col));
+					}
+
+				}else{
+				echo json_encode(array('stats'=>true,'msg'=>'No changes','col'=>$role,'role_id'=>$role_id));
+				}
+			}elseif($col == 'adviser'){
+
+
+				$name_id = $this->post_m->get_name_id($name);
+
+
+				if($name_id != $id){
+					//echo "string";
+					if($update = $this->post_m->change_expert($info_id,$name_id)){
+						echo json_encode(array('stats'=>true,'msg'=>'Update successfully','name_id'=>$name_id,'col'=>$col));
+					}else{
+
+						echo json_encode(array('stats'=>false,'msg'=>'Update unsuccessful','name_id'=>$name_id,'col'=>$col));
+					}
+
+				}else{
+				echo json_encode(array('stats'=>true,'msg'=>'No changes','col'=>$col,'name_id'=>$name_id));
+				}
+			}
+
+
+
+			}
+		
+	}
+
+	public function edit_adviser($value='')
+	{
+		# code...
+		if($this->input->post()){
+			$input = (object)$this->input->post();
+
+			$col =  $input->column;
+			$name =  $input->adviser;
+			$post_id =  $input->post_id;
+			$o_name_id =  $input->name_id;
+			$info_id =  $input->info_id;
+
+
+				$name_id = $this->post_m->get_name_id($name);
+
+				if((int)$o_name_id == 0){
+				//var_dump($input);exit();
+
+					$adviser[0]['name_id'] = $name_id;
+					$adviser[0]['role_id'] = (int)$this->post_m->get_role_id('adviser');
+					$adviser[0]['post_id'] = $post_id;
+					$adviser[0]['group_type'] = 'adviser';
+			
+				
+
+					if($adv = $this->post_m->insert_info_by_batch($adviser)){
+
+						echo json_encode(array('stats'=>true,'msg'=>'Update successfully','name_id'=>$name_id,'col'=>$col));
+
+					}else{
+
+						echo json_encode(array('stats'=>false,'msg'=>'Update unsuccessful','name_id'=>$name_id,'col'=>$col));
+					}
+				exit();
+				}	
+				//exit();
+
+
+				if($name_id != $o_name_id){
+
+
+
+					if($update = $this->post_m->change_expert($info_id,$name_id)){
+
+						echo json_encode(array('stats'=>true,'msg'=>'Update successfully','name_id'=>$name_id,'col'=>$col));
+
+					}else{
+
+						echo json_encode(array('stats'=>false,'msg'=>'Update unsuccessful','name_id'=>$name_id,'col'=>$col));
+					}
+
+					exit();
+
+				}else{
+					echo json_encode(array('stats'=>true,'msg'=>'No changes','col'=>$col,'name_id'=>$name_id));
+				}
+
+		}
+	}
+
+
+	public function edit_rating($value='')
+	{
+		# code...
+		if($this->input->post()){
+			$input = (object)$this->input->post();
+
+			//var_dump($input);exit();
+
+				if($rate = $this->post_m->change_rating($input->rating,$input->post_id)){
+					echo json_encode(array('stats'=>true,'msg'=>$rate));
+				}else{
+
+					echo json_encode(array('stats'=>false));
+				}
+			}
+		
+	}
+	public function save_author($value='')
+	{
+		if($this->input->post()){
+
+			$post_id = $this->input->post('post_id');
+
+			$r_name = $this->input->post('researcher');
+			$r_pos = $this->input->post('researcher-position');
+
+			if(!empty($r_name[0])){
+				$i = 0;
+				$r='';
+				foreach ($r_name as $key) {
+					# code...
+
+					$name_id = $this->post_m->get_name_id($key);
+
+					if ($used_id = $this->post_m->name_id_used($post_id,$name_id,'researcher')) {
+						# code...
+						//echo json_encode($this->input->post());
+					//exit();
+					}else{
+					$r[$i]['name_id'] = $name_id;
+					$r[$i]['role_id'] = isset($r_pos[$i]) ? (int)$this->post_m->get_role_id($r_pos[$i]) : 0;
+					$r[$i]['post_id'] = $post_id;
+					$r[$i]['group_type'] = 'researcher';
+
+					$i++;
+					}
+
+				}
+
+				if(!empty($r)){
+
+				$r = array_filter(array_unique($r));
+				//echo json_encode($r);exit();
+				if($re = $this->post_m->insert_info_by_batch($r)){
+					echo json_encode(array('stats'=>true,'msg'=>count($re).' new author is added successfully.'));
+				}else{
+
+					echo json_encode(array('stats'=>false));
+				}
+			}else{
+
+					echo json_encode(array('stats'=>false,'msg'=>'No author added.'));
+			}
+
+
+						
+						exit();
+
+
+			}
+
+		}
+
+	}
+		public function save_committee($value='')
+	{
+		if($this->input->post()){
+
+			$post_id = $this->input->post('post_id');
+
+			$r_name = $this->input->post('committee');
+			$r_pos = $this->input->post('committee-position');
+			
+			if(!empty($r_name[0])){
+				$i = 0;
+				$r='';
+				foreach ($r_name as $key) {
+					# code...
+
+					$name_id = $this->post_m->get_name_id($key);
+
+					if ($used_id = $this->post_m->name_id_used($post_id,$name_id,'committee')) {
+						# code...
+						//echo json_encode($this->input->post());
+					//exit();
+					}else{
+					$r[$i]['name_id'] = $name_id;
+					$r[$i]['role_id'] = isset($r_pos[$i]) ? (int)$this->post_m->get_role_id($r_pos[$i]) : 0;
+					$r[$i]['post_id'] = $post_id;
+					$r[$i]['group_type'] = 'committee';
+
+					$i++;
+					}
+
+				}
+
+				if(!empty($r)){
+
+				$r = array_filter(array_unique($r));
+				//echo json_encode($r);exit();
+				if($re = $this->post_m->insert_info_by_batch($r)){
+					echo json_encode(array('stats'=>true,'msg'=>count($re).' new committee is added successfully.'));
+				}else{
+
+					echo json_encode(array('stats'=>false));
+				}
+			}else{
+
+					echo json_encode(array('stats'=>false,'msg'=>'No committee is  added.'));
+			}
+
+
+						
+						exit();
+
+
+			}
+
+		}
+
+	}
+		public function save_panel($value='')
+	{
+		if($this->input->post()){
+
+			$post_id = $this->input->post('post_id');
+
+			$r_name = $this->input->post('panel');
+			$r_pos = $this->input->post('panel-position');
+			
+			if(!empty($r_name[0])){
+				$i = 0;
+				$r='';
+				foreach ($r_name as $key) {
+					# code...
+
+					$name_id = $this->post_m->get_name_id($key);
+
+					if ($used_id = $this->post_m->name_id_used($post_id,$name_id,'panel')) {
+						# code...
+						//echo json_encode($this->input->post());
+					//exit();
+					}else{
+					$r[$i]['name_id'] = $name_id;
+					$r[$i]['role_id'] = isset($r_pos[$i]) ? (int)$this->post_m->get_role_id($r_pos[$i]) : 0;
+					$r[$i]['post_id'] = $post_id;
+					$r[$i]['group_type'] = 'panel';
+
+					$i++;
+					}
+
+				}
+
+				if(!empty($r)){
+
+				$r = array_filter(array_unique($r));
+				//echo json_encode($r);exit();
+				if($re = $this->post_m->insert_info_by_batch($r)){
+					echo json_encode(array('stats'=>true,'msg'=>count($re).' new panel is added successfully.'));
+				}else{
+
+					echo json_encode(array('stats'=>false));
+				}
+			}else{
+
+					echo json_encode(array('stats'=>false,'msg'=>'No panel is added.'));
+			}
+
+
+						
+						exit();
+
+
+			}
+
+		}
+
+	}
 	
+	public function remove_author(){
+	    if($this->input->post()){
+	       $author_id =  $this->input->post('id');
+	    if($this->post_m->remove_expert($author_id)){
+				echo json_encode(array('stats'=>true,'msg'=>'Author remove'));
+			}else{
+
+				echo json_encode(array('stats'=>false,'msg'=>'Author not remove'));
+			}
+	    }
+	    else{
+				echo json_encode(array('stats'=>false,'msg'=>'No input received'));
+	    }
+	}
 	public function delete_file(){
 	    if($this->input->post()){
 	       $post_id =  $this->input->post('file_id');
@@ -279,8 +628,11 @@ public function update_abstract($value='')
 					'group_course'=>$input->group_course,
 					'status'=>$input->group_privacy,
 					'posted_by'=>$this->uid,
-					'contents'=>$$input->contents,
-					'page_id'=>$input->edit_id
+					'contents'=>$input->contents,
+					'page_id'=>$input->edit_id,
+					'bookno'=>$input->bookno,
+					'implemented'=>$input->implemented
+
 					);
 
 			if($update = $this->file_m->update_resource_info($info,$input->contents)){
@@ -306,7 +658,7 @@ public function update_abstract($value='')
 
 
 
-				echo json_encode(array('stats'=>true,'msg'=>"Post successfully updated.",'slug'=>$this->slug->create($input->title),'post_id'=>$input->edit_id));
+				echo json_encode(array('stats'=>true,'msg'=>"Post successfully updated.",'slug'=>$this->slug->create($input->title),'post_id'=>$input->edit_id,'book'=>$input->bookno));
 			}else{
 				echo json_encode(array('stats'=>false,'msg'=>$input->edit_id));
 			}
@@ -366,6 +718,15 @@ public function update_abstract($value='')
 				echo json_encode(array('stats'=>false,'msg'=>'Title already used.'));
 				exit();
 			}
+			if(!empty($input->bookno)){
+
+				$book = $this->file_m->is_book_no($input->bookno);
+				if($book > 0){
+				echo json_encode(array('stats'=>false,'msg'=>'Book number already used'));
+					exit();
+
+				}
+			}
 
 			$info = array(
 					'title'=>$input->title,
@@ -410,6 +771,51 @@ public function update_abstract($value='')
 			}
 
         }
+	}
+	public function get_book_no()
+	{
+		# code...
+		if ($this->input->post()) {
+			//echo json_encode(array('stats'=>false,'msg'=>'books'));
+			//exit();
+
+			$bookno = $this->input->post('bookno');
+
+
+
+			$book = $this->file_m->is_book_no($bookno);
+			if($book > 0){
+			echo json_encode(array('stats'=>false,'msg'=>$book));
+
+			}else{
+
+			echo json_encode(array('stats'=>true,'msg'=>$book));
+			}
+
+		}//else{
+		//	echo json_encode(array('stats'=>false,'msg'=>'No input received.'));
+		//}
+
+	}
+
+	public function is_title($value='')
+	{
+		if ($this->input->post()) {
+
+			$title = $this->input->post('title');
+
+			$istitle = $this->file_m->title($title);
+			if($istitle > 0){
+			echo json_encode(array('stats'=>false,'msg'=>$istitle));
+
+			}else{
+
+			echo json_encode(array('stats'=>true,'msg'=>$istitle));
+			}
+
+		}
+
+
 	}
 	public function save_file()
 	{

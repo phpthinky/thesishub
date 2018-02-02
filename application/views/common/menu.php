@@ -26,6 +26,7 @@
                           <?php endif ?>
                           <?php if ($this->aauth->is_loggedin()): ?>
                           
+                          <li><a href="<?=site_url('user/directory');?>"> <span>My directory</span></a></li>
                           <li><a href="<?=site_url('setting/security');?>"> <span>My account</span></a></li>
                          
                           <?php if ($this->session->userdata['permit'] == 'staffs' || $this->aauth->is_admin()): ?>

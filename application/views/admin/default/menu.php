@@ -5,7 +5,7 @@
 <div class="wrapper home-title no-print" >
     <div class="header-title">
         
-  <a href=""><img src="<?=base_url();?>public/images/logob.png"><h4>Adminstration</h4></a>
+  <a href=""><img src="<?=base_url();?>public/images/logob.png"><h4>Administration</h4></a>
     
     </div>
 </div>

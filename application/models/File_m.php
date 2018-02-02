@@ -30,6 +30,12 @@ class File_m extends CI_Model
 			}
 		}
 	}
+	public function is_book_no($value='')
+	{
+		$query = $this->db->get_where('post',array('bookno'=>$value));
+		return count($query->result());
+
+	}
 
 	public function title($title = false){
 
@@ -233,6 +239,17 @@ class File_m extends CI_Model
 			return false;
 		}
 			return false;
+	}
+
+	public function listall($value='')
+	{
+
+					$this->db->select('*')
+							->from('post')
+							->where('status !=',3)
+							->order_by('date_created','desc');
+							$q = $this->db->get();
+							return $q->result_array();		
 	}
 	public function lisfile($limit = 10,$start=0,$perm= false){
 
@@ -612,7 +629,7 @@ class File_m extends CI_Model
 		if (is_string($id)) {
 			# code...
 
-			$query = $this->db->select('post.page_id,post.title,post.slug,post.status,post.group_course,post.contents as description,month(post.date_created) as months,year(post.date_created) as years,DAYOFMONTH(post.date_created) as days,post.bookno')
+			$query = $this->db->select('post.page_id,post.title,post.slug,post.status,post.group_course,post.contents as description,month(post.date_created) as months,year(post.date_created) as years,DAYOFMONTH(post.date_created) as days,post.implemented,post.bookno')
 					->from('post')
 					->where(array('post.slug'=>$id))
 					->get();
@@ -632,7 +649,7 @@ class File_m extends CI_Model
 		if (is_numeric($id)) {
 			# code...
 
-			$query = $this->db->select('post.page_id,post.title,post.slug,post.status,post.group_course,post.contents as description,month(post.date_created) as months,year(post.date_created) as years,DAYOFMONTH(post.date_created) as days,post.implemented')
+			$query = $this->db->select('post.page_id,post.title,post.slug,post.status,post.group_course,post.contents as description,month(post.date_created) as months,year(post.date_created) as years,DAYOFMONTH(post.date_created) as days,post.implemented,post.bookno,post.rating')
 					->from('post')					
 					->where(array('post.page_id'=>$id))
 					->get();
@@ -2012,23 +2029,27 @@ if($this->aauth->is_loggedin() && $this->session->userdata['permit'] == 'student
 					if($limit > 0){
 						if($start > 0){
 
-						$query = $this->db->select('p.page_id, p.title, p.contents as description,year(p.date_created) as years,p.slug')
+						$query = $this->db->select('p.page_id, p.title, p.contents as description,year(p.date_created) as years,p.slug,bookno')
 									->from('post as p')
 									
 									->join('post_tag as t','t.post_id = p.page_id','left')
 									
 									->like('t.keyword',$key,'both')
+									->or_like('p.bookno',$key,'both')
+
 									->limit($start,$limit)
 									->get();
 									$rows[] = $query->result();
 								}else{
 
-						$query = $this->db->select('p.page_id, p.title, p.contents as description,year(p.date_created) as years,p.slug')
+						$query = $this->db->select('p.page_id, p.title, p.contents as description,year(p.date_created) as years,p.slug,bookno')
 									->from('post as p')
 									
 									->join('post_tag as t','t.post_id = p.page_id','left')
 									
 									->like('t.keyword',$key,'both')
+									->or_like('p.bookno',$key,'both')
+
 									->limit($limit)
 									->get();
 									$rows[] = $query->result();
@@ -2037,12 +2058,14 @@ if($this->aauth->is_loggedin() && $this->session->userdata['permit'] == 'student
 								
 					}else{
 
-						$query = $this->db->select('p.page_id, p.title, p.contents as description,year(p.date_created) as years,p.slug')
+						$query = $this->db->select('p.page_id, p.title, p.contents as description,year(p.date_created) as years,p.slug,bookno')
 									->from('post as p')
 									
 									->join('post_tag as t','t.post_id = p.page_id','left')
 									
 									->like('t.keyword',$key,'both')
+									->or_like('p.bookno',$key,'both')
+
 									->get();
 									$rows[] = $query->result();
 
@@ -2059,25 +2082,27 @@ if($this->aauth->is_loggedin() && $this->session->userdata['permit'] == 'student
 					if($limit > 0){
 						if($start > 0){
 
-						$query = $this->db->select('p.page_id, p.title, p.contents as description,year(p.date_created) as years,p.slug')
+						$query = $this->db->select('p.page_id, p.title, p.contents as description,year(p.date_created) as years,p.slug,bookno')
 									->from('post as p')
 									
 									->join('post_tag as t','t.post_id = p.page_id','left')
 									
 									->where('p.status',2)
 									->like('t.keyword',$key,'both')
+									->or_like('p.bookno',$key,'both')
 									->limit($start,$limit)
 									->get();
 									$rows[] = $query->result();
 								}else{
 
-						$query = $this->db->select('p.page_id, p.title, p.contents as description,year(p.date_created) as years,p.slug')
+						$query = $this->db->select('p.page_id, p.title, p.contents as description,year(p.date_created) as years,p.slug,bookno')
 									->from('post as p')
 									
 									->join('post_tag as t','t.post_id = p.page_id','left')
 									
 									->where('p.status',2)
 									->like('t.keyword',$key,'both')
+									->or_like('p.bookno',$key,'both')
 									->limit($limit)
 									->get();
 									$rows[] = $query->result();
@@ -2085,13 +2110,14 @@ if($this->aauth->is_loggedin() && $this->session->userdata['permit'] == 'student
 
 								
 					}else{
-						$query = $this->db->select('p.page_id, p.title, p.contents as description,year(p.date_created) as years,p.slug')
+						$query = $this->db->select('p.page_id, p.title, p.contents as description,year(p.date_created) as years,p.slug,bookno')
 									->from('post as p')
 									
 									->join('post_tag as t','t.post_id = p.page_id','left')
 									
 									->where('p.status',2)
 									->like('t.keyword',$key,'both')
+									->or_like('p.bookno',$key,'both')
 									->get();
 									$rows[] = $query->result();
 

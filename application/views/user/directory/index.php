@@ -6,7 +6,7 @@
 		<?php if ($this->session->userdata['permit'] == 'instructors' || $this->session->userdata['permit'] == 'staffs' || $this->aauth->is_admin()): ?>
 			
 		<div class="panel">
-			<div class="panel-heading"><h4>My personal files <a href="upload" class="btn btn-default">Upload <i class="fa fa-upload"></i></a></h4></div>
+			<div class="panel-heading"><h4>My personal files <a href="upload" class="btn btn-default hidden">Upload <i class="fa fa-upload"></i></a></h4></div>
 			<div class="panel-body">
 				
 		<?php 
