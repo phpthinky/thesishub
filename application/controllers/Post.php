@@ -1068,6 +1068,8 @@ public function update_abstract($value='')
 			$c_name = $this->input->post('committee');
 			$c_pos = $this->input->post('committee-position');
 
+
+			$a_name = $this->input->post('adviser');
 			$rating = $this->input->post('rating');
 
 
@@ -1125,7 +1127,7 @@ public function update_abstract($value='')
 			if($this->input->post('adviser')){
 				//$adviser[] = array(
 
-					$adviser[0]['name_id'] = $this->post_m->get_name_id($key);
+					$adviser[0]['name_id'] = $this->post_m->get_name_id($a_name);
 					$adviser[0]['role_id'] = (int)$this->post_m->get_role_id('adviser');
 					$adviser[0]['post_id'] = $post_id;
 					$adviser[0]['group_type'] = 'adviser';

@@ -242,7 +242,7 @@
 			url: "../post/edit_rating",
 			type: "POST",
 			data: data,
-			//dataType: 'json',
+			dataType: 'json',
 			success: function(data){
 				console.clear()
 				console.log(data);

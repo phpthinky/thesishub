@@ -142,11 +142,7 @@ var	activeId;
 		$('#option-thesis').hide('fast');
 		
 		//return true;
-		/*
-		$('#frm-'+activeId).submit();
-		});
-		//*/
-		//if (activeId == 6) {
+		
 
 		var data = $(this).serialize();
 			data = data+'&option='+activeId;
@@ -158,7 +154,7 @@ var	activeId;
     			dataType: 'json',
     			success: function (resp) {
     				console.clear();
-    				console.log(resp.stats);
+    				console.log(resp);
     				if (resp.stats == true) {
 
 				          $('.thesis').hide('fast');

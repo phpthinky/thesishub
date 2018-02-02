@@ -193,7 +193,7 @@
               setTimeout(function(){
                 $('.div-form').hide('fast');
                 $('#option-end').show('slow');
-              },2000);
+              },500);
 
           }else{
 
