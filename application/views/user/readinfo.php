@@ -209,7 +209,7 @@
 
 
 														if($key2->type == 'pdf'){
-														   	echo "<div class='col-md-2'><img style='width:100%;max-width:200px;max-height:200px;' alt='$key2->newfilename' src='".base_url('public/images/pdf.png')."' /><br />";
+														   	echo "<div class='col-md-4'><img style='width:100%;max-width:200px;max-height:200px;' alt='$key2->newfilename' src='".base_url('public/images/pdf.png')."' /><br />";
 														   echo "<p style='height:100px;over-flow:hidden;'>";
 																echo !empty($key2->title) ? $key2->title : strtoupper (str_replace('-',' ', substr($key2->newfilename, 0, -22)));
 																echo "</p>";
@@ -221,7 +221,7 @@
 														 $key2->type == 'spreadsheet' ||
 														 $key2->type == 'powerpoint'
 														 ){
-														   	echo "<div class='col-md-2'><img style='width:100%';max-width:200px;max-height:200px;  alt='$key2->newfilename' src='".base_url('public/images/docs1.jpg')."'  /><br />";
+														   	echo "<div class='col-md-4'><img style='width:100%';max-width:200px;max-height:200px;  alt='$key2->newfilename' src='".base_url('public/images/docs1.jpg')."'  /><br />";
 																echo "<p style='height:100px;max-height:100px;  text-overflow: ellipsis;  /* Required for text-overflow to do anything */  white-space: wrap;overflow: hidden;font-size:12px'>";
 																echo !empty($key2->title) ? $key2->title : strtoupper (str_replace('-',' ', substr($key2->newfilename, 0, -22)));
 																echo "</p>";
@@ -230,7 +230,7 @@
 														}	
 
 													if($key2->type == 'zipped'){
-														   	echo "<div class='col-md-2'><img style='width:100%;max-width:200px;max-height:200px;'  alt='$key2->newfilename' src='".base_url('public/images/archived.png')."'  /><br />";
+														   	echo "<div class='col-md-4'><img style='width:100%;max-width:200px;max-height:200px;'  alt='$key2->newfilename' src='".base_url('public/images/archived.png')."'  /><br />";
 																echo "<p style='height:100px;max-height:100px;  text-overflow: ellipsis;  /* Required for text-overflow to do anything */  white-space: wrap;overflow: hidden;font-size:12px'>";
 																echo !empty($key2->title) ? $key2->title : strtoupper (str_replace('-',' ', substr($key2->newfilename, 0, -22)));
 																echo "</p>";
