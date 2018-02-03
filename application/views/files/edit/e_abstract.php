@@ -160,7 +160,16 @@
             document.execCommand('insertText', false, bufferText);
         }
     },
-    height:100
+    height:100,
+    toolbar: [
+      ['style', ['highlight', 'bold', 'italic', 'underline', 'clear','color']],
+      ['font', ['strikethrough', 'superscript', 'subscript']],
+      ['para', ['ul', 'ol', 'paragraph']],
+    ['table', ['table']],
+    ['insert', ['link']],
+      ['view', ['codeview']]
+    ]
+  
 });
 
 function resetall(){

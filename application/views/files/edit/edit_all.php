@@ -3,7 +3,7 @@
 
         <div class="row create">
         <div class="tab-heading">
-        <h3>Add new post</h3>
+        <h3>Edit post</h3>
         <br />
 
         <div class="col-md-12">
@@ -14,6 +14,7 @@
           <li><a data-toggle="tab" href="#a_authors" id="li_author">AUTHOR</a></li>
           <li><a data-toggle="tab" href="#a_approval" id="li_approval">APPROVAL</a></li>
           <li><a data-toggle="tab" href="#a_file" id="li_file">FILE</a></li>
+          <li><a data-toggle="tab" href="#a_finish" id="li_finish">COMPLETE</a></li>
         </ul>
       </div>
       </div>
@@ -58,6 +59,18 @@
 
 
               	<?php include 'e_approval.php'; ?>
+
+              </div>
+            </div>
+          </div>
+          <div id="a_finish" class="col-md-12 tab-pane fade">
+            <div class="panel">
+              <div class="panel-heading"><h3>COMPLETE </h3></div>
+              <div class="panel-body">
+                <i>.</i><br/>
+                <a href="<?=site_url('post');?>" class="btn btn-default" onclick="show_others_menu(false)">View all post</a> <a href="<?=site_url('post/add');?>" class="btn btn-default" onclick="show_others_menu(false)">Add new post</a> <br/>
+                
+                <input type="hidden" name="post_id" id="post_id" />
 
               </div>
             </div>

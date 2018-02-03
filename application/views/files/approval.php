@@ -57,7 +57,7 @@
 						</div>
 						<div class="col-md-4">
 							
-							<label>Position / title </label><?php//input type="text" class="form-control" name="panel-position[]" id="panel-position" placeholder="Type panel position or NA" ?>
+							<label>Position / title </label><?php /*input type="text" class="form-control" name="panel-position[]" id="panel-position" placeholder="Type panel position or NA" */ ?>
 							<select class="form-control" name="panel-position[]" id="panel-position">
 										<option value="0">Select here</option>
 										<?php foreach ($position as $key): ?>
