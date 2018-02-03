@@ -11,6 +11,7 @@
         <link href="<?=base_url('assets/bootstrap');?>/css/font-awesome.css" rel="stylesheet">
         <link href="<?=base_url('assets/css/animate.css');?>" rel="stylesheet">
         <link href="<?=base_url('assets/plugin/videoplayer/video-js.min.css');?>" rel="stylesheet">
+        <link rel="icon" type="image/png" href="<?=base_url();?>favicon.png">
        
 
         <?php // add css files
@@ -43,9 +44,40 @@
 
 <div class="body">
 	<div class="container">
+        <div class="col-md-12"><div class="container"><p id="heyboy" style="display: none;color:red;">Hey, it seems like you are using IE with lower version than 11. Some feature may not work properly. Pleas upgrade your browser or use other browser like google chrome.</p></div></div>
 
 	<?php echo $body; ?>
 	</div> <!-- container -->
 </div> <!-- body -->
+
 </body>
 </html>
+
+<script type="text/javascript">
+    function msieversion() {
+
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))  // If Internet Explorer, return version number
+    {
+       // alert(parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))));
+      if( parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))) < 11){
+
+        $('#heyboy').show();
+
+      }
+    }
+    
+    else  // If another browser, return 0
+    {
+        //alert('otherbrowser');
+
+        $('#heyboy').hide();
+
+    }
+
+    return false;
+}
+msieversion();
+</script>

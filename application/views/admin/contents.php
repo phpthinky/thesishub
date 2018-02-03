@@ -7,15 +7,15 @@
            
          
             <div class="col-md-12">
-              <div class="col-md-12 title-blue-light" style="">Welcome</div>
+              <div class="col-md-12 title-blue-light" style="">User guide</div>
 
             <div class="col-md-8"><br/>
                 <?php 
-            if (!empty($welcome)) {
+            if (!empty($guide)) {
                # code...
-               if (is_array($welcome)) {
+               if (is_array($guide)) {
                  # code...
-                echo $welcome[0]->setting_value;
+                echo $guide[0]->setting_value;
                }
              } ?>
 

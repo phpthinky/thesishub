@@ -5,45 +5,12 @@
 					<div id="msgcommittee" style="display: inline-block;"></div>
 				</div>
 				<div class="panel-body">
-					
-					<input type="hidden" name="slug" id="slug">
-							<table class="table table-bordered" id="table_researcher">
-								<tr>
-									<th>#</th>
-									<th>NAME</th>
-									<th>POSITION</th>
-									<th></th>
-								</tr>
-								<tr>
-									<?php 
-									if (!empty($committee)) {
-										# code...
-
-
-									foreach ($committee as $key) {
-										echo "<input type=\"hidden\" name=\"post_id_auth\" id=\"post_id_auth\" value='$key->post_id'>";
-
-									echo "<tr id='tr_$key->info_id'><td>$key->id <input type='hidden' id='auth_id_$key->id' value='$key->id' /> <input type='hidden' id='role_id_$key->id' value='$key->role_id' /></td>
-									<td contenteditable=\"true\" onBlur=\"saveToDatabase(this,'fullname',$key->id,$key->info_id)\">$key->fullname</td>
-									<td contenteditable=\"true\" onBlur=\"saveToDatabase(this,'role_name',$key->id,$key->info_id)\">$key->position</td><td width='30px'><button class='btn btn-danger pull-right' type='button' id='$key->info_id' onclick='remove_author(this.id)'><i class='fa fa-remove'></i></button></td></tr>";
-
-									 }
-
-									}
-
-
-									  ?>
-								</tr>
-							</table>
-
-				</div>
-				<div class="panel-body">
 
 					<form class="form" id="frm_committee" name='frm_committee' action="#../post/save_committee" method="post">
 								
-					<div class="row hidden"  id="divcommittee">
+					<div class="row "  id="divcommittee">
 						<div class="response_committee"></div>
-						<input type="hidden" name="post_id" id="post_id_committee" value="<?php echo $this->input->get('id'); ?>">
+						<input type="hidden" name="post_id" id="post_id_committee" value="">
 						<div class="col-md-8">
 							
 							<label>Name of committee</label><input type="text" class="form-control" name="committee[]" id="committee" placeholder="Type committee full name" onkeyup="names(this.id)" autocomplete="off">
@@ -59,9 +26,9 @@
 									</select>
 					
 						</div>	
-							<div class="col-md-12"><br/></div>
-							<div class="col-md-12"><button class="btn btn-success" type="submit" id="btn_committee">Save</button></div>
 					</div>
+							<div class="col-md-12"><br/></div>
+							<div class="col-md-12"><button class="btn btn-success">Save</button></div>
 
 				</form>
 
@@ -77,45 +44,11 @@
 
 
 				<div class="panel-body">
-					
-					<input type="hidden" name="slug" id="slug">
-							<table class="table table-bordered" id="table_researcher">
-								<tr>
-									<th>#</th>
-									<th>NAME</th>
-									<th>POSITION</th>
-									<th></th>
-								</tr>
-								<tr>
-									<?php 
-									if (!empty($panel)) {
-										# code...
-
-
-									foreach ($panel as $key) {
-										echo "<input type=\"hidden\" name=\"post_id_auth\" id=\"post_id_auth\" value='$key->post_id'>";
-
-									echo "<tr id='tr_$key->info_id'><td>$key->id <input type='hidden' id='auth_id_$key->id' value='$key->id' /> <input type='hidden' id='role_id_$key->id' value='$key->role_id' /></td>
-									<td contenteditable=\"true\" onBlur=\"saveToDatabase(this,'fullname',$key->id,$key->info_id)\">$key->fullname</td>
-									<td contenteditable=\"true\" onBlur=\"saveToDatabase(this,'role_name',$key->id,$key->info_id)\">$key->position</td><td width='30px'><button class='btn btn-danger pull-right' type='button' id='$key->info_id' onclick='remove_author(this.id)'><i class='fa fa-remove'></i></button></td></tr>";
-
-									 }
-
-									}
-
-
-									  ?>
-								</tr>
-							</table>
-
-				</div>
-
-				<div class="panel-body">
 
 				<form class="form" id="frm_panel" action="../post/save_panel" method="post">
-					<div class="row hidden"  id="divpanel">
+					<div class="row "  id="divpanel">
 						<div class="response_panel"></div>
-						<input type="hidden" name="post_id" id="post_id_panel" value="<?php echo $this->input->get('id'); ?>">
+						<input type="hidden" name="post_id" id="post_id_panel" value="">
 						<div class="col-md-8">
 							
 							<label>Name of panel</label><input type="text" class="form-control" name="panel[]" id="panel" placeholder="Type panel full name" onkeyup="names(this.id)" autocomplete="off">
@@ -133,9 +66,9 @@
 									</select>
 					
 						</div>
+					</div>
 							<div class="col-md-12"><br/></div>
 							<div class="col-md-12"><button class="btn btn-success">Save</button></div>
-					</div>
 				</form>
 
 				</div>
@@ -145,7 +78,7 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<div class="row">
-						
+					<form class="form" id="frm_adviser" name="frm_adviser">
 					<div class="col-md-6">
 							
 						<div class="form-group">
@@ -155,23 +88,12 @@
 							$info_id = 0;
 							$name_id = 0;
 						?>
-						<?php foreach ($adviser as $key): ?>
-							<?php $adv = ($adviser) ? $key->fullname : ''; ?>
-
-							<?php 
-								$name_id = isset($key->id) ? $key->id : 0;
-								$role_id = isset($key->role_id) ? $key->role_id : 0;
-								$info_id = isset($key->info_id) ? $key->info_id : 0;
-							 ?>
-						
-						<?php endforeach ?>
 
 
 
 
 							<input type="hidden" name="col" id="adviser_col" value="adviser">
 							<input type="hidden" name="name_id" id="adviser_name_id" value="<?=$name_id;?>">
-						<input type="hidden" name="post_id" id="post_id_adviser" value="<?php echo $this->input->get('id'); ?>">
 
 							<input type="text" class="form-control" name="adviser" id="adviser" placeholder='Type daviser here...' autocomplete="off" value="<?=$adv;?>" onBLur="saveAdviser(this,'adviser',<?=$name_id;?>,<?=$info_id;?>)">
 						</div>
@@ -182,10 +104,13 @@
 							
 						<div class="form-group">
 						<label>Rating</label>
-						<input type="hidden" name="post_id" id="post_id_rating" value="<?php echo $this->input->get('id'); ?>">
-							<input type="number" max="5" step="0.01"   class="form-control" name="rating" id="rating" placeholder='Type rating here...' onBLur="saveRating(this,'rating')" value="<?=$infos[0]->rating;?>" >
+							<input type="number" max="5" step="0.01"   class="form-control" name="rating" id="rating" placeholder='Type rating here...' onBLur="saveRating(this,'rating')" value="" >
 						</div>
 					</div>
+							<div class="col-md-12"><br/></div>
+							<div class="col-md-12"><button class="btn btn-success" type="button" onclick="show_file()">Save</button></div>
+					</form>
+
 					</div>
 				</div>
 			</div>
@@ -195,7 +120,7 @@
 
 	function saveAdviser(editableObj,column,name_id,info_id) {
 
-	var post_id = $('#post_id_adviser').val();
+	var post_id = $('#post_id').val();
 	var name = $('#adviser_name_id').val();
 
 
@@ -231,7 +156,7 @@
 
 	function saveRating(editableObj,column) {
 
-		var post_id = $('#post_id_rating').val();
+		var post_id = $('#post_id').val();
 
 		$(editableObj).css("background","#FFF url(../../public/images/loading.gif) no-repeat right");
 		$(editableObj).css("background-size","15px");
@@ -344,21 +269,21 @@
     				console.log(resp);
 
     				if (resp.stats == true) {
-    						$('.response_committee').html('<div class="alert alert-success">'+resp.msg+' Pls. reload the page to see changes</div>')
+    						$('.response_committee').html('<div class="alert alert-success">'+resp.msg+'</div>')
 
 
 
     					}
     					else{
 
-    						$('.response_committee').html('<div class="alert alert-danger">Author not added.</div>')
+    						$('.response_committee').html('<div class="alert alert-danger">No new committee was added or already exist.</div>')
     					}
     					return false;
     			},
     			error: function (resp) {
     				// body...
 
-    						$('.response_committee').html('<div class="alert alert-danger">Unknow error occured.</div>');
+    						$('.response_committee').html('<div class="alert alert-danger">Unknow error occured. You may try to save again</div>');
 
 					        setTimeout(function(){
 					        	 $('.response_committee').html('');
@@ -390,19 +315,19 @@
 
 				         // $('.thesis').hide('fast');
 				          //$('.resource').show('slow');
-    						$('.response_panel').html('<div class="alert alert-success">'+resp.msg+' Pls. reload the page to see changes</div>')
+    						$('.response_panel').html('<div class="alert alert-success">'+resp.msg+'</div>')
 
     					}
     					else{
 
-    						$('.response_panel').html('<div class="alert alert-danger">Author not added.</div>')
+    						$('.response_panel').html('<div class="alert alert-danger">No new panelist was added or already exist.</div>')
     					}
     					return false;
     			},
     			error: function (resp) {
     				// body...
 
-    						$('.response_panel').html('<div class="alert alert-danger">Unknow error occured.</div>');
+    						$('.response_panel').html('<div class="alert alert-danger">Unknow error occured. You may try to save again.</div>');
 
 					        setTimeout(function(){
 					        	 $('.response_panel').html('');

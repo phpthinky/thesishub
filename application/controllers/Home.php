@@ -38,6 +38,7 @@ class Home extends CI_Controller
 		$data['latest_post'] = $latest_file;
 		$data['title'] = 'Welcome';
 		$data['welcome'] = $this->setting_m->get_all_setting(1);
+		$data['guide'] = $this->setting_m->get_all_setting(5);
 		$data['username'] = $this->session->username;
 		$data['visits'] = $this->pagecounter->visit_total($this->pagecounter->get_pageUrl());
 		//$this->load->view('common/header',$data);

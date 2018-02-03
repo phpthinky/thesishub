@@ -1,12 +1,8 @@
-<div class="row" id="resources" >
-	<h4>Upload file</h4>
-      <div class="col-md-12">
       <form class="form" id="frmresources" accept="" method="post"   enctype="multipart/form-data">
       	
 
       <div class="form-group">
           <label for="Title">File Category</label>
-        <input type="hidden" name="post_id" id="post_id" value="0">
 
 
           <ul class="nav nav-tabs">
@@ -48,8 +44,6 @@
 
       </div>
 
-
-      </div>
       <div class="col-md-12">
       </div>
 
@@ -58,17 +52,15 @@
 
       <div class="form-group">
       <br />
-      <input type="submit" class="btn btn-success" name="btn-next" id="btn-next" value="Save and continue >>">
+      <input type="submit" class="btn btn-success" name="btn-next" id="btn-next" value="Upload">
 
-      <button type="button" class="btn btn-default" onclick="skipAll()">Skip</button> 
+       
       <br />
 
     
       </div>
       </form>
         
-
-</div>
 
 <script type="text/javascript">
 	var	selected = 0;
@@ -191,8 +183,11 @@
             if (data.stats == true) {
               $('.response').html('<div class="alert alert-success">'+data.msg+' </div> <button type="button" class="btn btn-success" onclick="skipAll()">Done</btn>');
               setTimeout(function(){
-                $('.div-form').hide('fast');
-                $('#option-end').show('slow');
+
+
+                $('#abstract > li.active').removeClass('active');
+                $('#abstract > li a#li_finish').addClass('active');
+                $('#abstract > li a#li_finish').tab('show');
               },500);
 
           }else{

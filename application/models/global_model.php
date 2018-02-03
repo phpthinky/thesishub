@@ -56,10 +56,26 @@ class Global_model extends CI_Model
                 // strip tags to avoid breaking any html
         $string = strip_tags($string);
 
-        if (strlen($string) > 300) {
+        if (strlen($string) >200) {
 
             // truncate string
-            $stringCut = substr($string, 0, 300);
+            $stringCut = substr($string, 0, 200);
+
+            // make sure it ends in a word so assassinate doesn't become ass...
+            $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...'; 
+        }
+        return $string;
+    }
+    public function limit_title($string='')
+    {
+        # code...
+                // strip tags to avoid breaking any html
+        $string = strip_tags($string);
+
+        if (strlen($string) >45) {
+
+            // truncate string
+            $stringCut = substr($string, 0, 45);
 
             // make sure it ends in a word so assassinate doesn't become ass...
             $string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...'; 

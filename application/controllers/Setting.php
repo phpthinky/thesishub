@@ -30,6 +30,8 @@ class Setting extends CI_Controller
 		$data['welcome'] = $this->setting_m->get_all_setting(1);
 		$data['header'] = $this->setting_m->get_all_setting(2);
 		$data['footer'] = $this->setting_m->get_all_setting(3);
+		$data['logo'] = $this->setting_m->get_all_setting(4);
+		$data['guide'] = $this->setting_m->get_all_setting(5);
 
 
 
@@ -64,6 +66,18 @@ class Setting extends CI_Controller
 		}
 	}
 	public function update_footer($value='')
+	{
+		# code...
+		if ($this->input->post()) {
+			# code...
+			$input = (object)$this->input->post();
+			$data = array('setting_value' => $input->desc);
+			$update = $this->setting_m->save($input->s_id,$data);
+			redirect('setting?stats='.$update);
+			exit();
+		}
+	}
+	public function update_guide($value='')
 	{
 		# code...
 		if ($this->input->post()) {
@@ -111,6 +125,17 @@ class Setting extends CI_Controller
 		$this->load->view('admin/default/header',$data);
 		$this->load->view('admin/default/menu',$data);
 		$this->load->view('admin/setting/courses',$data);
+		$this->load->view('admin/default/footer',$data);
+	}
+	public function roles($value='')
+	{
+		# code...
+
+		$data['groups'] = $this->group_m->expert_role_type();
+		$data['title']= "Courses";
+		$this->load->view('admin/default/header',$data);
+		$this->load->view('admin/default/menu',$data);
+		$this->load->view('admin/setting/role',$data);
 		$this->load->view('admin/default/footer',$data);
 	}
 

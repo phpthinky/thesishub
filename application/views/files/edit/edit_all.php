@@ -2,19 +2,23 @@
         <div class="side-body">
 
         <div class="row create">
-
+        <div class="tab-heading">
         <h3>Add new post</h3>
         <br />
 
         <div class="col-md-12">
-        	
-        <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#a_abstract" id="li_abstract">ABSTRACT</a></li>
+          <div class="response"></div>
+          
+        <ul class="nav nav-tabs" id="abstract">
+          <li class=" active" id="s_abstract"><a data-toggle="tab" href="#a_abstract" id="li_abstract">ABSTRACT</a></li>
           <li><a data-toggle="tab" href="#a_authors" id="li_author">AUTHOR</a></li>
-          <li><a data-toggle="tab" href="#a_approval" id="li_approval">APPROVAL SHEET</a></li>
+          <li><a data-toggle="tab" href="#a_approval" id="li_approval">APPROVAL</a></li>
           <li><a data-toggle="tab" href="#a_file" id="li_file">FILE</a></li>
         </ul>
+      </div>
+      </div>
 
+        <div class="col-md-12">
 
 
 

@@ -135,6 +135,7 @@
                         <ul class="nav navbar-nav">
                             <li class=''><a href="<?=site_url('setting/group');?>">Courses setting</a></li>
                             <li class=''><a href="<?=site_url('setting');?>">Site setting</a></li>
+                            <li class=''><a href="<?=site_url('setting/roles');?>">Role setting</a></li>
                             
                         </ul>
                     </div>

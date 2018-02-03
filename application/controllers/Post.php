@@ -134,10 +134,10 @@ class Post extends CI_Controller {
 		$data['position'] = $this->group_m->expert_role_type();
 
 		$data['list_life']= $list_life;
-		$data['title']= "Resource Portal - file directory";
+		$data['title']= "Add new post";
 		$this->load->view('admin/default/header',$data);
 		$this->load->view('admin/default/menu',$data);
-		$this->load->view('files/addnew',$data);
+		$this->load->view('files/new',$data);
 		$this->load->view('admin/default/footer',$data);
 	}
 	public function showbarangay()
@@ -388,7 +388,7 @@ class Post extends CI_Controller {
 				$r = array_filter(array_unique($r));
 				//echo json_encode($r);exit();
 				if($re = $this->post_m->insert_info_by_batch($r)){
-					echo json_encode(array('stats'=>true,'msg'=>count($re).' new author is added successfully.'));
+					echo json_encode(array('stats'=>true,'msg'=>'Author is added successfully.'));
 				}else{
 
 					echo json_encode(array('stats'=>false));
@@ -445,7 +445,7 @@ class Post extends CI_Controller {
 				$r = array_filter(array_unique($r));
 				//echo json_encode($r);exit();
 				if($re = $this->post_m->insert_info_by_batch($r)){
-					echo json_encode(array('stats'=>true,'msg'=>count($re).' new committee is added successfully.'));
+					echo json_encode(array('stats'=>true,'msg'=>'Committee is added successfully.'));
 				}else{
 
 					echo json_encode(array('stats'=>false));
@@ -502,7 +502,7 @@ class Post extends CI_Controller {
 				$r = array_filter(array_unique($r));
 				//echo json_encode($r);exit();
 				if($re = $this->post_m->insert_info_by_batch($r)){
-					echo json_encode(array('stats'=>true,'msg'=>count($re).' new panel is added successfully.'));
+					echo json_encode(array('stats'=>true,'msg'=>'Panelist is added successfully.'));
 				}else{
 
 					echo json_encode(array('stats'=>false));

@@ -19,6 +19,22 @@
                }
              } ?>
 
+            <br/><br/>
+            </div>
+            <div class="col-md-4"><br/></div>
+              <div class="col-md-12 title-blue-light" style=""><h4>User Guide</h4></div>
+
+            <div class="col-md-8"><br/>
+                <?php 
+             
+            if (!empty($guide)) {
+               # code...
+               if (is_array($guide)) {
+                 # code...
+                echo $guide[0]->setting_value;
+               }
+             }  ?>
+            <br/><br/>
             </div>
             <div class="col-md-4"><br/></div>
           </div>
@@ -36,9 +52,9 @@
                 ?>
                 <div class="col-md-4 post-content"><br/>
                 
-                  <div class="panel panel-info post-latest">
+                  <div class="panel panel-info post-latest" style="max-height: 300px;min-height: 300px;overflow: hidden;">
                     <div class="panel-heading">
-                       <a href="<?=site_url('read/'.$key->years.'/'.$key->slug);?>" style='text-decoration:none;'><h5><?=$key->title;?><i class="fa fa-arrow-right go pull-right"></i></h5></a>
+                       <a href="<?=site_url('read/'.$key->years.'/'.$key->slug);?>" style='text-decoration:none;'><h5><?=$this->global_model->limit_title($key->title);?><i class="fa fa-arrow-right go pull-right"></i></h5></a>
                     </div>
                     <div class="panel-body">
                       <div class="col-md-4">

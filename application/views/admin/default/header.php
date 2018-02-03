@@ -16,7 +16,7 @@
         <link href="<?=base_url('assets/plugin/summernote/summernote.css');?>" rel="stylesheet">
         <link href="<?=base_url('assets/plugin/bootstrap-tagsinput/dist/bootstrap-tagsinput.css');?>" rel="stylesheet">
         
-        <link rel="shortcut icon" href="<?=base_url('public/images/favicon.png');?>"/>
+        <link rel="icon" type="image/png" href="<?=base_url();?>favicon.png">
 
 
             <?php // add css files

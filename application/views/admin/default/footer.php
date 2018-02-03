@@ -113,3 +113,27 @@ if($this->uri->segment(3)) {
 ?>
 </body>
 </html>
+
+
+<script type="text/javascript">
+
+var isLookBehindSupported = false;
+try { isLookBehindSupported = !!new RegExp("(?<=)"); } catch (e) {
+/*In unsupported browsers, trying to create a lookbehind expression will simply error will simply error, which is caught here*/
+}
+if (isLookBehindSupported) {
+    // Yay, lookbehind expressions are supported
+    // alert('Yay, lookbehind expressions are supported');
+    if (navigator.userAgent.indexOf("Chrome") !== -1){
+    // YES, the user is suspected to support look-behind regexps 
+    } else {
+     /*put your old fall back code here*/ 
+    //alert('Some feature may not work properly. Please used Chrome Version 50 to 63');
+    $('.side-body').prepend('<div class="col-md-12><div><br /><p  class="alert alert-warning" style="color:red;background:#fff;padding:2px;font-size:11px;">Seems like you are not using google chrome browser. Some feature may not work properly. Please used Chrome Version 63 <i>(it may also work in Chrome Version 50 or later)</i> and javascript must be enable.</p></div></div>');
+    }
+} else {
+    // Booo! Lookbehind not supported
+
+    $('.side-body').prepend('<div class="col-md-12><div><br /><p  class="alert alert-warning" style="color:red;background:#fff;padding:2px;font-size:11px;">Seems like you are not using google chrome browser. Some feature may not work properly. Please used Chrome Version 63 <i>(it may also work in Chrome Version 50 or later)</i> and javascript must be enable.</p></div></div>');
+}
+</script>

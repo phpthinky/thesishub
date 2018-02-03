@@ -55,6 +55,7 @@ text/plain, application/pdf,.docx,.pptx,.xlsx">
             echo "<table class='table table-striped'>";
             echo "<thead>
             <tr>
+            <th><input type='checkbox' name='checkpostall' id='checkpostall' class='checkboxes'></th>
             <th>BOOK #</th>
             <th>TITLE</th>
             <th>DATE OF STUDY</th>
@@ -78,7 +79,8 @@ text/plain, application/pdf,.docx,.pptx,.xlsx">
                 $date = date( 'F Y', $time ); 
 
      
-                echo "<tr   id='td-$key->page_id'>
+                echo "<tr   id='tr-$key->page_id'>
+                    <td><input type='checkbox' name='checkpost' id='checkpost_$key->page_id' value='$key->page_id' class='checkboxes'></td>
                     <td>$key->bookno</td>
                     <td>$key->title</td>
                     <td>$date</td>
@@ -89,6 +91,9 @@ text/plain, application/pdf,.docx,.pptx,.xlsx">
 
             }
             echo "</tbody>";
+            echo "<tfooter>
+                <tr><td colspan='5'><button type='button' class='btn btn-default' id='btn_select_all' onclick=''>Select all</button> <button type='button' class='btn btn-default' id='btn-remove-s'>Remove selected</button></td></tr>
+            </tfooter>";
             echo "</table>";
         }
      } ?>
@@ -118,15 +123,60 @@ text/plain, application/pdf,.docx,.pptx,.xlsx">
                     if (resp.stats == true) {
                         if (status == 1) {
 
-                        $('#td-'+id+ ' span').remove(); 
+                        $('#tr-'+id).remove(); 
                     }else{
 
-                        $('#td-'+id+ ' span').remove();  
+                        $('#tr-'+id).remove();  
                     }                   
                     }
 
                 }
             });
     }
+function toggle(source) {
+  checkboxes = document.getElementsByName('checkpost');
+  for(var i=0, n=checkboxes.length;i<n;i++) {
+    checkboxes[i].checked = source.checked;
+        if($("#btn-remove-s").hasClass('alert-danger')){
+            $("#btn-remove-s").removeClass('alert-danger');
+        }else{
+        $("#btn-remove-s").addClass('alert-danger');        
+        }
+  }
+}
 
+$('#checkpostall').on('click',function(){
+    toggle(this);
+});
+var is_click = false;
+$('#btn_select_all').on('click',function(){
+    $('#checkpostall').click();
+    if(is_click == true){
+    $(this).html('Select all');
+    is_click = false;
+}else{
+
+    $(this).html('Deselect all');
+    is_click = true;
+}
+
+        if($("#btn-remove-s").hasClass('alert-danger')){
+            $("#btn-remove-s").removeClass('alert-danger');
+        }else{
+        $("#btn-remove-s").addClass('alert-danger');        
+        }
+});
+
+$("#btn-remove-s").click(function(){
+    var selectedPost = new Array();
+    $('input[name="checkpost"]:checked').each(function() {
+
+        selectedPost.push(this.value);
+        delete_file(this.value,1);
+
+    });
+console.log(selectedPost);
+
+//alert("Number of selected Languages: "+selectedPost.length+"\n"+"And, they are: "+selectedPost);
+});
 </script>

@@ -119,11 +119,11 @@ class Dashboard extends CI_Controller
 		";
 		$this->load->model('setting_m');
 
-		$data['welcome'] = $this->setting_m->get_all_setting(1);
+		$data['guide'] = $this->setting_m->get_all_setting(5);
 
 		$data['content'] = $content;//.$searchresult;
 		$data['subtitle']= "Welcome ".$this->session->username;
-		$data['title']= "";
+		$data['title']= "Administration";
 		$data['username']= $this->session->username;
 
 

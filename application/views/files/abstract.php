@@ -137,13 +137,15 @@
 
       <div class="form-group">
       <br />
-      <input type="submit" class="btn btn-success" name="btn-next" id="btn-next" value="Save and continue >>">
+      <input type="submit" class="btn btn-success" name="btn-next" id="btn-next" value="NEXT >>">
       <button type="button" class="btn btn-warning" onclick="resetall()">Clear</button> 
       <br />
 
 
       </div>
-
+      <div class="col-md-6">
+        <div class="response-1"></div>
+      </div>
     
       </div>
 
@@ -196,7 +198,7 @@
 
         dataType : 'json',
         success: function(resp){
-          console.log(resp);
+        //  console.log(resp);
           if (resp.stats == true) {
 
             $("#"+id).notify("Available","success");
@@ -213,7 +215,8 @@
         },
         error: function(){
             //$(this).notify("Book no not available","danger");
-            alert('Error')
+            alert('Error');
+            return false;
         }
       });
    }
@@ -305,16 +308,19 @@ $('form').each(function() { this.reset() });
       	success: function (resp) {
         $('.upload').html('');
        // console.clear()
-        console.log(resp);
+        //console.log(resp);
 
 
         if (resp.stats == true) {
           $('#slug').val(resp.slug);
           $('#post_id').val(resp.post_id);
+          $('input[name=post_id]').val(resp.post_id);
 
           $('.response').html('<div class="alert alert-success">Post successfully added.</div>');
-          $('.abstract').hide('fast');
-          $('.thesis').show('slow');
+          
+          show_others_menu(true);
+          show_author();
+
 
         }else{
           $('.abstract').show('slow');
@@ -340,6 +346,42 @@ $('form').each(function() { this.reset() });
 
 <script type="text/javascript">
   
+ function cleartags (id) {
+    // body...
+    $("#"+id).tagsinput('removeAll');
+  }
 
+  function cleartextarea (id) {
+
+    $("#"+id).each(function() {
+        if (
+            $(this).summernote('isEmpty') || 
+            $(this).val() == '<p dir="auto"><br></p>' ||
+            // this is needed in some rare cases, 
+            // ex. validating inputs when updating an entry in laravel ""
+           !$('.note-editable > p').html('<br>')
+           ) {
+            $(this).val('');
+        }
+      });
+  }
+  function skipAll () {
+  // body...
+/*
+  $('form').each(function() { this.reset() });
+  cleartags('tags');
+  cleartextarea('contents');
+  $('.other-info').hide('fast');
+  $('.resource').hide('fast');
+  $('.abstract').show('slow');
+  */
+  window.location = '<?=site_url("file/add");?>'
+ }
+ $('#cancelupload').on('click',function(){
+  if(confirm('Warning! Your upload session will be aborted. Click OK to continue...')){
+    
+  xhr.abort();
+  }
+ });
 
 </script>
