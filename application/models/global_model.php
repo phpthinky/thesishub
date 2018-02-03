@@ -1,13 +1,5 @@
 <?php 
 
-/**
-* 
-*/
-
-function admin_url($url=''){
-    $admin_url = 'http://roy-dell/';
-    return $admin_url.$url;
-}
 class Global_model extends CI_Model
 {
 	
