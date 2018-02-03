@@ -84,7 +84,7 @@ class Post extends CI_Controller {
 
 
 		$data['list_life']= $list_life;
-		$data['title']= "Resource Portal - file directory";
+		$data['title']= "List all post";
 		$this->load->view('admin/default/header',$data);
 		$this->load->view('admin/default/menu',$data);
 		$this->load->view('files/list_post',$data);

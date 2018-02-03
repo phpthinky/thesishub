@@ -151,7 +151,6 @@
 
     </form>
 
-<script type="text/javascript" src='<?=base_url("assets/plugin/notify/notify.min.js");?>'></script>
 
 <script type="text/javascript">
   $("#bookno").on('keyup',function () {

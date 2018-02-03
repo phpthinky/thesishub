@@ -68,8 +68,20 @@ class Setting_m extends CI_Model
 				$this->db->where('group_id',$id);	
 				$this->db->delete('more_group_type');
 				$this->db->where('id',$id);	
-				$this->db->delete('aauth_groups');
+				return $this->db->delete('aauth_groups');
 		}
+		return false;
 	}
+
+	public function delete_role($id=0)
+	{
+		if($id > 0){
+
+				$this->db->where('id',$id);	
+				return $this->db->delete('col_roles');
+		}
+		return false;
+	}
+
 
 }

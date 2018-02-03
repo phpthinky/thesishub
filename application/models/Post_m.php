@@ -246,6 +246,17 @@ class Post_m extends CI_Model
 	}
 
 
+
+	public function get_role($caption=false)
+	{
+		if ($caption) {
+		$query = $this->db->get_where('col_roles',array('role_name'=>$caption));
+		return count($query->result());
+		}
+		return false;
+	}
+
+
 	public function save_tag($tags=false,$id)
 	{
 		# code...

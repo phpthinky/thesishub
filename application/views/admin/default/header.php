@@ -33,6 +33,7 @@
         <script src="<?=base_url('assets/js/admin.js');?>" type="text/javascript"></script>
         <script src="<?=base_url('assets/plugin/bootstrap-tagsinput/dist/bootstrap-tagsinput.js');?>" type="text/javascript"></script>
         <script src="<?=base_url('assets/plugin/summernote/summernote.js');?>" type="text/javascript"></script>
+<script type="text/javascript" src='<?=base_url("assets/plugin/notify/notify.min.js");?>'></script>
             <script type="text/javascript">
                 $(function () {
     $('.navbar-toggle').click(function () {

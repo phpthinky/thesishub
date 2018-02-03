@@ -32,10 +32,11 @@
                             echo "<table class='table table-bordered'><h4>List of active courses</h4>
                                     <tr><th></th><th>Name</th><th>Definitions</th><th>Action</th></tr>
                                 ";
+                                $i = 1;
                             foreach ($groups as $key) {
                                 
-                                    echo "<tr><td style='text-align:right'>$key->id</td><td>$key->name</td><td>$key->definition</td><td><button></button></td></tr>";
-
+                                    echo "<tr id='tr-$key->id'><td style='text-align:right'>$i</td><td>$key->name</td><td>$key->definition</td><td><button type='button' class='btn btn-danger' onclick='delete_role($key->id,1)'><i class='fa fa-remove'></i></button></td></tr>";
+                                    $i++;
                             }
                             echo "</table'>
                                 ";
@@ -109,5 +110,30 @@
     		$('#'+inputId).val(string);
     		$('#ul-on-input-'+inputId).hide();
     	}
+
+           function delete_role(id,status) {
+        // body...
+        //alert(status);return false;
+            $.ajax({
+                type: 'post',
+                url: '<?=site_url("setting/delete_course");?>',
+                data: 'role_id='+id+'&status='+status,
+                dataType:'json',
+                success: function (resp) {
+                    console.clear();
+                    console.log(resp);
+                    if (resp.stats == true) {
+                        if (status == 1) {
+
+                        $('#tr-'+id).remove(); 
+                    }else{
+
+                        $('#tr-'+id).remove();  
+                    }                   
+                    }
+
+                }
+            });
+    }
 
 </script>

@@ -40,5 +40,12 @@ class Group_m extends CI_Model
 		
 	}
 
+	function add_expert_role_type($data)
+	{
+		# code...
+		return $this->db->insert('col_roles',$data);
+		
+	}
+
 
 }
