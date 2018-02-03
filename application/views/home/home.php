@@ -7,38 +7,52 @@
            <div class="content">
             <br />
             <div class="col-md-12">
+                <?php 
+            if (!empty($welcome)) {
+                
+                ?>
+                
               <div class="col-md-12 title-blue-light" style=""><h4>Welcome</h4></div>
 
             <div class="col-md-8"><br/>
-                <?php 
-            if (!empty($welcome)) {
+            <?php
                # code...
                if (is_array($welcome)) {
                  # code...
                 echo $welcome[0]->setting_value;
                }
-             } ?>
-
+               
+               ?>
+               
             <br/><br/>
             </div>
             <div class="col-md-4"><br/></div>
-              <div class="col-md-12 title-blue-light" style=""><h4>User Guide</h4></div>
+              <?php
+             } ?>
 
-            <div class="col-md-8"><br/>
+
                 <?php 
              
             if (!empty($guide)) {
-               # code...
+               # code... ?>
+                
+              <div class="col-md-12 title-blue-light" style=""><h4>User guide</h4></div>
+
+            <div class="col-md-8"><br/>
+            <?php
                if (is_array($guide)) {
                  # code...
                 echo $guide[0]->setting_value;
                }
-             }  ?>
+             
+               ?>
+               
             <br/><br/>
             </div>
             <div class="col-md-4"><br/></div>
-          </div>
-            <br />
+              <?php
+             } ?>
+
             <div class="col-md-12">
               <br />
               <div class="col-md-12  title-blue-light" style="background: #0066ff;color: #fff"><h4>Latest Post</h4></div>
