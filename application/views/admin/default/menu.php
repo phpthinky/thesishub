@@ -62,10 +62,10 @@
                         <ul class="nav navbar-nav">
                             <li><a href="<?=site_url('accounts/guest');?>">Public</a></li>
 
-                            <li><a href="<?=site_url('accounts/students');?>">Student</a></li>
+                            <li class='hidden'><a href="<?=site_url('accounts/students');?>">Student</a></li>
                            
                             <?php if ($this->session->userdata['permit'] == 'staffs' || $this->aauth->is_admin()): ?>
-                            <li><a href="<?=site_url('accounts/instructors');?>">Instructor</a></li>
+                            <li class='hidden'><a href="<?=site_url('accounts/instructors');?>">Instructor</a></li>
                                 
                             <?php endif ?>
                             <?php if ($this->aauth->is_admin()): ?>

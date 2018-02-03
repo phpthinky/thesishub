@@ -50,6 +50,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
+$route['excel/(:any)'] = 'excel/$1';
+$route['excel'] = 'excel';
+
 $route['backup/(:any)'] = 'backup/$1';
 $route['backup'] = 'backup';
 

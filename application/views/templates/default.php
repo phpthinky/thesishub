@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Thesis Hub <?php echo isset($title) ? ' : '.$title : '' ;?></title>
+    <title>Thesis Hub <?php echo isset($title) ? ' : '.$title : '' ;?></title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="Thesis hub by Coloftech State of the Arts & technolog is an online thesis management and monitoring system of all research studies of students from BISU Bilar. It stored the title of the study, abstract, researchers, date of study, committee, and examining panel. It also allowed upload of pdf and images.">
+<meta name="author" content="Harold Rita" />
+<meta name="keywords" content="thesis hub, research study compilation system and monitoring system.coloftech project  " />
 
         <link href="<?=base_url('assets/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
         <link href="<?=base_url('assets/bootstrap');?>/css/font-awesome.css" rel="stylesheet">
@@ -31,23 +34,23 @@
 </head>
 <body>
 <header class="wrapper" >
-	<div class="container" >
-		
+    <div class="container" >
+        
 
         <div class="logo"><a href="<?=site_url();?>"><img src="<?=base_url();?>public/images/logob.png"></div></a>
         <div class="title"><a href="<?=site_url();?>"><h1 style="display:inline-block;color:#fff;"><span style='margin-top:-10px;position:absolute;font-size:1em;'>Thesis hub</span></h1></a></div>
-	</div>
-	<div class="container">
-		<?php include VIEWPATH.'common/menu.php';?>
-	</div>
+    </div>
+    <div class="container">
+        <?php include VIEWPATH.'common/menu.php';?>
+    </div>
 </header>
 
 <div class="body">
-	<div class="container">
+    <div class="container">
         <div class="col-md-12"><div class="container"><p id="heyboy" style="display: none;color:red;">Hey, it seems like you are using IE with lower version than 11. Some feature may not work properly. Pleas upgrade your browser or use other browser like google chrome.</p></div></div>
 
-	<?php echo $body; ?>
-	</div> <!-- container -->
+    <?php echo $body; ?>
+    </div> <!-- container -->
 </div> <!-- body -->
 
 </body>
