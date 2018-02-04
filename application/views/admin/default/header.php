@@ -21,7 +21,7 @@
 
             <?php // add css files
         $this->minify->css(array('default.css','admin.2.css','print.css'));
-        echo $this->minify->deploy_css(FALSE, 'admin.min.2.css');
+        echo $this->minify->deploy_css(FALSE, 'admin.min.1.css');
 
 
     ?>

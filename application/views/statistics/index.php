@@ -1,4 +1,57 @@
+<?php 
 
+    $courses_v = '';
+        $month = '';
+        $months = '';
+        $year = 0;
+        $year2 = 0;
+
+
+  if (isset($courses)) {
+    
+    if (is_array($courses)) {
+      $i=0;
+      foreach ($courses as $key) {
+        if($i == 0){
+
+        }else{
+        $courses_v .= "<option value='$key->name'>$key->name </option>";
+
+        }
+        $i++;
+      }
+    }
+  }
+  
+
+     for ($m=1; $m<=12; $m++) {
+     $months[] = array('id'=>$m,'name'=>date('F', mktime(0,0,0,$m, 1, date('Y'))));     
+     }
+
+        $m = date('m');
+        foreach ($months as $key) {
+          # code...
+            if($key['id'] == $m){$iscurrent = 'selected';}else{$iscurrent='';}
+            $month .= "<option value='".$key['id']."' $iscurrent>".$key['name']."</option>";
+        }
+
+          $currentY = date('Y');
+          for ($i=1912; $i <= $currentY; $i++) { 
+            # code...
+            if($i == $currentY-5){$iscurrent = 'selected';}else{$iscurrent='';}
+            $year .= "<option value='$i' $iscurrent>$i</option>";
+
+          }
+
+          $currentY = date('Y');
+          for ($i=1912; $i <= $currentY; $i++) { 
+            # code...
+            if($i == $currentY){$iscurrent = 'selected';}else{$iscurrent='';}
+            $year2 .= "<option value='$i' $iscurrent>$i</option>";
+
+          }
+
+?>
 <style type="text/css">
 </style>
 <div class="container-fluid">
@@ -27,7 +80,7 @@
 
           <div id="a_abstract" class="col-md-12 tab-pane fade in active">
             <div class="panel">
-              <div class="panel-heading"><h3>UTILIZATION</h3></div>
+              <div class="panel-heading"><h3>UTILIZED</h3></div>
               <div class="panel-body">
 
               	<?php include 'yes.php'; ?>
@@ -39,7 +92,7 @@
 
           <div id="a_authors" class="col-md-12 tab-pane fade">
             <div class="panel">
-              <div class="panel-heading"><h3>UNTILIZED</h3></div>
+              <div class="panel-heading"><h3>UNUTILIZED</h3></div>
               <div class="panel-body">
               	
                 <?php include 'no.php'; ?>
@@ -79,7 +132,7 @@
  ?>
 
  <script type="text/javascript" src="<?=base_url('assets/plugin/chart/exporting.js');?>"></script>
- <script type="text/javascript" src="<?=base_url('assets/plugin/chart/highcharts.js');?>"></script>
+ <script type="text/javascript" src="<?=base_url('assets/plugin/chart/highcharts2018.js');?>"></script>
 <script type="text/javascript">
   var is_abstract = false;
   var targ;
@@ -143,6 +196,11 @@ $("#abstract li#s_abstract a[data-toggle=tab]").on("click", function(e) {
                 $('#abstract > li.active').removeClass('active');
                 $('#abstract > li a#li_author').addClass('active');
                 $('#abstract > li a#li_author').tab('show');
+  }
+
+     function jsUcfirst(string) 
+  {
+      return string.charAt(0).toUpperCase() + string.slice(1);
   }
 </script>
 

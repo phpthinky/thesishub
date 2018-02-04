@@ -78,7 +78,7 @@
             </li>
                             <?php endif ?>
             <li ><a href="<?=site_url('post');?>"><span class="fa fa-book"></span> Post</a></li>
-            <li ><a href="<?=site_url('statistics');?>"><span class="fa fa-book"></span> Statistics</a></li>
+            <li ><a href="<?=site_url('statistics');?>"><span class="fa fa-bar-chart"></span> Statistics</a></li>
 
             <!-- Dropdown-->
                             <?php if ($this->aauth->is_admin()): ?>
@@ -137,6 +137,7 @@
                             <li class=''><a href="<?=site_url('setting/group');?>">Courses setting</a></li>
                             <li class=''><a href="<?=site_url('setting');?>">Site setting</a></li>
                             <li class=''><a href="<?=site_url('setting/roles');?>">Role setting</a></li>
+                            <li><a href="<?=site_url('backup/create_zip');?>"><span class="fa fa-download"></span> Backup</a></li>
                             
                         </ul>
                     </div>

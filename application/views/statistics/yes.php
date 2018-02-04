@@ -1,63 +1,10 @@
-<?php 
 
-		$courses_v = '';
-        $month = '';
-        $months = '';
-        $year = 0;
-        $year2 = 0;
-
-
-	if (isset($courses)) {
-		
-		if (is_array($courses)) {
-			$i=0;
-			foreach ($courses as $key) {
-				if($i == 0){
-
-				}else{
-				$courses_v .= "<option value='$key->name'>$key->name </option>";
-
-				}
-				$i++;
-			}
-		}
-	}
-	
-
-     for ($m=1; $m<=12; $m++) {
-     $months[] = array('id'=>$m,'name'=>date('F', mktime(0,0,0,$m, 1, date('Y'))));     
-     }
-
-        $m = date('m');
-        foreach ($months as $key) {
-          # code...
-            if($key['id'] == $m){$iscurrent = 'selected';}else{$iscurrent='';}
-            $month .= "<option value='".$key['id']."' $iscurrent>".$key['name']."</option>";
-        }
-
-          $currentY = date('Y');
-          for ($i=1912; $i <= $currentY; $i++) { 
-            # code...
-            if($i == $currentY-5){$iscurrent = 'selected';}else{$iscurrent='';}
-            $year .= "<option value='$i' $iscurrent>$i</option>";
-
-          }
-
-          $currentY = date('Y');
-          for ($i=1912; $i <= $currentY; $i++) { 
-            # code...
-            if($i == $currentY){$iscurrent = 'selected';}else{$iscurrent='';}
-            $year2 .= "<option value='$i' $iscurrent>$i</option>";
-
-          }
-
-?>
 <script>
 $(function () {
  
 	//create a variable so we can pass the value dynamically
-	var chartype_y = 'line';
- 
+	var chartype_y = 'spline';
+
 	//On page load call the function setDynamicChart
 	setDynamicChart_y(chartype_y,'container_yes');
  
@@ -71,12 +18,14 @@ $(function () {
 	//function is created so we pass the value dynamically and be able to refresh the HighCharts on every click
  
 	function setDynamicChart_y(chartype,id){
+		var chart=null;
+
 		$('#'+id).highcharts({
 			chart: {
 				type: chartype
 			},
 			title: {
-				text: 'Change Chart type dynamically with jQuery'
+				text: jsUcfirst(chartype)+' Chart of '+$('#courses').val()+" "+$('#year').val()+"-"+$('#year2').val()
 			},
 			xAxis: {
 				categories: <?=$years;?>,
@@ -104,7 +53,7 @@ $(function () {
 
 
 <div class="col-md-12"><br />
-	<a href="javascript:void(0);" class="option_y btn alert-info" id="line">Line Chart</a>
+	<a href="javascript:void(0);" class="option_y btn alert-info" id="spline">Line Chart</a>
 	<a href="javascript:void(0);" class="option_y btn alert-success" id="bar">Bar Chart</a>
 	<a href="javascript:void(0);" class="option_y btn alert-warning" id="column">Column Chart</a>
 	<br />
