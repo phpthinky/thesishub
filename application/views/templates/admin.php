@@ -1,112 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8"/>
+        <title><?php print(isset($title) ? $title : "THESIS HUB"); ?></title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="refresh" content="3000" >
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="BISU Bilar Resource Portal" name="description"/>
+        <meta content="Riziel Mendez" name="author"/>
+
+
+       <link href="<?=base_url('assets/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
+        <link href="<?=base_url('assets/bootstrap');?>/css/font-awesome.css" rel="stylesheet">
+        <link href="<?=base_url('assets/css/animate.css');?>" rel="stylesheet">
+        <link href="<?=base_url('assets/plugin/summernote/summernote.css');?>" rel="stylesheet">
+        <link href="<?=base_url('assets/plugin/bootstrap-tagsinput/dist/bootstrap-tagsinput.css');?>" rel="stylesheet">
+        
+        <link rel="icon" type="image/png" href="<?=base_url();?>favicon.png">
+
+
+            <?php // add css files
+        $this->minify->css(array('default.css','admin.2.css','print.css'));
+        echo $this->minify->deploy_css(FALSE, 'admin.min.2.css');
+
+
+    ?>
+        
+        <!-- CORE PLUGINS -->
+        <script src="<?=base_url('assets/js/jquery-1.11.0.min.js');?>" type="text/javascript"></script>
+        <script src="<?=base_url('assets/bootstrap/js/bootstrap.min.js');?>" type="text/javascript"></script>
+        <script src="<?=base_url('assets/js/jquery-migrate.min.js');?>" type="text/javascript"></script>
+        <script src="<?=base_url('assets/js/admin.js');?>" type="text/javascript"></script>
+        <script src="<?=base_url('assets/plugin/bootstrap-tagsinput/dist/bootstrap-tagsinput.js');?>" type="text/javascript"></script>
+        <script src="<?=base_url('assets/plugin/summernote/summernote.js');?>" type="text/javascript"></script>
+<script type="text/javascript" src='<?=base_url("assets/plugin/notify/notify.min.js");?>'></script>
+            <script type="text/javascript">
+                $(function () {
+    $('.navbar-toggle').click(function () {
+        $('.navbar-nav').toggleClass('slide-in');
+        $('.side-body').toggleClass('body-slide-in');
+        $('#search').removeClass('in').addClass('collapse').slideUp(200);
+
+        
+    });
+   
+   // Remove menu for searching
+   $('#search-trigger').click(function () {
+        $('.navbar-nav').removeClass('slide-in');
+        $('.side-body').removeClass('body-slide-in');
+
+
+    });
+});
+                function callprint() {
+                    window.print(this);
+                }
+                
+            </script>
+    </head>
+
+</head>
+<body>
+
+    <div class="print-header">
+        <img src="<?=base_url();?>public/images/logob.png" style="width:80px;height: 80px;margin-right: 20px;">
+    BISU Bilar Resource Portal <br />
+    Date: <?php echo date('Y/m/d h:m:s');?>
+</div>
+
+
+
+<?php
+include VIEWPATH."admin/default/menu.php";
+ ?>
+
+
+
+
+
+<?php echo $body;?>
+
+
+
+
+       
 <div class="row">
-    <!-- uncomment code for absolute positioning tweek see top comment in css -->
-    <!-- <div class="absolute-wrapper"> </div> -->
-    <!-- Menu -->
-    <div class="side-menu">
-    
-    <nav class="navbar navbar-default" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-        <div class="brand-wrapper">
-            <!-- Hamburger -->
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+    <!-- Modal -->
+    <div id="readinfo" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-            <!-- Brand -->
-            <div class="brand-name-wrapper">
-                <a class="navbar-brand" href="#">
-                    Brand
-                </a>
-            </div>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header login-header">
 
-            <!-- Search -->
-            <a data-toggle="collapse" href="#search" class="btn btn-default" id="search-trigger">
-                <span class="glyphicon glyphicon-search"></span>
-            </a>
-
-            <!-- Search body -->
-            <div id="search" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <form class="navbar-form" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default "><span class="glyphicon glyphicon-ok"></span></button>
-                    </form>
+                    <h4 class="modal-title"></h4>
                 </div>
-            </div>
-        </div>
+                <div class="modal-body">
 
-    </div>
-
-    <!-- Main Menu -->
-    <div class="side-menu-container">
-        <ul class="nav navbar-nav">
-
-            <li><a href="#"><span class="glyphicon glyphicon-send"></span> Link</a></li>
-            <li class="active"><a href="#"><span class="glyphicon glyphicon-plane"></span> Active Link</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-cloud"></span> Link</a></li>
-
-            <!-- Dropdown-->
-            <li class="panel panel-default" id="dropdown">
-                <a data-toggle="collapse" href="#dropdown-lvl1">
-                    <span class="glyphicon glyphicon-user"></span> Sub Level <span class="caret"></span>
-                </a>
-
-                <!-- Dropdown level 1 -->
-                <div id="dropdown-lvl1" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-
-                            <!-- Dropdown level 2 -->
-                            <li class="panel panel-default" id="dropdown">
-                                <a data-toggle="collapse" href="#dropdown-lvl2">
-                                    <span class="glyphicon glyphicon-off"></span> Sub Level <span class="caret"></span>
-                                </a>
-                                <div id="dropdown-lvl2" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul class="nav navbar-nav">
-                                            <li><a href="#">Link</a></li>
-                                            <li><a href="#">Link</a></li>
-                                            <li><a href="#">Link</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel" data-dismiss="modal">Close</button>
+                    <button type="button" class="add-project" data-dismiss="modal">Edit</button>
                 </div>
-            </li>
+            </div>
 
-            <li><a href="#"><span class="glyphicon glyphicon-signal"></span> Link</a></li>
-
-        </ul>
-    </div><!-- /.navbar-collapse -->
-</nav>
-    
-    </div>
-
-    <!-- Main Content -->
-    <div class="container-fluid">
-        <div class="side-body">
-           <h1> Main Content here </h1>
-           <pre> Resize the screen to view the left slide menu </pre>
-           <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-           <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-           <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-           <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-           <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-           <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-           <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-           
-         
         </div>
     </div>
 </div>
+                    </div>
+            <!-- /.content-area -->
+                </div>
+
+            </div>
+            <!-- /.row -->
+
+    
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
+</div><!-- /#wrapper -->
+<?php
+if($this->uri->segment(3)) {
+    $segment = $this->uri->segment(3);
+}else{
+    $segment = '';
+} 
+//echo $segment;
+?>
+<script type="text/javascript">
+    
+    $(function(){
+        $('#txtsearch').on('keyup',function(){
+            
+            var searchh = $('#txtsearch').val();
+            var data = "txtsearch=" + searchh;
+            $('#searchoutput').html('');
+            if(searchh.length < 2){
+                return false;
+            }
+                    $.ajax({
+                        type: 'post',
+                        url: '<?=site_url("post/searchee").'/'.$segment;?>',
+                        data: data,
+                        success: function(response){
+                            console.clear();
+                            console.log(response);
+                            //alert(response);
+                            if(response.length <= 0){
+                            $('#searchoutput').html("<div class='alert alert-danger'>No result.</div>");
+                            return false;
+
+                            }
+                            $('#searchoutput').html(response);
+
+
+
+                        }
+                    });
+            return false;
+        });
+
+
+        $('#frmsearch').on('submit',function(e){
+            var searchh = $('#txtsearch').val();
+            var data = "txtsearch=" + searchh;
+            $('#searchoutput').html('');
+            if(searchh.length < 2){
+                return false;
+            }
+                    $.ajax({
+                        type: 'post',
+                        url: '<?=site_url("post/searchee").'/'.$segment;?>',
+                        data: data,
+                        success: function(response){
+                            console.clear();
+                            console.log(response);
+                            //alert(response);
+                            if(response.length <= 0){
+                            $('#searchoutput').html("<div class='alert alert-danger'>No result.</div>");
+                            return false;
+
+                            }
+                            $('#searchoutput').html(response);
+
+
+
+                        }
+                    });
+            return false;
+        });
+    });
+</script>
+<?php
+        $this->pagecounter->run_counter('page');
+?>
+</body>
+</html>
+
+
+<script type="text/javascript">
+
+var isLookBehindSupported = false;
+try { isLookBehindSupported = !!new RegExp("(?<=)"); } catch (e) {
+/*In unsupported browsers, trying to create a lookbehind expression will simply error will simply error, which is caught here*/
+}
+if (isLookBehindSupported) {
+    // Yay, lookbehind expressions are supported
+    // alert('Yay, lookbehind expressions are supported');
+    if (navigator.userAgent.indexOf("Chrome") !== -1){
+    // YES, the user is suspected to support look-behind regexps 
+    } else {
+     /*put your old fall back code here*/ 
+    //alert('Some feature may not work properly. Please used Chrome Version 50 to 63');
+    $('.side-body').prepend('<div class="col-md-12><div><br /><p  class="alert alert-warning" style="color:red;background:#fff;padding:2px;font-size:11px;">Seems like you are not using google chrome browser. Some feature may not work properly. Please used Chrome Version 63 <i>(it may also work in Chrome Version 50 or later)</i> and javascript must be enable.</p></div></div>');
+    }
+} else {
+    // Booo! Lookbehind not supported
+
+    $('.side-body').prepend('<div class="col-md-12><div><br /><p  class="alert alert-warning" style="color:red;background:#fff;padding:2px;font-size:11px;">Seems like you are not using google chrome browser. Some feature may not work properly. Please used Chrome Version 63 <i>(it may also work in Chrome Version 50 or later)</i> and javascript must be enable.</p></div></div>');
+}
+</script>

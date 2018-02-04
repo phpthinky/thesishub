@@ -78,6 +78,7 @@
             </li>
                             <?php endif ?>
             <li ><a href="<?=site_url('post');?>"><span class="fa fa-book"></span> Post</a></li>
+            <li ><a href="<?=site_url('statistics');?>"><span class="fa fa-book"></span> Statistics</a></li>
 
             <!-- Dropdown-->
                             <?php if ($this->aauth->is_admin()): ?>

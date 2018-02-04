@@ -57,6 +57,11 @@ $route['backup/(:any)'] = 'backup/$1';
 $route['backup'] = 'backup';
 
 
+$route['statistics/(:any)/(:any)'] = 'statistics/$1/$2';
+$route['statistics/(:any)'] = 'statistics/$1';
+$route['statistics'] = 'statistics';
+
+
 $route['setting/(:any)/(:any)'] = 'setting/$1/$2';
 $route['setting/(:any)'] = 'setting/$1';
 $route['setting'] = 'setting';

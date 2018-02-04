@@ -32,10 +32,14 @@
                             echo "<table class='table table-bordered'><h4>List of active courses</h4>
                                     <tr><th></th><th>Name</th><th>Definitions</th><th>Action</th></tr>
                                 ";
-                                $i = 1;
+                                $i = 0;
                             foreach ($groups as $key) {
-                                
+                                if ($i==0) {
+                                    # code...
+                                }else{
+
                                     echo "<tr id='tr-$key->id'><td style='text-align:right'>$i</td><td>$key->name</td><td>$key->definition</td><td><button type='button' class='btn btn-danger' onclick='delete_role($key->id,1)'><i class='fa fa-remove'></i></button></td></tr>";
+                                }
                                     $i++;
                             }
                             echo "</table'>
