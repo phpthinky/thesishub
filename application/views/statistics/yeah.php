@@ -52,61 +52,77 @@
           }
 
 ?>
-<script>
-$(function () {
- 
-	//create a variable so we can pass the value dynamically
-	var chartype_n = 'line';
- 
-	//On page load call the function setDynamicChart
-	setDynamicChart_n(chartype_n,'container_no');
- 
-	//jQuery part - On Click call the function setDynamicChart(dynval) and pass the chart type
-	$('.option_y').click(function(){
-		//get the value from 'a' tag
-		var chartype_n = $(this).attr('id');
-		setDynamicChart_n(chartype_n,'container_no');
-	});
- 
-	//function is created so we pass the value dynamically and be able to refresh the HighCharts on every click
- 
-	function setDynamicChart_n(chartype,id){
-		$('#'+id).highcharts({
-			chart: {
-				type: chartype
-			},
-			title: {
-				text: 'Change Chart type dynamically with jQuery'
-			},
-			xAxis: {
-				categories: <?=$years_n;?>,
-		        crosshair: true
-			},
-			yAxis: {
-				min: 0,
-				title: {
-					text: 'Counter'
-				}
-			},
-			series: [{
-				name: 'Years',
-				data: [<?=$counters_n;?>
-				]
-			}]
-		});
-	}
-    });
-</script>
 
+<div class="col-md-12">
 	<div class="col-md-6"><select class="form-control" id="courses" name="courses"><?=$courses_v;?></select></div>
 	<div class="col-md-4"><div class="col-md-6"><select class="form-control" id="year" name="year"><?=$year;?></select></div> <div class="col-md-6"><select class="form-control" id="year2" name="year2"><?=$year2;?></select></div></div>
 	<div class="col-md-2"><button class="btn btn-success">Load</button></div>
 
+	
 
 <div class="col-md-12"><br />
-	<a href="javascript:void(0);" class="option_y btn alert-info" id="line">Line Chart</a>
-	<a href="javascript:void(0);" class="option_y btn alert-success" id="bar">Bar Chart</a>
-	<a href="javascript:void(0);" class="option_y btn alert-warning" id="column">Column Chart</a>
+	<a href="javascript:void(0);" class="option btn alert-info" id="line">Line Chart</a>
+	<a href="javascript:void(0);" class="option btn alert-success" id="bar">Bar Chart</a>
+	<a href="javascript:void(0);" class="option btn alert-warning" id="column">Column Chart</a>
 	<br />
 </div>
-<div id="container_no" class="col-md-12"></div>
+</div>
+
+
+
+
+<div class="col-md-12">
+	
+	<div class="panel chart">
+		<div class="panel-heading"><h4>Graphical View</h4></div>
+	
+	<div class="panel-body">
+	<div class="col-md-12">
+		<div class="alert alert-success hidden">
+		UTILIZED THESIS</div>
+		<div class="sub-chart" id="yes"></div>
+		
+	</div>
+	</div>
+
+	</div>
+
+</div>
+
+
+
+	<script>
+		$(function () {
+
+		    $('#yes').highcharts({
+		        chart: {
+		            type: 'column'
+		        },
+		        plotOptions: {
+				    column: {
+				        pointPadding: 0,
+				        borderWidth: 5,
+				        groupPadding: 0,
+				        shadow: false
+				    }
+				},
+				title: {
+				text: 'Utilized study of '+$('#courses').html()  +' ' + $('#year').val() +' - ' + $('#year2').val()
+				},
+				subtitle: {
+				text: 'Source: Thesis Hub'
+				},
+		        xAxis: {
+		            categories: <?php echo $years; ?>,
+		            crosshair: true
+		        },
+		        series: [{
+					name: 'COUNT' ,
+					data: [<?=$counters;?>]
+				}
+
+			]
+		    });
+
+		});
+	</script>

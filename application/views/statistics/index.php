@@ -1,3 +1,6 @@
+
+<style type="text/css">
+</style>
 <div class="container-fluid">
         <div class="side-body">
 
@@ -13,8 +16,7 @@
           <li class=" active" id="s_abstract"><a data-toggle="tab" href="#a_abstract" id="li_abstract">UTILIZED</a></li>
           <li><a data-toggle="tab" href="#a_authors" id="li_author">UNUTILIZED</a></li>
           <li><a data-toggle="tab" href="#a_approval" id="li_approval">NOT APPLIED</a></li>
-          <li><a data-toggle="tab" href="#a_file" id="li_file">FILE</a></li>
-          <li><a data-toggle="tab" href="#a_finish" id="li_finish">COMPLETE</a></li>
+          <li><a data-toggle="tab" href="#a_finish" id="li_finish">COMBINED</a></li>
         </ul>
       </div>
       </div>
@@ -37,7 +39,7 @@
 
           <div id="a_authors" class="col-md-12 tab-pane fade">
             <div class="panel">
-              <div class="panel-heading"><h3>UNTILIZED <button class="btn btn-default" onclick="show_approval()">Skip</button></h3></div>
+              <div class="panel-heading"><h3>UNTILIZED</h3></div>
               <div class="panel-body">
               	
                 <?php include 'no.php'; ?>
@@ -46,7 +48,7 @@
           </div>
           <div id="a_approval" class="col-md-12 tab-pane fade">
             <div class="panel">
-              <div class="panel-heading"><h3>NOT APPLIED <button class="btn btn-default" onclick="show_file()">Skip</button></h3></div>
+              <div class="panel-heading"><h3>NOT APPLIED</h3></div>
               <div class="panel-body">
               	
                 <?php include 'na.php'; ?>
@@ -57,23 +59,10 @@
           </div>
           <div id="a_finish" class="col-md-12 tab-pane fade">
             <div class="panel">
-              <div class="panel-heading"><h3>POST COMPLETE </h3></div>
+              <div class="panel-heading"><h3>COMPARISON </h3></div>
               <div class="panel-body">
-                <i>Note: Post added successfully.</i><br/>
-                <button class="btn btn-default" onclick="show_others_menu(false)">Add new post</button><br/>
-                
-                <input type="hidden" name="post_id" id="post_id" />
 
-              </div>
-            </div>
-          </div>
-          <div id="a_file" class="col-md-12 tab-pane fade">
-            <div class="panel">
-              <div class="panel-heading"><h3>Files <button class="btn btn-default" onclick="show_finish()">Skip</button></h3></div>
-              <div class="panel-body">
-                
-
-
+                <?php include 'combined.php'; ?>
 
               </div>
             </div>

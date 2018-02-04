@@ -2,6 +2,7 @@
 
 		$courses_v = '';
         $month = '';
+        $months = '';
         $year = 0;
         $year2 = 0;
 
@@ -22,21 +23,6 @@
 		}
 	}
 	
-    $months = '' ;/*array(
-          array('id'=>1,'name'=>'Jan'),
-          array('id'=>2,'name'=>'Feb'),
-          array('id'=>3,'name'=>'Mar'),
-          array('id'=>4,'name'=>'Apr'),
-          array('id'=>5,'name'=>'May'),
-          array('id'=>6,'name'=>'Jun'),
-          array('id'=>7,'name'=>'Jul'),
-          array('id'=>8,'name'=>'Aug'),
-          array('id'=>9,'name'=>'Sep'),
-          array('id'=>10,'name'=>'Oct'),
-          array('id'=>11,'name'=>'Nov'),
-          array('id'=>12,'name'=>'Dec')
-
-          ); */
 
      for ($m=1; $m<=12; $m++) {
      $months[] = array('id'=>$m,'name'=>date('F', mktime(0,0,0,$m, 1, date('Y'))));     
@@ -66,151 +52,60 @@
           }
 
 ?>
-
-<div class="col-md-12">
+<script>
+$(function () {
+ 
+	//create a variable so we can pass the value dynamically
+	var chartype = 'line';
+ 
+	//On page load call the function setDynamicChart
+	setDynamicChart(chartype,'container');
+ 
+	//jQuery part - On Click call the function setDynamicChart(dynval) and pass the chart type
+	$('.option').click(function(){
+		//get the value from 'a' tag
+		var chartype = $(this).attr('name');
+		setDynamicChart(chartype,'container');
+	});
+ 
+	//function is created so we pass the value dynamically and be able to refresh the HighCharts on every click
+ 
+	function setDynamicChart(chartype,id){
+		$('#'+id).highcharts({
+			chart: {
+				type: chartype
+			},
+			title: {
+				text: 'Change Chart type dynamically with jQuery'
+			},
+			xAxis: {
+				categories: <?=$years_na;?>,
+		        crosshair: true
+			},
+			yAxis: {
+				min: 0,
+				title: {
+					text: 'Counter'
+				}
+			},
+			series: [{
+				name: 'Years',
+				data: [<?=$counters_na;?>
+				]
+			}]
+		});
+	}
+    });
+</script>
 	<div class="col-md-6"><select class="form-control" id="courses" name="courses"><?=$courses_v;?></select></div>
 	<div class="col-md-4"><div class="col-md-6"><select class="form-control" id="year" name="year"><?=$year;?></select></div> <div class="col-md-6"><select class="form-control" id="year2" name="year2"><?=$year2;?></select></div></div>
 	<div class="col-md-2"><button class="btn btn-success">Load</button></div>
+
+
+<div class="col-md-12"><br />
+	<a href="javascript:void(0);" class="option btn alert-info" name="line">Line Chart</a>
+	<a href="javascript:void(0);" class="option btn alert-success" name="bar">Bar Chart</a>
+	<a href="javascript:void(0);" class="option btn alert-warning" name="column">Column Chart</a>
+	<br />
 </div>
-
-
-
-
-<div class="col-md-12">
-	
-	<div class="panel chart">
-		<div class="panel-heading"><h4>Graphical View</h4></div>
-	
-	<div class="panel-body">
-	<div class="col-md-12">
-		<div class="alert alert-success">
-		UTILIZED THESIS</div>
-		<div class="sub-chart" id="na"></div>
-		
-	</div>
-	</div>
-
-	</div>
-
-</div>
-
-
-
-	<script>
-		$(function () {
-
-	$('#container-chart').highcharts({
-    chart: {
-      renderTo: 'container'
-    },
-    title: {
-        text: 'Bar Chart of '+$('#courses').html() + ' ' +$('#year').val()
-    },
-    subtitle: {
-        text: 'Source: Thesis Hub'
-    },
-    plotOptions: {
-      series: {
-        pointStart: Date.UTC(2016, 1, 22),
-        pointInterval: 24 * 3600 * 1000 // one day
-      }
-    },
-    tooltip: {
-      shared: true,
-      crosshairs: true,
-      dateTimeLabelFormats : {
-        day:"%b %e"
-      }
-    },
-    xAxis: {
-      type: 'datetime'
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'Total count'
-        }
-    },
-    series: [{
-      name: '2015',
-      data: [176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4, null, 71.5, 106.4, 129.2, 144.0],
-    },{
-      name:'2016',
-      data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
-    }]
-  });
-		    $('#na').highcharts({
-		        chart: {
-		            type: 'column'
-		        },
-		        plotOptions: {
-				    column: {
-				        pointPadding: 0,
-				        borderWidth: 5,
-				        groupPadding: 0,
-				        shadow: false
-				    }
-				},
-				title: {
-				text: 'Not Applied '+$('#courses').html()  +' ' + $('#year').val() +' - ' + $('#year2').val()
-				},
-				subtitle: {
-				text: 'Source: Thesis Hub'
-				},series: [
-		        <?php 
-
-		        $i = 1;$j=0;
-		        	$j = count($na);
-		        foreach ($na as $key) {
-		        	# code...
-		        	$year =$key['year'];
-		        	$counter =$key['counter'];
-			        	echo "{
-			        		type: 'column',
-			        		name: '$year',
-			        		data: [$counter]
-			        	}";
-			        	if ($i < $j) {
-			        		echo ",";
-			        	}
-			        	$i++;
-			        
-		        }
-		        ?>
-
-			]
-		    });
-
-		    $('#downloadchart').highcharts({
-		        chart: {
-		            type: 'column'
-		        },
-		        title: {
-		            text: 'Coloftech weekly download'
-		        },
-		        subtitle: {
-		            text: 'Source: www.coloftech.com'
-		        },
-		        xAxis: {
-		            categories: <?php echo json_encode(array('Mon','Tue','Wed','Thur','Fri','Sat','Sun')) ?>,
-		            crosshair: true
-		        },
-		        yAxis: {
-		            min: 0,
-		            title: {
-		                text: 'Total download'
-		            }
-		        },
-		        plotOptions: {
-		            column: {
-		                pointPadding: 0.2,
-		                borderWidth: 0
-		            }
-		        },
-		        series: [{
-		            name: 'Download',
-		            data: <?php echo json_encode(array(1,3,5,1,6,6,3)) ?>
-		        }]
-		    });
-		});
-	</script>
+<div id="container" class="col-md-12"></div>

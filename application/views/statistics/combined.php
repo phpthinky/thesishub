@@ -56,21 +56,21 @@
 $(function () {
  
 	//create a variable so we can pass the value dynamically
-	var chartype_n = 'line';
+	var chartype_c = 'line';
  
 	//On page load call the function setDynamicChart
-	setDynamicChart_n(chartype_n,'container_no');
+	setDynamicChart_c(chartype_c,'container_com');
  
 	//jQuery part - On Click call the function setDynamicChart(dynval) and pass the chart type
-	$('.option_y').click(function(){
+	$('.option_c').click(function(){
 		//get the value from 'a' tag
-		var chartype_n = $(this).attr('id');
-		setDynamicChart_n(chartype_n,'container_no');
+		var chartype_c = $(this).attr('id');
+		setDynamicChart_c(chartype_c,'container_com');
 	});
  
 	//function is created so we pass the value dynamically and be able to refresh the HighCharts on every click
  
-	function setDynamicChart_n(chartype,id){
+	function setDynamicChart_c(chartype,id){
 		$('#'+id).highcharts({
 			chart: {
 				type: chartype
@@ -79,8 +79,11 @@ $(function () {
 				text: 'Change Chart type dynamically with jQuery'
 			},
 			xAxis: {
-				categories: <?=$years_n;?>,
-		        crosshair: true
+				categories: <?=$years;?>,
+		        crosshair: true,
+				title: {
+					text: 'Year of study'
+				}
 			},
 			yAxis: {
 				min: 0,
@@ -89,10 +92,19 @@ $(function () {
 				}
 			},
 			series: [{
-				name: 'Years',
+				name: 'YES',
+				data: [<?=$counters;?>
+				]
+			},{
+				name: 'NO',
 				data: [<?=$counters_n;?>
 				]
-			}]
+			},{
+				name: 'NA',
+				data: [<?=$counters_na;?>
+				]
+			}
+			]
 		});
 	}
     });
@@ -104,9 +116,9 @@ $(function () {
 
 
 <div class="col-md-12"><br />
-	<a href="javascript:void(0);" class="option_y btn alert-info" id="line">Line Chart</a>
-	<a href="javascript:void(0);" class="option_y btn alert-success" id="bar">Bar Chart</a>
-	<a href="javascript:void(0);" class="option_y btn alert-warning" id="column">Column Chart</a>
+	<a href="javascript:void(0);" class="option_c btn alert-info" id="line">Line Chart</a>
+	<a href="javascript:void(0);" class="option_c btn alert-success" id="bar">Bar Chart</a>
+	<a href="javascript:void(0);" class="option_c btn alert-warning" id="column">Column Chart</a>
 	<br />
 </div>
-<div id="container_no" class="col-md-12"></div>
+<div id="container_com" class="col-md-12"></div>
