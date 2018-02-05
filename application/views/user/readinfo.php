@@ -191,7 +191,7 @@
 													foreach ($files as $key2) {
 														# code...
 														if($key2->type == 'image'){
-																echo "<div class='col-md-4' id='img_div_$key2->id' style='height:300px;padding:30px 30px 20px 20px;margin-bottom:120px;'><img style='width:100%;cursor:pointer;overflow:hidden;' alt='$key2->newfilename' src='".site_url('reader?file=').$key2->newfilename."&id=".$key2->id."' id='img_$key2->id' onclick='image_viewer(this.id)' /><br />";
+																echo "<div class='panel panel-info col-md-4 read-content' id='img_div_$key2->id' style='height:300px;padding:30px 30px 20px 20px;margin-bottom:120px;'><img style='width:100%;cursor:pointer;overflow:hidden;' alt='$key2->newfilename' src='".site_url('reader?file=').$key2->newfilename."&id=".$key2->id."' id='img_$key2->id' onclick='image_viewer(this.id)' /><br />";
 														   		echo "<p style='height:100px;max-height:100px;  text-overflow: ellipsis;  /* Required for text-overflow to do anything */  white-space: wrap;overflow: hidden;font-size:12px'>";
 																echo !empty($key2->title) ? $key2->title : strtoupper (str_replace('-',' ', substr($key2->newfilename, 0, -22)));
 																echo "</p>";
@@ -209,7 +209,7 @@
 
 
 														if($key2->type == 'pdf'){
-														   	echo "<div class='col-md-4'><img style='width:100%;max-width:200px;max-height:200px;' alt='$key2->newfilename' src='".base_url('public/images/pdf.png')."' /><br />";
+														   	echo "<div class='panel panel-info col-md-4 read-content'><img style='width:100%;max-width:200px;max-height:200px;' alt='$key2->newfilename' src='".base_url('public/images/pdf.png')."' /><br />";
 														   echo "<p style='height:100px;over-flow:hidden;'>";
 																echo !empty($key2->title) ? $key2->title : strtoupper (str_replace('-',' ', substr($key2->newfilename, 0, -22)));
 																echo "</p>";
@@ -221,7 +221,7 @@
 														 $key2->type == 'spreadsheet' ||
 														 $key2->type == 'powerpoint'
 														 ){
-														   	echo "<div class='col-md-4'><img style='width:100%';max-width:200px;max-height:200px;  alt='$key2->newfilename' src='".base_url('public/images/docs1.jpg')."'  /><br />";
+														   	echo "<div class='panel panel-info col-md-4 read-content'><img style='width:100%';max-width:200px;max-height:200px;  alt='$key2->newfilename' src='".base_url('public/images/docs1.jpg')."'  /><br />";
 																echo "<p style='height:100px;max-height:100px;  text-overflow: ellipsis;  /* Required for text-overflow to do anything */  white-space: wrap;overflow: hidden;font-size:12px'>";
 																echo !empty($key2->title) ? $key2->title : strtoupper (str_replace('-',' ', substr($key2->newfilename, 0, -22)));
 																echo "</p>";
@@ -230,7 +230,7 @@
 														}	
 
 													if($key2->type == 'zipped'){
-														   	echo "<div class='col-md-4'><img style='width:100%;max-width:200px;max-height:200px;'  alt='$key2->newfilename' src='".base_url('public/images/archived.png')."'  /><br />";
+														   	echo "<div class='panel panel-info col-md-4 read-content'><img style='width:100%;max-width:200px;max-height:200px;'  alt='$key2->newfilename' src='".base_url('public/images/archived.png')."'  /><br />";
 																echo "<p style='height:100px;max-height:100px;  text-overflow: ellipsis;  /* Required for text-overflow to do anything */  white-space: wrap;overflow: hidden;font-size:12px'>";
 																echo !empty($key2->title) ? $key2->title : strtoupper (str_replace('-',' ', substr($key2->newfilename, 0, -22)));
 																echo "</p>";
@@ -239,7 +239,7 @@
 
 													}
 													if($key2->type == 'video'){
-														   	echo "<div class='col-md-4'><video width=\"100%\" height=\"75%\" controls>".'
+														   	echo "<div class='panel panel-info col-md-4 read-content'><video width=\"100%\" height=\"75%\" controls>".'
 															<source src="'.site_url('reader?file=').$key2->newfilename.'&id='.$key2->id.'" type="'.$key2->mtype.'">
 															</video><br />';
 																echo "<p style='height:100px;max-height:100px;  text-overflow: ellipsis;  /* Required for text-overflow to do anything */  white-space: wrap;overflow: hidden;font-size:12px'>";

@@ -109,7 +109,6 @@
       $('#li_file').show();
       $('#li_finish').show();
     }else{
-
       $('#li_author').hide();
       $('#li_approval').hide();
       $('#li_file').hide();
@@ -119,6 +118,9 @@
                 $('#abstract > li a#li_abstract').addClass('active');
                 $('#abstract > li a#li_abstract').tab('show');
                 $('#abstract > li#s_abstract').removeClass('disabled');
+      
+      is_abstract == false;
+      window.reload();
     }
   }
 

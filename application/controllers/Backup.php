@@ -9,6 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 class Backup extends CI_Controller
 {
+	public $username;
 	
 	function __construct()
 	{
@@ -18,6 +19,7 @@ class Backup extends CI_Controller
                 $this->load->model('file_m');
                 $this->load->model('excel_m');
                 $this->load->helper('form');
+                $this->username = $this->session->userdata('username');
 	}
 	public function index2($value='')
 	{
@@ -50,6 +52,25 @@ class Backup extends CI_Controller
 		}
 
 		fclose($fp);
+	}
+	public function create_zip()
+	{
+
+    // Load the DB utility class
+    $this->load->dbutil();
+
+    // Backup your entire database and assign it to a variable
+    $backup =& $this->dbutil->backup();
+
+    $fileName = 'db-backup-'.$this->username.'-'.date('Y-m-d-h-m-s').'.zip';
+    // Load the file helper and write the file to your server
+    $this->load->helper('file');
+    write_file(UPLOADPATH.'/admin/'.$fileName, $backup);
+
+    // Load the download helper and send the file to your desktop
+    $this->load->helper('download');
+    force_download($fileName, $backup);
+
 	}
 	
 

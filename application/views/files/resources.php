@@ -181,7 +181,7 @@
 
 
             if (data.stats == true) {
-              $('.response').html('<div class="alert alert-success">'+data.msg+' </div> <button type="button" class="btn btn-success" onclick="skipAll()">Done</btn>');
+              $('.response').html('<div class="alert alert-success">'+data.msg+' </div>');
               setTimeout(function(){
 
 

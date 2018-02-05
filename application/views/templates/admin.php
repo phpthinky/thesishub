@@ -21,7 +21,7 @@
 
             <?php // add css files
         $this->minify->css(array('default.css','admin.2.css','print.css'));
-        echo $this->minify->deploy_css(FALSE, 'admin.min.2.css');
+        echo $this->minify->deploy_css(FALSE, 'admin.min.css');
 
 
     ?>
@@ -63,9 +63,10 @@
 <body>
 
     <div class="print-header">
-        <img src="<?=base_url();?>public/images/logob.png" style="width:80px;height: 80px;margin-right: 20px;">
-    BISU Bilar Resource Portal <br />
-    Date: <?php echo date('Y/m/d h:m:s');?>
+        <img src="<?=base_url();?>public/images/logob.png" style="width:70px;height: 70px;margin-left: 50px;margin-top: 15px;">
+    <p class="print print-title">Bohol Island State University - Bilar</p><br />
+    <p class="print print-title2">Thesis Hub </p><br />
+    <p class="print print-date"><?php echo date('Y/m/d h:m:s');?></p>
 </div>
 
 

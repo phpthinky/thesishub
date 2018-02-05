@@ -25,7 +25,7 @@ $(function () {
 				type: chartype
 			},
 			title: {
-				text: jsUcfirst(chartype)+' Chart of '+$('#courses_c').val()+" "+$('#year_c').val()+"-"+$('#year2_c').val()
+				text: jsUcfirst(chartype)+' Chart of '+$('#courses').val()+" "+$('#year').val()+"-"+$('#year2').val()
 			},
 			xAxis: {
 				categories: <?=$years;?>,
@@ -58,16 +58,21 @@ $(function () {
 	}
     });
 </script>
+<script type="text/javascript">
+	$('#btn-remove').on('click',function () {
 
-	<div class="col-md-6"><select class="form-control" id="courses_c" name="courses_c"><?=$courses_v;?></select></div>
-	<div class="col-md-4"><div class="col-md-6"><select class="form-control" id="year_c" name="year2_c"><?=$year;?></select></div> <div class="col-md-6"><select class="form-control" id="year2_c" name="year2_c"><?=$year2;?></select></div></div>
-	<div class="col-md-2"><button class="btn btn-success">Load</button></div>
+		chart.get('NAME').remove();
+	})
+</script>
+	<?php include 'selection.php'; ?>
 
 
 <div class="col-md-12"><br />
 	<a href="javascript:void(0);" class="option_c btn alert-info" id="spline">Line Chart</a>
 	<a href="javascript:void(0);" class="option_c btn alert-success" id="bar">Bar Chart</a>
 	<a href="javascript:void(0);" class="option_c btn alert-warning" id="column">Column Chart</a>
+	<a href="javascript:void(0);" class="print btn alert-danger" id="print"><i class="fa fa-print"></i></a>
 	<br />
 </div>
-<div id="container_com" class="col-md-12"></div>
+<button class="btn btn-danger hidden" id="btn-remove">Remove NA</button>
+<div id="container_com" class="col-md-12 output"></div>

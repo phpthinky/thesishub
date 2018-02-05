@@ -15,7 +15,11 @@
         if($i == 0){
 
         }else{
-        $courses_v .= "<option value='$key->name'>$key->name </option>";
+        $courses_v .= "<option value='$key->name'";
+        if(!empty($is_course) && $is_course == $key->name){
+           $courses_v .= " selected ";
+        }
+        $courses_v .= "  >$key->name </option>";
 
         }
         $i++;
@@ -38,16 +42,35 @@
           $currentY = date('Y');
           for ($i=1912; $i <= $currentY; $i++) { 
             # code...
-            if($i == $currentY-5){$iscurrent = 'selected';}else{$iscurrent='';}
-            $year .= "<option value='$i' $iscurrent>$i</option>";
+            if($start_year){
 
+               if($i == $start_year){$iscurrent = 'selected';}else{$iscurrent='';}
+               $year .= "<option value='$i' $iscurrent>$i</option>";
+
+            }else{
+
+               if($i == $currentY-5){$iscurrent = 'selected';}else{$iscurrent='';}
+               $year .= "<option value='$i' $iscurrent>$i</option>";
+
+            }
           }
 
           $currentY = date('Y');
           for ($i=1912; $i <= $currentY; $i++) { 
             # code...
-            if($i == $currentY){$iscurrent = 'selected';}else{$iscurrent='';}
-            $year2 .= "<option value='$i' $iscurrent>$i</option>";
+          if($end_year){
+
+               if($i == $end_year){$iscurrent = 'selected';}else{$iscurrent='';}
+               $year2 .= "<option value='$i' $iscurrent>$i</option>";
+
+            }else{
+
+               if($i == $currentY-5){$iscurrent = 'selected';}else{$iscurrent='';}
+               $year2 .= "<option value='$i' $iscurrent>$i</option>";
+
+            }
+
+
 
           }
 
@@ -57,7 +80,7 @@
 <div class="container-fluid">
         <div class="side-body">
 
-        <div class="row create">
+        <div class="row create charts">
         <div class="tab-heading">
         <h3>Statistics</h3>
         <br />
@@ -202,5 +225,9 @@ $("#abstract li#s_abstract a[data-toggle=tab]").on("click", function(e) {
   {
       return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+  $('.print').on('click',function(){
+    window.print();
+  });
 </script>
 
