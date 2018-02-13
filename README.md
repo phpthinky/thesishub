@@ -1,5 +1,5 @@
 # thesishub
-Thesis Hub is an online thesis management and monitoring system of all research studies of students from BISU Bilar. It stored the title of the study, abstract, researchers, date of study, committee, and examining panel. It also allowed upload of pdf and images.
+Thesis Hub is an online thesis storage center and publication with analysis and monitoring system of all research studies of students from Bohol Island State University Bilar Campus.
 <br>
 Demo https://www.coloftech.com/thesis/index.php
 
