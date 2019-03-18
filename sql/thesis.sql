@@ -177,8 +177,7 @@ CREATE TABLE `aauth_users` (
 --
 
 INSERT INTO `aauth_users` (`id`, `email`, `pass`, `username`, `stud_id`, `stud_id_ex`, `banned`, `last_login`, `last_activity`, `date_created`, `forgot_exp`, `remember_time`, `remember_exp`, `verification_code`, `totp_secret`, `ip_address`) VALUES
-(1, 'rhoy012@gmail.com', 'ec225039f1cb0c48ad528709e8e0184991e637d96db175f094b6b2037ec1a3c2', 'admin', '', '', 0, '2017-12-31 23:02:51', '2017-12-31 23:02:51', NULL, NULL, NULL, NULL, NULL, NULL, '127.0.0.1'),
-(2, 'user2@gmail.com', '85331630fca2b67c234b6b57e7affc9403d62cf186989c71675956e3ccc2a20d', 'user2', '', '', 0, '2017-12-05 21:06:48', '2017-12-05 21:06:48', '2017-12-05 14:15:55', NULL, NULL, NULL, NULL, NULL, '127.0.0.1');
+(1, 'admin@email.com', '5711aa2253ac62088bf34f79f8ccd82e41bdbcf32e7670772d2a1e1746a9be9b', 'admin', '', '', 0, '2019-03-18 16:15:27', '2019-03-18 16:15:27', NULL, NULL, NULL, NULL, NULL, NULL, '::1');
 
 -- --------------------------------------------------------
 
