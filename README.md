@@ -4,7 +4,7 @@ Hello everyone i will update this package again after i finnish my current proje
 
 Thesis Hub is an online thesis storage center and publication with analysis and monitoring system of all research studies of students from Bohol Island State University Bilar Campus.
 <br>
-Demo https://www.coloftech.com/thesis/index.php
+Demo http://phlab.tech/thesis/
 
 User Guide
 
