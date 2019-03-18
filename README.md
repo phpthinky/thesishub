@@ -6,6 +6,10 @@ Thesis Hub is an online thesis storage center and publication with analysis and 
 <br>
 Demo http://phlab.tech/thesis/
 
+login information
+user email: admin@email.com
+password: 123456
+
 User Guide
 
 How to post new thesis?
