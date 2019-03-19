@@ -3,7 +3,11 @@ html{
 }
 body{
 	background-color: #fff;
+	background-image: url(http://www.thesis.hub:8000/public/images/books.jpg);
 	min-height: 100vh;
+}
+.container{
+	background-color: #fff;
 }
 .container.u-profile .row{
 	margin-bottom: 2px;
@@ -30,15 +34,66 @@ body{
 .container .form .btn:hover{
 
 }
-.home-title{
-	background: green;
+.search-sidebar{
+	min-height: 75vh;
 }
-.home-title a{
-	text-decoration: none;
+#search-top-menu{
+	margin: 0;padding: 0;
 }
-.home-title .header-title a > h4{
-padding:1px 11px;font-size: 30px;color: #fff;
+#search-top-menu >.bisu-logo  {
+
+	background-color: rgba(0,0,0,.9);
+	margin: 0;
+}
+#search-top-menu > .bisu-logo a img{
+	max-height: 55px;
+}
+#search-top-menu >.bisu-logo > div.menus{
+padding: 15px;
+}
+#search-top-menu >.bisu-logo > div.menus a{
+color: #fff;
+top: 50px;
+padding: 10px;
+height: 50px;
+font-size: 1em;
 text-decoration: none;
+}
+
+#search-logo{
+	padding: 10px;
+	background-color: rgba(255,255,255,.5);
+	top:25%;
+	text-align: center;
+}
+#search-logo > a > img{
+	height: 80px;
+	width: 400px;
+}
+#search-content,.search-content{
+	padding: 10px;
+	background-color: rgba(255,255,255,.5);
+}
+#search-content > .panel > .panel-body input{
+	min-width: 80%;
+}
+#search-content > .panel > .panel-body select{
+	min-width: 10%;
+}
+#search-content .output{
+	background-color: #fff;
+	padding-top: 5px;
+	padding-bottom: 5px;
+
+}
+
+#search-content .output p{
+	max-height: 50px;
+	overflow: hidden;
+}
+
+#search-content > .output > table{
+	position: relative;
 }
 .permit-group{
 	padding: 2px;
@@ -55,100 +110,40 @@ text-decoration: none;
 }
 .navbar-inverse{
 
-    background: #027709; 
-    border: none;
+    background: #000; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left,#054185, #a5036a); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(left,#054185, #a5036a); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(left,#054185, #a5036a); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(left,#054185, #a5036a); /* Standard syntax */
+    border-color: #046ee5;
+    border-radius: 1px;
 }
-.about ul{list-style: none;}
-.about ul > li{list-style: none;margin-bottom: 10px;}
-.about ul > li >a{text-decoration: none;}
-.navbar-brand{margin:0;padding: 0;}
-.navbar-brand h4{}
-.navbar-brand img{padding: 5px;}
-.nav{height: 50px;}
-.nav >li >a,.nav >li >a:link{
-	font-size: 16px;color: #fff;
+ul.find-userlist{
+	text-decoration: none;
+	list-style: none;
+	padding: 0;
+	margin-top: -10px;
+	border: solid 1px #e4e4e4;
 }
-
-.read{
-
-}
-.read .desc{
-	margin-left: 150px;
-}
-
-
-.box{
-	height: 90px ;
+ul.find-userlist > li{
 	background-color: #fff;
-	padding: 2px;
+	padding: 5px;
+	color: #0686e9;
 }
-
-
-.box .box-content{
-	height: 90px ;
-	width: 100%;
-	padding-top: 10%;
-	background-color: #e4e4e4;
-	text-align: center;
-}
-
-.box .box-type{
-
-	height: 90px ;
-	width: 100%;
-	background-color: green;
-	padding: 9%;
-	font-size: 4vh;
+ul.find-userlist > li:hover{
+	background-color: #747b80;
 	color: #fff;
-	text-align: center;
-	display: none;
+	font-weight: bolder;
 }
-.box:hover .box-content {
-	display: none;
-}
-
-.box:hover .box-type {
-	display: inline-block;
-}
-
-.box .box-content:hover{
-
-	background-color: green;
-	color: #fff;
-}
-.box .box-content:hover a{color: #fff;}
-
-.table{
-
-}
-.table .search-title{
-
-}
-.table .search-desc{
-
-}
-.table .search-type{
-
-	max-width:50px;
-}
-.table .search-action{
-	max-width:80px;text-align:right;
-}
-
-.search-form .search-input{
-		width: 90% !important;
-		max-width: 90%;
-	}
-.search-form .btn{display: inline-block;}
-.loader {
-    border: 10px solid #f3f3f3; /* Light grey */
-    border-top: 10px solid #3498db; /* Blue */
+.big-loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     animation: spin 2s linear infinite;
-     border-top: 10px solid lime;
- 	border-bottom: 10px solid lime;
+     border-top: 16px solid lime;
+ 	border-bottom: 16px solid lime;
 }
 
 @keyframes spin {
@@ -163,6 +158,7 @@ text-decoration: none;
 	}	
 	html,body{
 		min-width: 325px;
+		background-image: url(http://www.thesis.hub:8000/public/images/books.jpg);
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -181,14 +177,7 @@ text-decoration: none;
 	.inbox-right{
 		display: none;
 	}
-.search-form .search-input{
-		width: 90% !important;
-		max-width: 90%;
-		min-width: 255px;
-		display: inline-block;
-	}
-.search-form .btn{display: inline-block;}
-}
+}	
 @media only screen and (max-width: 568px) {
 
 	#search-top-menu >.bisu-logo > div.menus a span{
@@ -197,14 +186,12 @@ text-decoration: none;
 	#search-top-menu >.bisu-logo > div.menus a{
 		padding: 10px;
 	}
-	.table .search-type{
-	display: none;
-	}
 
-}
 @media only screen and (max-width: 468px) {
 
 	#search-top-menu >.bisu-logo > div.menus a{
 		padding: 5px;
 	}
+}
+
 }

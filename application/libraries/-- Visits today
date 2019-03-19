@@ -1,0 +1,35 @@
+-- Visits today
+select count(*) as visits_today
+from trafficTable tt
+where tt.type != 'click'
+and tt.id_user = '19d71'
+and datetime >= curdate();
+
+-- Visits this week
+select count(*) as visits_this_week
+from trafficTable tt
+where tt.type != 'click'
+and tt.id_user = '19d71'
+and yearweek(datetime) = yearweek(curdate());
+
+-- Visits this month
+select count(*) as visits_this_month
+from trafficTable tt
+where tt.type != 'click'
+and tt.id_user = '19d71'
+and year(datetime) = year(curdate())
+and month(datetime) = month(curdate());
+
+-- Total visits
+select count(*) as total_visits
+from trafficTable tt
+where tt.type != 'click'
+and tt.id_user = '19d71';
+
+--- if you want the last month - this help other ppl in other thread
+    select count(*) as visits_this_month
+    from trafficTable tt
+    where tt.type != 'click'
+    and tt.id_user = '19d71'
+    and year(datetime) <= year(curdate())
+    and month(datetime) <= month(curdate());

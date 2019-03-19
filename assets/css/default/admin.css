@@ -44,17 +44,6 @@ html,body{
 .result-table{
     min-height: 315px;
 }
-
-
- .divider{
-    border: solid 1px e5e5e5;margin:0 40px;
- }  
-
- .btn-more{
-    padding: 2px 5px;
-    font-size: 12px;
- } 
-
 @media(min-width:768px) {
     #wrapper {
         padding-left: 225px;
@@ -109,7 +98,7 @@ html,body{
 .top-nav>.open>.dropdown-menu>li>a {
     white-space: normal;
 }
-
+.divider{}
 /* Side Navigation */
 
 @media(min-width:768px) {
@@ -135,7 +124,6 @@ html,body{
     .side-nav>li>a {
         width: 225px;
         border-bottom: 1px rgba(0,0,0,.3) solid;
-        color: #000;
     }
 
     .side-nav li a:hover,
@@ -156,7 +144,7 @@ html,body{
     padding: 10px 15px 10px 38px;
     text-decoration: none;
     /*color: #999;*/
-    color: #000;    
+    color: #666;    
 }
 
 .side-nav>li>ul>li>a:hover {
